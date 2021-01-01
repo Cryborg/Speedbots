@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Speedbots" uuid="45378aca-88ac-4443-b37e-b0f62c3e36cc">
+      <database-info product="MariaDB" version="10.5.6-MariaDB-1:10.5.6+maria~focal" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.5.6" exact-driver-version="2.4">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>homestead</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="speedbots" />
+        </introspection-scope>
+      </schema-mapping>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <ssh-config-id>321fecec-332d-4238-8c47-4acd96c2b762</ssh-config-id>
+      </ssh-properties>
+    </data-source>
+  </component>
+</project>
