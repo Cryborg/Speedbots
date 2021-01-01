@@ -26,9 +26,12 @@ class ShipController extends ControllerBase
      * @param \App\Http\Requests\ShipStoreRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(ShipStoreRequest $request)
     {
+        $this->authUser->can('create');
+
         $ship = Ship::create([
             'user_id' => $request->get('user_id'),
             'class' => $request->get('class'),
@@ -54,25 +57,14 @@ class ShipController extends ControllerBase
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(int $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ShipStoreRequest $request
-     * @param int                                 $id
+     * @param \App\Models\Ship                    $ship
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(ShipStoreRequest $request, int $id)
+    public function update(ShipStoreRequest $request, Ship $ship)
     {
         //
     }
@@ -80,11 +72,11 @@ class ShipController extends ControllerBase
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param \App\Models\Ship $ship
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(Ship $ship)
     {
         //
     }

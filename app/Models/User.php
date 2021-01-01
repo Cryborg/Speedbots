@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Relations\UserRelationships;
+use App\Traits\HasPermissionsTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, UserRelationships;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        UserRelationships;
 
     /**
      * The attributes that are mass assignable.
@@ -41,4 +45,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @param mixed ...$roles
+     *
+     * @return bool
+     */
+    public function hasRole(...$roles): bool
+    {
+        foreach ($roles as $role) {
+            if ($this->roles->contains('slug', $role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
