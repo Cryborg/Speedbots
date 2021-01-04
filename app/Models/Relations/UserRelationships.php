@@ -4,15 +4,23 @@ namespace App\Models\Relations;
 
 use App\Models\Role;
 use App\Models\Ship;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait UserRelationships
 {
-    public function roles()
+    /**
+     * @return BelongsToMany
+     */
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
 
-    public function ships()
+    /**
+     * @return HasMany
+     */
+    public function ships(): HasMany
     {
         return $this->hasMany(Ship::class);
     }

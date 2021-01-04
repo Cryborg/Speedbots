@@ -28,8 +28,7 @@ class UserFactory extends Factory
             'name'              => $this->faker->name,
             'email'             => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            // password
+            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // "password"
             'remember_token'    => Str::random(10),
         ];
     }
@@ -40,13 +39,16 @@ class UserFactory extends Factory
 
         return $this->afterCreating(function (User $user) use ($playerRole) {
             $user->createToken('APIToken');
-            $user->roles()
-                 ->attach($playerRole);
+
+            if (!$user->hasRole('admin')) {
+                $user->roles()
+                     ->attach($playerRole);
+            }
 
             // Base ship
             Ship::factory()
                 ->create([
-                    'class'   => 'base',
+                    'class'   => 'mothership',
                     'health'   => 1000,
                     'user_id' => $user->id,
                 ]);

@@ -49,7 +49,7 @@ class ShipController extends ControllerBase
      *
      * @param \App\Models\Ship $ship
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Ship $ship)
     {

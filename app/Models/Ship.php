@@ -11,4 +11,11 @@ class Ship extends Model
     use HasFactory, ShipRelationships;
 
     protected $guarded = ['id'];
+
+    protected $with = ['user'];
+
+    public function getHull()
+    {
+        return $this->components->where('name', 'hull')->first();
+    }
 }
