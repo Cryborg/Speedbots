@@ -2,8 +2,9 @@
 
 namespace App\Models\Relations;
 
-use App\Models\Ship;
+use App\Models\Component;
 use App\Models\User;
+use App\Models\Weapon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -14,7 +15,7 @@ trait ShipRelationships
      */
     public function components(): BelongsToMany
     {
-        return $this->belongsToMany(Ship::class);
+        return $this->belongsToMany(Component::class);
     }
 
     /**
@@ -23,5 +24,13 @@ trait ShipRelationships
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function weapons(): BelongsToMany
+    {
+        return $this->belongsToMany(Weapon::class);
     }
 }

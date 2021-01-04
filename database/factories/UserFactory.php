@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Component;
 use App\Models\Role;
-use App\Models\Ship;
 use App\Models\User;
+use App\Models\Weapon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -36,8 +37,9 @@ class UserFactory extends Factory
     public function configure()
     {
         $playerRole = Role::where('slug', 'player')->first();
+        $weapon = Weapon::first();
 
-        return $this->afterCreating(function (User $user) use ($playerRole) {
+        return $this->afterCreating(function (User $user) use ($playerRole, $weapon) {
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {
@@ -45,21 +47,30 @@ class UserFactory extends Factory
                      ->attach($playerRole);
             }
 
-            // Base ship
-            Ship::factory()
-                ->create([
-                    'class'   => 'mothership',
-                    'health'   => 1000,
-                    'user_id' => $user->id,
-                ]);
+            // Mothership
+            $user->ships()->create([
+                'class'   => 'mothership',
+                'health'   => 1000,
+                'user_id' => $user->id,
+            ]);
 
-            // Speedbots
-            Ship::factory(5)
-                ->create([
-                    'class'   => 'speedbots',
-                    'health'   => 10,
-                    'user_id' => $user->id,
-                ]);
+            // Speedbots and components
+            $components = [
+                'core' => Component::where('name', 'core')->first()->id,
+                'engine' => Component::where('name', 'engine')->first()->id,
+                'frame' => Component::where('name', 'frame')->first()->id,
+                'hull' => Component::where('name', 'hull')->first()->id,
+                'power_supply' => Component::where('name', 'power_supply')->first()->id,
+            ];
+
+            $user->ships()->create([
+                'class'   => 'speedbots',
+                'health'   => 10,
+                'user_id' => $user->id,
+            ])->each(static function ($ship) use ($components, $weapon) {
+                $ship->components()->syncWithoutDetaching(array_values($components));
+                $ship->weapons()->sync($weapon->id);
+            });
         });
     }
 }

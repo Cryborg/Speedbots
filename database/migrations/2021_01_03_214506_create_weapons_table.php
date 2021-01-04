@@ -16,6 +16,7 @@ class CreateWeaponsTable extends Migration
         Schema::create('weapons', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name', 20);
             $table->string('type', 20)->default('ballistic')
                 ->comment('Ballistic, EMP, laser, plasma,...');
             $table->integer('damage')->default(2);

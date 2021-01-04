@@ -12,10 +12,48 @@ class Ship extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['user'];
+    protected $with = [
+        'components',
+        'user'
+    ];
 
-    public function getHull()
+    /**
+     * @return mixed
+     */
+    public function core()
+    {
+        return $this->components->where('name', 'core')->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function engine()
+    {
+        return $this->components->where('name', 'engine')->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function frame()
+    {
+        return $this->components->where('name', 'frame')->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function hull()
     {
         return $this->components->where('name', 'hull')->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function power_supply()
+    {
+        return $this->components->where('name', 'power_supply')->first();
     }
 }

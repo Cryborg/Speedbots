@@ -114,9 +114,11 @@ namespace App\Models{
  * @property int $health
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|Ship[] $components
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Component[] $components
  * @property-read int|null $components_count
  * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Weapon[] $weapons
+ * @property-read int|null $weapons_count
  * @method static \Illuminate\Database\Eloquent\Builder|Ship newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ship newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ship query()
