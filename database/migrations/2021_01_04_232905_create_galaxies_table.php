@@ -16,8 +16,10 @@ class CreateGalaxiesTable extends Migration
         Schema::create('galaxies', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('description');
+            $table->string('name')
+                ->comment('Name of the Galaxy');
+            $table->string('description')
+                ->comment('Description of the Galaxy');
 
             $table->timestamps();
         });
