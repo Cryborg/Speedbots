@@ -37,10 +37,12 @@ class RaceController extends ControllerBase
 
         $start = $track;
 
-        // Now that all SB are on the track, let's move them!
+        // Now that all SB are on the track,
+        // we can move them and make them fight
         for ($i = 1; $i <= 10; $i++) {
             $end = [];
 
+            // Move every SB
             foreach ($track as $length => $pos) {
                 foreach ($pos as $width => $data) {
                     if ($data['direction'] === '+') {
@@ -59,6 +61,15 @@ class RaceController extends ControllerBase
             }
 
             $track = $end;
+
+            // Fight!
+            foreach ($track as $length => $pos) {
+                foreach ($pos as $width => $data) {
+                    if (!is_null($this->findEnemy($length, $width))) {
+                        
+                    }
+                }
+            }
         }
 
         return Response::view('race.start', [
@@ -66,5 +77,10 @@ class RaceController extends ControllerBase
             'track_start' => $start,
             'track_end' => $end,
         ]);
+    }
+
+    private function findEnemy($length, $width)
+    {
+        return null;
     }
 }
