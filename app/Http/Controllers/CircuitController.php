@@ -6,6 +6,12 @@ use App\Http\Requests\CircuitStoreRequest;
 use App\Models\Circuit;
 use Illuminate\Http\Request;
 
+/**
+ * Class CircuitController
+ *
+ * @package App\Http\Controllers
+ * @group Circuit
+ */
 class CircuitController extends Controller
 {
     /**

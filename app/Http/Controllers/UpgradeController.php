@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * Class UpgradeController
+ *
+ * @package App\Http\Controllers
+ * @group Upgrade
+ */
 class UpgradeController extends Controller
 {
     /**

@@ -197,6 +197,7 @@ namespace App\Models{
  * App\Models\Weapon
  *
  * @property int $id
+ * @property string $name
  * @property string $type Ballistic, EMP, laser, plasma,...
  * @property int $damage
  * @property int $ammo Total ammunition
@@ -217,6 +218,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereDirection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereRange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereSalvo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereType($value)

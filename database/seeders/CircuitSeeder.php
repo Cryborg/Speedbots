@@ -16,8 +16,8 @@ class CircuitSeeder extends Seeder
     {
         Circuit::create([
             'name' => 'Test',
-            'length' => 2000,
-            'width' => 1,
+            'length' => 1000,
+            'width' => 5,
             'gravity' => 1,
             'gain_kill' => 10,
             'gain_victory' => 50,
