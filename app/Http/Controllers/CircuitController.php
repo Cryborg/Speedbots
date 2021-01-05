@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class CircuitController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List circuits
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +25,7 @@ class CircuitController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a circuit
      *
      * @param \App\Http\Requests\CircuitStoreRequest $request
      *
@@ -42,7 +42,7 @@ class CircuitController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a circuit details
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -53,7 +53,7 @@ class CircuitController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a circuit
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -65,7 +65,7 @@ class CircuitController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a circuit
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

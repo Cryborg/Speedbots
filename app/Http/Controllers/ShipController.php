@@ -15,7 +15,7 @@ use App\Models\Ship;
 class ShipController extends ControllerBase
 {
     /**
-     * Display a listing of the resource.
+     * Show ships
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -27,12 +27,11 @@ class ShipController extends ControllerBase
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new ship
      *
      * @param \App\Http\Requests\ShipStoreRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(ShipStoreRequest $request)
     {
@@ -51,7 +50,7 @@ class ShipController extends ControllerBase
     }
 
     /**
-     * Display the specified resource.
+     * Show a ship details
      *
      * @param \App\Models\Ship $ship
      *
@@ -63,7 +62,7 @@ class ShipController extends ControllerBase
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a ship
      *
      * @param \App\Http\Requests\ShipStoreRequest $request
      * @param \App\Models\Ship                    $ship
@@ -76,7 +75,7 @@ class ShipController extends ControllerBase
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a ship
      *
      * @param \App\Models\Ship $ship
      *

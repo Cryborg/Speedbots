@@ -19,7 +19,7 @@ use App\Models\User;
 class UserController extends ControllerBase
 {
     /**
-     * Registers a user.
+     * Register a user
      *
      * @param \App\Http\Requests\UserRegisterRequest $request
      *
@@ -47,7 +47,7 @@ class UserController extends ControllerBase
     }
 
     /**
-     * Login user.
+     * Login user
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -96,7 +96,7 @@ class UserController extends ControllerBase
     }
 
     /**
-     * Get user details.
+     * Get user details
      *
      * @return \Illuminate\Http\JsonResponse
      */

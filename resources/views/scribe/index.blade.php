@@ -119,7 +119,7 @@ fetch(url, {
     "http://local.speedbots.perso/api/circuits" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"dolorem","length":"ut","width":"rerum","gravity":{},"gain_kill":"ut","gain_victory":"dolor"}'
+    -d '{"name":"natus","length":"at","width":"ad","gravity":{},"gain_kill":"voluptatem","gain_victory":"laborum"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://local.speedbots.perso/api/circuits"
@@ -131,12 +131,12 @@ let headers = {
 };
 
 let body = {
-    "name": "dolorem",
-    "length": "ut",
-    "width": "rerum",
+    "name": "natus",
+    "length": "at",
+    "width": "ad",
     "gravity": {},
-    "gain_kill": "ut",
-    "gain_victory": "dolor"
+    "gain_kill": "voluptatem",
+    "gain_victory": "laborum"
 }
 
 fetch(url, {
@@ -201,11 +201,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://local.speedbots.perso/api/circuits/voluptate" \
+    -G "http://local.speedbots.perso/api/circuits/rerum" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/circuits/voluptate"
+    "http://local.speedbots.perso/api/circuits/rerum"
 );
 
 let headers = {
@@ -254,11 +254,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://local.speedbots.perso/api/circuits/delectus" \
+    "http://local.speedbots.perso/api/circuits/recusandae" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/circuits/delectus"
+    "http://local.speedbots.perso/api/circuits/recusandae"
 );
 
 let headers = {
@@ -305,11 +305,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://local.speedbots.perso/api/circuits/doloremque" \
+    "http://local.speedbots.perso/api/circuits/quo" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/circuits/doloremque"
+    "http://local.speedbots.perso/api/circuits/quo"
 );
 
 let headers = {
@@ -347,7 +347,7 @@ fetch(url, {
 <br>
 </p>
 </form><h1>Component</h1>
-<h2>Display a listing of the resource.</h2>
+<h2>List components.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -394,7 +394,7 @@ fetch(url, {
  <b><code>api/components</code></b>
 </p>
 </form>
-<h2>Store a newly created resource in storage.</h2>
+<h2>Create a new component.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -435,16 +435,16 @@ fetch(url, {
  <b><code>api/components</code></b>
 </p>
 </form>
-<h2>Display the specified resource.</h2>
+<h2>Show a component details.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://local.speedbots.perso/api/components/et" \
+    -G "http://local.speedbots.perso/api/components/harum" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/components/et"
+    "http://local.speedbots.perso/api/components/harum"
 );
 
 let headers = {
@@ -488,16 +488,16 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Update the specified resource in storage.</h2>
+<h2>Update a component.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://local.speedbots.perso/api/components/eos" \
+    "http://local.speedbots.perso/api/components/non" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/components/eos"
+    "http://local.speedbots.perso/api/components/non"
 );
 
 let headers = {
@@ -539,16 +539,16 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Remove the specified resource from storage.</h2>
+<h2>Delete a component.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://local.speedbots.perso/api/components/nisi" \
+    "http://local.speedbots.perso/api/components/est" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/components/nisi"
+    "http://local.speedbots.perso/api/components/est"
 );
 
 let headers = {
@@ -649,7 +649,7 @@ fetch(url, {
 &lt;/head&gt;
 &lt;body&gt;
 
-    &lt;h1 class="display-4"&gt;Routes (34)&lt;/h1&gt;
+    &lt;h1 class="display-4"&gt;Routes (39)&lt;/h1&gt;
 
     &lt;table class="table table-sm table-hover" style="visibility: hidden;"&gt;
         &lt;thead&gt;
@@ -935,6 +935,67 @@ fetch(url, {
                                                     &lt;span class="tag tag-success"&gt;GET&lt;/span&gt;
                                             &lt;/td&gt;
                     &lt;td class="domain domain-empty"&gt;&lt;/td&gt;
+                    &lt;td&gt;api/galaxies&lt;/td&gt;
+                    &lt;td&gt;galaxies.index&lt;/td&gt;
+                    &lt;td&gt;App\Http\Controllers\GalaxyController&lt;span class="text-warning"&gt;@index&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;
+                                              api, auth:api
+                                          &lt;/td&gt;
+                &lt;/tr&gt;
+                            &lt;tr&gt;
+                    &lt;td&gt;
+                                                    &lt;span class="tag tag-primary"&gt;POST&lt;/span&gt;
+                                            &lt;/td&gt;
+                    &lt;td class="domain domain-empty"&gt;&lt;/td&gt;
+                    &lt;td&gt;api/galaxies&lt;/td&gt;
+                    &lt;td&gt;galaxies.store&lt;/td&gt;
+                    &lt;td&gt;App\Http\Controllers\GalaxyController&lt;span class="text-warning"&gt;@store&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;
+                                              api, auth:api
+                                          &lt;/td&gt;
+                &lt;/tr&gt;
+                            &lt;tr&gt;
+                    &lt;td&gt;
+                                                    &lt;span class="tag tag-success"&gt;GET&lt;/span&gt;
+                                            &lt;/td&gt;
+                    &lt;td class="domain domain-empty"&gt;&lt;/td&gt;
+                    &lt;td&gt;api/galaxies/&lt;span class="text-warning"&gt;{galaxy}&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;galaxies.show&lt;/td&gt;
+                    &lt;td&gt;App\Http\Controllers\GalaxyController&lt;span class="text-warning"&gt;@show&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;
+                                              api, auth:api
+                                          &lt;/td&gt;
+                &lt;/tr&gt;
+                            &lt;tr&gt;
+                    &lt;td&gt;
+                                                    &lt;span class="tag tag-warning"&gt;PUT&lt;/span&gt;
+                                                    &lt;span class="tag tag-info"&gt;PATCH&lt;/span&gt;
+                                            &lt;/td&gt;
+                    &lt;td class="domain domain-empty"&gt;&lt;/td&gt;
+                    &lt;td&gt;api/galaxies/&lt;span class="text-warning"&gt;{galaxy}&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;galaxies.update&lt;/td&gt;
+                    &lt;td&gt;App\Http\Controllers\GalaxyController&lt;span class="text-warning"&gt;@update&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;
+                                              api, auth:api
+                                          &lt;/td&gt;
+                &lt;/tr&gt;
+                            &lt;tr&gt;
+                    &lt;td&gt;
+                                                    &lt;span class="tag tag-danger"&gt;DELETE&lt;/span&gt;
+                                            &lt;/td&gt;
+                    &lt;td class="domain domain-empty"&gt;&lt;/td&gt;
+                    &lt;td&gt;api/galaxies/&lt;span class="text-warning"&gt;{galaxy}&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;galaxies.destroy&lt;/td&gt;
+                    &lt;td&gt;App\Http\Controllers\GalaxyController&lt;span class="text-warning"&gt;@destroy&lt;/span&gt;&lt;/td&gt;
+                    &lt;td&gt;
+                                              api, auth:api
+                                          &lt;/td&gt;
+                &lt;/tr&gt;
+                            &lt;tr&gt;
+                    &lt;td&gt;
+                                                    &lt;span class="tag tag-success"&gt;GET&lt;/span&gt;
+                                            &lt;/td&gt;
+                    &lt;td class="domain domain-empty"&gt;&lt;/td&gt;
                     &lt;td&gt;api/upgrades&lt;/td&gt;
                     &lt;td&gt;upgrades.index&lt;/td&gt;
                     &lt;td&gt;App\Http\Controllers\UpgradeController&lt;span class="text-warning"&gt;@index&lt;/span&gt;&lt;/td&gt;
@@ -1158,6 +1219,265 @@ fetch(url, {
  <b><code>sanctum/csrf-cookie</code></b>
 </p>
 </form>
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://local.speedbots.perso/api/galaxies" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://local.speedbots.perso/api/galaxies"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-galaxies" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-galaxies"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-galaxies"></code></pre>
+</div>
+<div id="execution-error-GETapi-galaxies" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-galaxies"></code></pre>
+</div>
+<form id="form-GETapi-galaxies" data-method="GET" data-path="api/galaxies" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-galaxies', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-galaxies" onclick="tryItOut('GETapi-galaxies');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-galaxies" onclick="cancelTryOut('GETapi-galaxies');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-galaxies" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/galaxies</code></b>
+</p>
+</form>
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://local.speedbots.perso/api/galaxies" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"suscipit","description":"qui"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://local.speedbots.perso/api/galaxies"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "suscipit",
+    "description": "qui"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-galaxies" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-galaxies"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-galaxies"></code></pre>
+</div>
+<div id="execution-error-POSTapi-galaxies" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-galaxies"></code></pre>
+</div>
+<form id="form-POSTapi-galaxies" data-method="POST" data-path="api/galaxies" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-galaxies', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-galaxies" onclick="tryItOut('POSTapi-galaxies');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-galaxies" onclick="cancelTryOut('POSTapi-galaxies');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-galaxies" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/galaxies</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="name" data-endpoint="POSTapi-galaxies" data-component="body" required  hidden>
+<br>
+</p>
+<p>
+<b><code>description</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="description" data-endpoint="POSTapi-galaxies" data-component="body" required  hidden>
+<br>
+</p>
+
+</form>
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://local.speedbots.perso/api/galaxies/distinctio" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://local.speedbots.perso/api/galaxies/distinctio"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-galaxies--galaxy-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-galaxies--galaxy-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-galaxies--galaxy-"></code></pre>
+</div>
+<div id="execution-error-GETapi-galaxies--galaxy-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-galaxies--galaxy-"></code></pre>
+</div>
+<form id="form-GETapi-galaxies--galaxy-" data-method="GET" data-path="api/galaxies/{galaxy}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-galaxies--galaxy-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-galaxies--galaxy-" onclick="tryItOut('GETapi-galaxies--galaxy-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-galaxies--galaxy-" onclick="cancelTryOut('GETapi-galaxies--galaxy-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-galaxies--galaxy-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/galaxies/{galaxy}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>galaxy</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="galaxy" data-endpoint="GETapi-galaxies--galaxy-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Update the specified resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://local.speedbots.perso/api/galaxies/porro" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://local.speedbots.perso/api/galaxies/porro"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-PUTapi-galaxies--galaxy-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-galaxies--galaxy-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-galaxies--galaxy-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-galaxies--galaxy-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-galaxies--galaxy-"></code></pre>
+</div>
+<form id="form-PUTapi-galaxies--galaxy-" data-method="PUT" data-path="api/galaxies/{galaxy}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-galaxies--galaxy-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-galaxies--galaxy-" onclick="tryItOut('PUTapi-galaxies--galaxy-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-galaxies--galaxy-" onclick="cancelTryOut('PUTapi-galaxies--galaxy-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-galaxies--galaxy-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/galaxies/{galaxy}</code></b>
+</p>
+<p>
+<small class="badge badge-purple">PATCH</small>
+ <b><code>api/galaxies/{galaxy}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>galaxy</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="galaxy" data-endpoint="PUTapi-galaxies--galaxy-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://local.speedbots.perso/api/galaxies/ducimus" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://local.speedbots.perso/api/galaxies/ducimus"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-galaxies--galaxy-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-galaxies--galaxy-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-galaxies--galaxy-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-galaxies--galaxy-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-galaxies--galaxy-"></code></pre>
+</div>
+<form id="form-DELETEapi-galaxies--galaxy-" data-method="DELETE" data-path="api/galaxies/{galaxy}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-galaxies--galaxy-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-galaxies--galaxy-" onclick="tryItOut('DELETEapi-galaxies--galaxy-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-galaxies--galaxy-" onclick="cancelTryOut('DELETEapi-galaxies--galaxy-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-galaxies--galaxy-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/galaxies/{galaxy}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>galaxy</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="galaxy" data-endpoint="DELETEapi-galaxies--galaxy-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
 <h2>/</h2>
 <blockquote>
 <p>Example request:</p>
@@ -1359,349 +1679,7 @@ fetch(url, {
                 .
                 .
                 .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="22"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="14"&gt;-&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="5"&gt;-&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="6"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="3"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="23"&gt;+&lt;/span&gt;
+                            &lt;span title="10"&gt;+&lt;/span&gt;
                         .
                 .
                 .
@@ -1838,7 +1816,42 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="26"&gt;+&lt;/span&gt;
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="15"&gt;+&lt;/span&gt;
                         .
                 .
                 .
@@ -1875,8 +1888,58 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="12"&gt;-&lt;/span&gt;
-                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
                 .
                 .
                 .
@@ -1922,6 +1985,397 @@ fetch(url, {
                 .
                 .
                 .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="20"&gt;-&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="9"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="8"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="2"&gt;+&lt;/span&gt;
+                                    &lt;span title="23"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="18"&gt;+&lt;/span&gt;
+                        .
                 .
                 .
                 .
@@ -1974,7 +2428,51 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="2"&gt;-&lt;/span&gt;
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="19"&gt;-&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="3"&gt;+&lt;/span&gt;
                         .
                 .
                 .
@@ -2056,7 +2554,27 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="20"&gt;+&lt;/span&gt;
+                .
+                .
+                .
+                .
+                            &lt;span title="12"&gt;-&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="14"&gt;-&lt;/span&gt;
                         .
                 .
                 .
@@ -2126,8 +2644,49 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="21"&gt;-&lt;/span&gt;
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="6"&gt;-&lt;/span&gt;
                         .
+                .
+                .
+                .
+                .
+                .
+                .
+
+            .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
                 .
                 .
                 .
@@ -2296,8 +2855,6 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="13"&gt;-&lt;/span&gt;
-                        .
                 .
                 .
                 .
@@ -2305,110 +2862,7 @@ fetch(url, {
                 .
                 .
                 .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-
-            .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="22"&gt;+&lt;/span&gt;
+                            &lt;span title="15"&gt;+&lt;/span&gt;
                         .
                 .
                 .
@@ -2477,397 +2931,6 @@ fetch(url, {
                 .
                 .
                 .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="14"&gt;-&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="5"&gt;-&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="6"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="3"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="23"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="26"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="12"&gt;-&lt;/span&gt;
-                        .
                 .
                 .
                 .
@@ -2958,191 +3021,7 @@ fetch(url, {
                 .
                 .
                 .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="2"&gt;-&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="20"&gt;+&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="21"&gt;-&lt;/span&gt;
-                        .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                .
-                            &lt;span title="10"&gt;+&lt;/span&gt;
+                            &lt;span title="20"&gt;-&lt;/span&gt;
                         .
                 .
                 .
@@ -3287,7 +3166,151 @@ fetch(url, {
                 .
                 .
                 .
-                            &lt;span title="13"&gt;-&lt;/span&gt;
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="9"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="8"&gt;+&lt;/span&gt;
                         .
                 .
                 .
@@ -3333,6 +3356,303 @@ fetch(url, {
                 .
                 .
                 .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="2"&gt;+&lt;/span&gt;
+                                    &lt;span title="23"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="18"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="7"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="19"&gt;-&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="3"&gt;+&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="12"&gt;-&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="14"&gt;-&lt;/span&gt;
+                        .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                .
+                            &lt;span title="6"&gt;-&lt;/span&gt;
+                        .
                 .
                 .
                 .
@@ -3370,7 +3690,7 @@ fetch(url, {
  <b><code>test</code></b>
 </p>
 </form><h1>Ship</h1>
-<h2>Display a listing of the resource.</h2>
+<h2>Show ships.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -3417,7 +3737,7 @@ fetch(url, {
  <b><code>api/ships</code></b>
 </p>
 </form>
-<h2>Store a newly created resource in storage.</h2>
+<h2>Create a new ship.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -3425,7 +3745,7 @@ fetch(url, {
     "http://local.speedbots.perso/api/ships" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"user_id":"quia","class":"a","health":{}}'
+    -d '{"user_id":"est","class":"assumenda","health":{}}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://local.speedbots.perso/api/ships"
@@ -3437,8 +3757,8 @@ let headers = {
 };
 
 let body = {
-    "user_id": "quia",
-    "class": "a",
+    "user_id": "est",
+    "class": "assumenda",
     "health": {}
 }
 
@@ -3484,16 +3804,16 @@ fetch(url, {
 </p>
 
 </form>
-<h2>Display the specified resource.</h2>
+<h2>Show a ship details.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://local.speedbots.perso/api/ships/vel" \
+    -G "http://local.speedbots.perso/api/ships/nostrum" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/ships/vel"
+    "http://local.speedbots.perso/api/ships/nostrum"
 );
 
 let headers = {
@@ -3537,18 +3857,18 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Update the specified resource in storage.</h2>
+<h2>Update a ship.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://local.speedbots.perso/api/ships/voluptates" \
+    "http://local.speedbots.perso/api/ships/velit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"user_id":"eos","class":"id","health":{}}'
+    -d '{"user_id":"tenetur","class":"qui","health":{}}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/ships/voluptates"
+    "http://local.speedbots.perso/api/ships/velit"
 );
 
 let headers = {
@@ -3557,8 +3877,8 @@ let headers = {
 };
 
 let body = {
-    "user_id": "eos",
-    "class": "id",
+    "user_id": "tenetur",
+    "class": "qui",
     "health": {}
 }
 
@@ -3614,16 +3934,16 @@ fetch(url, {
 </p>
 
 </form>
-<h2>Remove the specified resource from storage.</h2>
+<h2>Delete a ship.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://local.speedbots.perso/api/ships/nesciunt" \
+    "http://local.speedbots.perso/api/ships/nihil" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/ships/nesciunt"
+    "http://local.speedbots.perso/api/ships/nihil"
 );
 
 let headers = {
@@ -3754,11 +4074,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://local.speedbots.perso/api/upgrades/accusantium" \
+    -G "http://local.speedbots.perso/api/upgrades/ut" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/upgrades/accusantium"
+    "http://local.speedbots.perso/api/upgrades/ut"
 );
 
 let headers = {
@@ -3807,11 +4127,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://local.speedbots.perso/api/upgrades/vel" \
+    "http://local.speedbots.perso/api/upgrades/iste" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/upgrades/vel"
+    "http://local.speedbots.perso/api/upgrades/iste"
 );
 
 let headers = {
@@ -3858,11 +4178,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://local.speedbots.perso/api/upgrades/quibusdam" \
+    "http://local.speedbots.perso/api/upgrades/et" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/upgrades/quibusdam"
+    "http://local.speedbots.perso/api/upgrades/et"
 );
 
 let headers = {
@@ -3900,7 +4220,7 @@ fetch(url, {
 <br>
 </p>
 </form><h1>User</h1>
-<h2>api/register</h2>
+<h2>Registers a user.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -3908,7 +4228,7 @@ fetch(url, {
     "http://local.speedbots.perso/api/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"rem","email":"effertz.trey@example.org","password":"debitis"}'
+    -d '{"name":"quia","email":"kathryne32@example.org","password":"molestiae"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://local.speedbots.perso/api/register"
@@ -3920,9 +4240,9 @@ let headers = {
 };
 
 let body = {
-    "name": "rem",
-    "email": "effertz.trey@example.org",
-    "password": "debitis"
+    "name": "quia",
+    "email": "kathryne32@example.org",
+    "password": "molestiae"
 }
 
 fetch(url, {
@@ -3967,7 +4287,7 @@ The value must be a valid email address.</p>
 </p>
 
 </form>
-<h2>api/login</h2>
+<h2>Login user.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -4008,7 +4328,7 @@ fetch(url, {
  <b><code>api/login</code></b>
 </p>
 </form>
-<h2>api/user</h2>
+<h2>Get user details.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -4055,7 +4375,7 @@ fetch(url, {
  <b><code>api/user</code></b>
 </p>
 </form><h1>Weapon</h1>
-<h2>Display a listing of the resource.</h2>
+<h2>List weapons.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -4102,7 +4422,7 @@ fetch(url, {
  <b><code>api/weapons</code></b>
 </p>
 </form>
-<h2>Store a newly created resource in storage.</h2>
+<h2>Create a weapon.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -4143,16 +4463,16 @@ fetch(url, {
  <b><code>api/weapons</code></b>
 </p>
 </form>
-<h2>Display the specified resource.</h2>
+<h2>Show weapon details.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://local.speedbots.perso/api/weapons/sunt" \
+    -G "http://local.speedbots.perso/api/weapons/reprehenderit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/weapons/sunt"
+    "http://local.speedbots.perso/api/weapons/reprehenderit"
 );
 
 let headers = {
@@ -4196,16 +4516,16 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Update the specified resource in storage.</h2>
+<h2>Update a weapon.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://local.speedbots.perso/api/weapons/excepturi" \
+    "http://local.speedbots.perso/api/weapons/praesentium" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/weapons/excepturi"
+    "http://local.speedbots.perso/api/weapons/praesentium"
 );
 
 let headers = {
@@ -4247,16 +4567,16 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Remove the specified resource from storage.</h2>
+<h2>Delete a weapon.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://local.speedbots.perso/api/weapons/itaque" \
+    "http://local.speedbots.perso/api/weapons/et" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://local.speedbots.perso/api/weapons/itaque"
+    "http://local.speedbots.perso/api/weapons/et"
 );
 
 let headers = {

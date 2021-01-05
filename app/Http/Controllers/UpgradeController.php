@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class UpgradeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show upgrades list
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,7 +23,7 @@ class UpgradeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new upgrade
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -34,7 +34,7 @@ class UpgradeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show an upgrade details
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -45,7 +45,7 @@ class UpgradeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update an upgrade
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -57,7 +57,7 @@ class UpgradeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete an upgrade
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

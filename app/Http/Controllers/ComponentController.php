@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class ComponentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List components
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,7 +23,7 @@ class ComponentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new component
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -34,7 +34,7 @@ class ComponentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a component details
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -45,7 +45,7 @@ class ComponentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a component
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -57,7 +57,7 @@ class ComponentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a component
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

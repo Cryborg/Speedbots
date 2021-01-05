@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class WeaponController extends Controller
 {
     /**
-     * List weapons.
+     * List weapons
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,7 +23,7 @@ class WeaponController extends Controller
     }
 
     /**
-     * Create a weapon.
+     * Create a weapon
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -34,7 +34,7 @@ class WeaponController extends Controller
     }
 
     /**
-     * Show weapon details.
+     * Show weapon details
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -45,7 +45,7 @@ class WeaponController extends Controller
     }
 
     /**
-     * Update a weapon.
+     * Update a weapon
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -57,7 +57,7 @@ class WeaponController extends Controller
     }
 
     /**
-     * Delete a weapon.
+     * Delete a weapon
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
