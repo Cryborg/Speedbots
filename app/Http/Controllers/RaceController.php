@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Bases\ControllerBase;
 use App\Models\Circuit;
 use App\Models\Ship;
-use App\Models\User;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * Class RaceController
+ *
+ * @package App\Http\Controllers
+ * @group   Race
+ */
 class RaceController extends ControllerBase
 {
     /**
@@ -65,8 +70,8 @@ class RaceController extends ControllerBase
             // Fight!
             foreach ($track as $length => $pos) {
                 foreach ($pos as $width => $data) {
-                    if (!is_null($this->findEnemy($length, $width))) {
-                        
+                    if (!is_null($this->findEnemy($data['opponent'], $length, $width))) {
+
                     }
                 }
             }

@@ -10,10 +10,21 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+/**
+ * Class UserController
+ *
+ * @package App\Http\Controllers
+ * @group User
+ */
 class UserController extends ControllerBase
 {
-
-    // User Register
+    /**
+     * Registers a user.
+     *
+     * @param \App\Http\Requests\UserRegisterRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(UserRegisterRequest $request)
     {
         $inputs             = $request->all();
@@ -35,7 +46,13 @@ class UserController extends ControllerBase
         ]);
     }
 
-    // User login
+    /**
+     * Login user.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
 
@@ -78,7 +95,11 @@ class UserController extends ControllerBase
         ]);
     }
 
-    // User Detail
+    /**
+     * Get user details.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function user()
     {
         if (!is_null($this->authUser)) {

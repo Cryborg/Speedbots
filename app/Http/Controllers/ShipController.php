@@ -6,6 +6,12 @@ use App\Bases\ControllerBase;
 use App\Http\Requests\ShipStoreRequest;
 use App\Models\Ship;
 
+/**
+ * Class ShipController
+ *
+ * @package App\Http\Controllers
+ * @group Ship
+ */
 class ShipController extends ControllerBase
 {
     /**
