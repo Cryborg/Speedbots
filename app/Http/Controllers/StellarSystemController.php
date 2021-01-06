@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GalaxyStoreRequest;
+use App\Http\Requests\StellarSystemStoreRequest;
+use App\Models\StellarSystem;
 use App\Models\Galaxy;
 use Illuminate\Http\Request;
 
 /**
- * Class GalaxyController
+ * Class StellarSystemController
  *
  * @package App\Http\Controllers
- * @group Galaxy
+ * @group StellarSystem
  */
-class GalaxyController extends Controller
+class StellarSystemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,17 +28,17 @@ class GalaxyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\GalaxyStoreRequest $request
+     * @param \App\Http\Requests\StellarSystemStoreRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(GalaxyStoreRequest $request)
+    public function store(StellarSystemStoreRequest $request)
     {
-        $galaxy = Galaxy::create($request->all());
+        $stellarSystem = StellarSystem::create($request->all());
 
         return response()->json([
-            'success'   => $galaxy instanceof Galaxy,
-            'galaxy_id' => $galaxy->id
+            'success'   => $stellarSystem instanceof StellarSystem,
+            'stellar_system_id' => $stellarSystem->id
         ]);
     }
 

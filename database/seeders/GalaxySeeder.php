@@ -14,9 +14,6 @@ class GalaxySeeder extends Seeder
      */
     public function run()
     {
-        Galaxy::create([
-            'name'        => 'Test',
-            'description' => 'Description test'
-        ]);
+        Galaxy::factory(1)->create();
     }
 }
