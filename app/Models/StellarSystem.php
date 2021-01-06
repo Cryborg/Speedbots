@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Relations\GalaxyRelationships;
+use App\Models\Relations\StellarSystemRelationships;
 use Illuminate\Database\Eloquent\Model;
 
-class Galaxy extends Model
+class StellarSystem extends Model
 {
     use HasFactory,
-        GalaxyRelationships;
+        StellarSystemRelationships;
 
     /**
      * The attributes that are mass assignable.
@@ -19,5 +19,6 @@ class Galaxy extends Model
     protected $fillable = [
         'name',
         'description',
+        'galaxy_id',
     ];
 }
