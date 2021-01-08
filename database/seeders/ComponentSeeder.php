@@ -61,7 +61,7 @@ class ComponentSeeder extends Seeder
         // Hull
         Component::create([
             'name' => 'hull',
-            'health' => 100,
+            'health' => 1000,
             'price' => 150,
             'weight' => 300,
             'energy_consumption' => null,

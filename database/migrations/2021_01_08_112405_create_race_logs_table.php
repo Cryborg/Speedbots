@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComponentShipTable extends Migration
+class CreateRaceLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateComponentShipTable extends Migration
      */
     public function up()
     {
-        Schema::create('component_ship', function (Blueprint $table) {
-            $table->foreignId('component_id');
-            $table->foreignId('ship_id');
+        Schema::create('race_logs', function (Blueprint $table) {
+            $table->id();
 
-            $table->integer('health');
+            $table->string('race_id');
+
+            $table->string('comments');
+
+            $table->timestamps(6);
         });
     }
 
@@ -28,6 +31,6 @@ class CreateComponentShipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('component_ship');
+        Schema::dropIfExists('race_logs');
     }
 }
