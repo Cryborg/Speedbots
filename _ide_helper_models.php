@@ -83,6 +83,50 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Galaxy
+ *
+ * @property int $id
+ * @property string $name Name of the Galaxy
+ * @property string $description Description of the Galaxy
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StellarSystem[] $stellarSystems
+ * @property-read int|null $stellar_systems_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Galaxy whereUpdatedAt($value)
+ */
+	class Galaxy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\RaceLog
+ *
+ * @property int $id
+ * @property string $race_id
+ * @property string $comments
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereComments($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereRaceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereUpdatedAt($value)
+ */
+	class RaceLog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Role
  *
  * @property int $id
@@ -130,6 +174,30 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereUserId($value)
  */
 	class Ship extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\StellarSystem
+ *
+ * @property int $id
+ * @property int $galaxy_id
+ * @property string $name Name of the stellar system
+ * @property string $description Description of the stellar system
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Galaxy $galaxy
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereGalaxyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereUpdatedAt($value)
+ */
+	class StellarSystem extends \Eloquent {}
 }
 
 namespace App\Models{

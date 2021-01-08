@@ -15,7 +15,8 @@ trait ShipRelationships
      */
     public function components(): BelongsToMany
     {
-        return $this->belongsToMany(Component::class);
+        return $this->belongsToMany(Component::class)
+                    ->withPivot('health');
     }
 
     /**

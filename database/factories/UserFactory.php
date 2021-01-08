@@ -55,22 +55,34 @@ class UserFactory extends Factory
             ]);
 
             // Speedbots and components
+            $core        = Component::where('name', 'core')->firstOrFail();
+            $engine      = Component::where('name', 'engine')->firstOrFail();
+            $frame       = Component::where('name', 'frame')->firstOrFail();
+            $hull        = Component::where('name', 'hull')->firstOrFail();
+            $powerSupply = Component::where('name', 'power_supply')->firstOrFail();
+
             $components = [
-                'core' => Component::where('name', 'core')->first()->id,
-                'engine' => Component::where('name', 'engine')->first()->id,
-                'frame' => Component::where('name', 'frame')->first()->id,
-                'hull' => Component::where('name', 'hull')->first()->id,
-                'power_supply' => Component::where('name', 'power_supply')->first()->id,
+                'core'         => [$core->id => ['health' => $core->health]],
+                'engine'       => [$engine->id => ['health' => $engine->health]],
+                'frame'        => [$frame->id => ['health' => $frame->health]],
+                'hull'         => [$hull->id => ['health' => $hull->health]],
+                'power_supply' => [$powerSupply->id => ['health' => $powerSupply->health]],
             ];
 
-            $user->ships()->create([
-                'class'   => 'speedbots',
-                'health'   => 10,
-                'user_id' => $user->id,
-            ])->each(static function ($ship) use ($components, $weapon) {
-                $ship->components()->syncWithoutDetaching(array_values($components));
-                $ship->weapons()->sync($weapon->id);
-            });
+            $user->ships()
+                 ->create([
+                              'class'   => 'speedbots',
+                              'health'  => 10,
+                              'user_id' => $user->id,
+                          ])
+                 ->each(static function ($ship) use ($components, $weapon) {
+                     foreach ($components as $component) {
+                         $ship->components()
+                              ->syncWithoutDetaching($component);
+                     }
+                     $ship->weapons()
+                          ->sync($weapon->id);
+                 });
         });
     }
 }

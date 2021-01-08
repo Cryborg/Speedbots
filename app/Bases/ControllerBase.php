@@ -26,9 +26,6 @@ class ControllerBase extends Controller
      */
     public function __construct()
     {
-        // FIXME: only when testing !!
-        Auth::login(User::find(2), true);
-
         $this->middleware(function ($request, $next) {
             $this->authUser = Auth::user();
             View::share('authUser', $this->authUser);
