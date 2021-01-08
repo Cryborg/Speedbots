@@ -34,11 +34,11 @@ class RaceController extends ControllerBase
         $track = [];
 
         $opponents->each(static function(Ship $opponent) use ($circuit, &$track) {
-            $lPosition = random_int(1, $circuit->length);
-            $wPosition = random_int(1, $circuit->width);
+            $lPosition = mt_rand(1, $circuit->length);
+            $wPosition = mt_rand(1, $circuit->width);
 
             $track[$lPosition][$wPosition][] = [
-                'direction' => random_int(1, 2) === 1 ? '+' : '-',
+                'direction' => mt_rand(1, 2) === 1 ? '+' : '-',
                 'speedbot' => $opponent,
             ];
         });
@@ -58,7 +58,7 @@ class RaceController extends ControllerBase
 
                         // Every 100 moves, there is one chance out of 4 that the SB changes direction,
                         // so that every SB can have a chance to fight every other SB
-                        if (($i % 100 === 0) && random_int(1, 4) === 1) {
+                        if (($i % 100 === 0) && mt_rand(1, 4) === 1) {
                             $speedbotData['direction'] = $speedbotData['direction'] === '+' ? '-' : '+';
                         }
 
