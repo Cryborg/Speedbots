@@ -25,5 +25,17 @@ class WeaponSeeder extends Seeder
             'direction' => 1,
             'level' => 1,
         ]);
+
+        Weapon::create([
+            'name' => 'Lasergun',
+            'type' => 'laser',
+            'damage' => 10,
+            'ammo' => 50,
+            'salvo' => 1,
+            'range' => 5,
+            'accuracy' => 90,
+            'direction' => 1,
+            'level' => 1,
+        ]);
     }
 }

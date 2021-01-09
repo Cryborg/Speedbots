@@ -16,6 +16,8 @@ class CreateShipWeaponTable extends Migration
         Schema::create('ship_weapon', function (Blueprint $table) {
             $table->foreignId('ship_id');
             $table->foreignId('weapon_id');
+
+            $table->integer('ammo');
         });
     }
 

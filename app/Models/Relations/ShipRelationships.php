@@ -32,6 +32,7 @@ trait ShipRelationships
      */
     public function weapons(): BelongsToMany
     {
-        return $this->belongsToMany(Weapon::class);
+        return $this->belongsToMany(Weapon::class)
+            ->withPivot('ammo');
     }
 }

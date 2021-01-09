@@ -37,9 +37,10 @@ class UserFactory extends Factory
     public function configure()
     {
         $playerRole = Role::where('slug', 'player')->first();
-        $weapon = Weapon::first();
+        $uzi = Weapon::where('name', 'Uzi')->first();
+        $lasergun = Weapon::where('name', 'Lasergun')->first();
 
-        return $this->afterCreating(function (User $user) use ($playerRole, $weapon) {
+        return $this->afterCreating(function (User $user) use ($playerRole, $uzi, $lasergun) {
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {
@@ -75,13 +76,17 @@ class UserFactory extends Factory
                               'health'  => 10,
                               'user_id' => $user->id,
                           ])
-                 ->each(static function ($ship) use ($components, $weapon) {
+                 ->each(static function ($ship) use ($components, $uzi, $lasergun) {
                      foreach ($components as $component) {
                          $ship->components()
                               ->syncWithoutDetaching($component);
                      }
-                     $ship->weapons()
-                          ->sync($weapon->id);
+                     $ship->weapons()->sync([$uzi->id => ['ammo' => $lasergun->ammo]]);
+
+                     // One chance out of 5 to have a laser, yeah !
+                     if (mt_rand(1, 5) === 3) {
+                         $ship->weapons()->sync([$lasergun->id => ['ammo' => $lasergun->ammo]]);
+                     }
                  });
         });
     }

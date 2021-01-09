@@ -32,9 +32,9 @@ class RaceCommand extends Command
 
     public Collection $attackLogs;
 
-    public int $speedbotsRacing;
+    public Collection $speedbotsRacing;
 
-    public int $nbSpeedbots;
+    public int $nbSpeedbotsAtStart;
 
     public string $raceId;
 
@@ -53,7 +53,7 @@ class RaceCommand extends Command
 
         $this->authUser = Auth::user();
 
-        $this->nbSpeedbots = 50;
+        $this->nbSpeedbotsAtStart = 50;
 
         $this->raceId = Str::random(10);
     }
@@ -72,9 +72,9 @@ class RaceCommand extends Command
         $circuit = Circuit::firstOrFail();
 
         // Pick some random SB
-        $opponents = Ship::inRandomOrder()->limit($this->nbSpeedbots)->get();
+        $opponents = Ship::inRandomOrder()->limit($this->nbSpeedbotsAtStart)->get();
 
-        $this->speedbotsRacing = $opponents->count();
+        $this->speedbotsRacing = $opponents;
 
         $track = [];
 
@@ -91,7 +91,7 @@ class RaceCommand extends Command
         // Now that all SB are on the track,
         // we can move them and make them fight
         $turn = 0;
-        while ($this->speedbotsRacing > 3) {
+        while ($this->speedbotsRacing->count() > 3) {
             $end = [];
             ++$turn;
 
@@ -132,7 +132,7 @@ class RaceCommand extends Command
 
         $diff = now()->getTimestamp() - $startTime->getTimestamp();
 
-        $this->info('Ended in ' . $diff . ' seconds for ' . $this->nbSpeedbots . ' speedbots.');
+        $this->info('> Ended in ' . $diff . ' seconds for ' . $this->nbSpeedbotsAtStart . ' speedbots.');
     }
 
     /**
@@ -178,9 +178,9 @@ class RaceCommand extends Command
                     foreach ($track[$pos] as $w => $data) {
                         foreach ($data as $speedbotData) {
                             $attacks->push([
-                                               'target' => $speedbotData['speedbot'],
-                                               'weapon' => $weapon
-                                           ]);
+                                'target' => $speedbotData['speedbot'],
+                                'weapon' => $weapon
+                            ]);
                         }
                     }
                 }
@@ -194,39 +194,56 @@ class RaceCommand extends Command
     }
 
     /**
-     * @param $shooter
-     * @param $target
+     * @param $shooterSB
+     * @param $targetSB
      * @param $weapon
      */
-    private function attack($shooter, $target, $weapon): void
+    private function attack($shooterSB, $targetSB, $weapon): void
     {
-        // Number of projectiles that hit the target
-        $hits = ($weapon->accuracy * $weapon->salvo) / 100;
+        if (($shooterSB !== $targetSB) && $weapon->pivot->ammo > 0) {
+            // Number of projectiles that hit the target
+            $hits = ($weapon->accuracy * $weapon->salvo) / 100;
 
-        $totalDamage = $hits * $weapon->damage;
+            $totalDamage = $hits * $weapon->damage;
 
-        // Plus or minus 3
-        $totalDamage += mt_rand(-3, 3);
+            // Plus or minus 3
+            $totalDamage += mt_rand(-3, 3);
 
-        // Check if the target has a protection
-        $hull = $target->hull();
+            // Check if the target has a hull
+            $hull = $targetSB->hull();
+            if ($hull->count() > 0) {
+                $hull->pivot->health -= $totalDamage;
 
-        if ($hull->count() > 0) {
-            $hull->pivot->health -= $totalDamage;
+                if ($hull->pivot->health < 0) {
+                    $hull->pivot->health = 0;
+                }
 
-            if ($hull->pivot->health < 0) {
-                $hull->pivot->health = 0;
+                $hull->pivot->save();
+
+                $message = trans('race.component_damage', [
+                    'component' => 'hull',
+                    'damage'    => $totalDamage,
+                    'shooter'   => $shooterSB->user->name,
+                    'target'    => $targetSB->user->name,
+                    'weapon'    => $weapon->name,
+                ]);
+
+                $this->writeLog($message);
             }
 
-            $hull->pivot->save();
+            // Remove the fired ammo
+            $weapon->pivot->ammo -= $weapon->salvo;
 
-            $message = trans('race.component_damage', [
-                'shooter'   => $shooter->user->name,
-                'component' => 'hull',
-                'damage'    => $totalDamage
-            ]);
+            if ($weapon->pivot->ammo <= 0) {
+                $weapon->pivot->ammo = 0;
 
-            $this->writeLog($message);
+                $this->writeLog(trans('race.no_more_ammo', [
+                    'shooter' => $shooterSB->user->name,
+                    'weapon'  => $weapon->name,
+                ]));
+            }
+
+            $weapon->pivot->save();
         }
     }
 
@@ -253,21 +270,45 @@ class RaceCommand extends Command
         return $lengthPosition;
     }
 
-    private function isSpeedbotStillRacing($speedbot)
+    /**
+     * @param $speedbot
+     *
+     * @return bool
+     */
+    private function isSpeedbotStillRacing($speedbot): bool
     {
-        if ($speedbot->hull()->pivot->health > 0) {
-            return true;
+        // The hull must still have some health left
+        if ($speedbot->hull()->pivot->health <= 0) {
+            return false;
         }
 
-        $message = $this->speedbotsRacing-- . ' - ' . $speedbot->user->name . ' has lost a SB!';
+        // At least one weapon must have some ammo left
+        $totalAmmoLeft = 0;
+        foreach ($speedbot->weapons as $weapon) {
+            $totalAmmoLeft += $weapon->pivot->ammo;
+        }
 
-        $this->writeLog($message);
+        if ($totalAmmoLeft <= 0) {
+            $message = $this->speedbotsRacing->count() . ' - ' . $speedbot->id . ' has been destroyed.';
 
-        return false;
+            $this->speedbotsRacing = $this->speedbotsRacing->filter(function($sb) use ($speedbot) {
+                return $sb->id !== $speedbot->id;
+            });
+
+            $this->writeLog($message);
+
+            return false;
+        }
+
+        return true;
     }
 
-    private function writeLog($message)
+    /**
+     * @param $message
+     */
+    private function writeLog($message): void
     {
+        $this->info($message);
         RaceLog::create([
             'race_id'    => $this->raceId,
             'comments'   => $message,
