@@ -3,6 +3,7 @@
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\GalaxyController;
 use App\Http\Controllers\StellarSystemController;
+use App\Http\Controllers\StellarObjectController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ShipController;
 use App\Http\Controllers\UpgradeController;
@@ -33,6 +34,7 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('circuits', CircuitController::class);
     Route::apiResource('galaxies', GalaxyController::class);
     Route::apiResource('stellar_systems', StellarSystemController::class);
+    Route::apiResource('stellar_objects', StellarObjectController::class);
     Route::apiResource('upgrades', UpgradeController::class);
     Route::apiResource('weapons', WeaponController::class);
 });
