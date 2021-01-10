@@ -21,6 +21,15 @@ class StellarObject extends Model
         'description',
         'stellar_system_id',
         'type',
-        'disapear_at'
+        'disappear_at'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'disappear_at' => 'datetime',
     ];
 }

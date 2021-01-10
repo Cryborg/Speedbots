@@ -25,7 +25,7 @@ class CreateStellarObjectsTable extends Migration
             $table->string('type')
                 ->comment('Type of stellar object. [planet|star|shipwreck|circuit|asteroid|satellite|portal]');
             $table->dateTime('disappear_at')->nullable()
-                ->comment('If stellar object have end time of appearance');
+                ->comment('If the stellar object is ephemeral');
             
             $table->timestamps();
         });
