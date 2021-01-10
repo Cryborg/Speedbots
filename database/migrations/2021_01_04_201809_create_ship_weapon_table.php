@@ -17,7 +17,13 @@ class CreateShipWeaponTable extends Migration
             $table->foreignId('ship_id');
             $table->foreignId('weapon_id');
 
-            $table->integer('ammo');
+            $table->integer('ammo')
+                ->comment('Ammo left after last race');
+
+            $table->integer('damage')
+                ->comment('The potentially upgraded damage');
+            $table->integer('accuracy')
+                ->comment('The potentially upgraded accuracy');
         });
     }
 

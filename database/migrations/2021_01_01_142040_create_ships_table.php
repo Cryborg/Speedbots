@@ -18,9 +18,11 @@ class CreateShipsTable extends Migration
 
             $table->foreignId('user_id');
 
+            $table->string('name', 20);
+
             $table->string('class', 20);
 
-            $table->integer('health');
+            $table->float('health');
 
             $table->timestamps();
         });

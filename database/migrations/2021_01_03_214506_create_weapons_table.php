@@ -28,7 +28,9 @@ class CreateWeaponsTable extends Migration
             $table->integer('accuracy')->default(75);
             $table->integer('direction')->default(1)
                 ->comment('In which direction will it shoot?');
-            $table->integer('level')->default(1);
+
+            $table->integer('quality')->default(1);
+            $table->integer('rarity')->default(1);
 
             $table->timestamps();
         });

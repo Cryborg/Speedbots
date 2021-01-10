@@ -26,7 +26,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name'              => $this->faker->name,
+            'name'              => $this->faker->unique()->firstName,
             'email'             => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // "password"
@@ -37,10 +37,8 @@ class UserFactory extends Factory
     public function configure()
     {
         $playerRole = Role::where('slug', 'player')->first();
-        $uzi = Weapon::where('name', 'Uzi')->first();
-        $lasergun = Weapon::where('name', 'Lasergun')->first();
 
-        return $this->afterCreating(function (User $user) use ($playerRole, $uzi, $lasergun) {
+        return $this->afterCreating(function (User $user) use ($playerRole) {
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {
@@ -50,6 +48,7 @@ class UserFactory extends Factory
 
             // Mothership
             $user->ships()->create([
+                'name'  => 'Mothership',
                 'class'   => 'mothership',
                 'health'   => 1000,
                 'user_id' => $user->id,
@@ -72,20 +71,26 @@ class UserFactory extends Factory
 
             $user->ships()
                  ->create([
-                              'class'   => 'speedbots',
+                              'name'    => 'SB-' . $user->id,
+                              'class'   => 'speedbot',
                               'health'  => 10,
                               'user_id' => $user->id,
                           ])
-                 ->each(static function ($ship) use ($components, $uzi, $lasergun) {
+                 ->each(static function ($ship) use ($components, $frame) {
                      foreach ($components as $component) {
                          $ship->components()
                               ->syncWithoutDetaching($component);
                      }
-                     $ship->weapons()->sync([$uzi->id => ['ammo' => $lasergun->ammo]]);
 
-                     // One chance out of 5 to have a laser, yeah !
-                     if (mt_rand(1, 5) === 3) {
-                         $ship->weapons()->sync([$lasergun->id => ['ammo' => $lasergun->ammo]]);
+                     // Give as much weapons as it can carry
+                     for ($i = 1; $i <= $frame->slots; $i++) {
+                         $weapon = Weapon::inRandomOrder()->first();
+                         $ship->weapons()
+                              ->sync([$weapon->id => [
+                                  'ammo' => $weapon->ammo,
+                                  'damage' => $weapon->damage,
+                                  'accuracy' => $weapon->accuracy,
+                              ]]);
                      }
                  });
         });

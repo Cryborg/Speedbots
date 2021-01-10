@@ -17,7 +17,7 @@ class CreateComponentShipTable extends Migration
             $table->foreignId('component_id');
             $table->foreignId('ship_id');
 
-            $table->integer('health');
+            $table->float('health');
         });
     }
 

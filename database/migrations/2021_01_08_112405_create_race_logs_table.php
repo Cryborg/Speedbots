@@ -20,6 +20,10 @@ class CreateRaceLogsTable extends Migration
 
             $table->string('comments');
 
+            $table->json('shooter_state')->nullable();
+            $table->json('target_state')->nullable();
+
+            // Millisecond precision
             $table->timestamps(6);
         });
     }
