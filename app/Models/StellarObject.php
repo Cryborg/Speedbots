@@ -19,7 +19,6 @@ class StellarObject extends Model
     protected $fillable = [
         'name',
         'description',
-        'stellar_system_id',
         'type',
         'disappear_at'
     ];

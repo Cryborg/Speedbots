@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StellarObjectStoreRequest;
 use App\Models\StellarObject;
+use App\Models\StellarSystem;
 use Illuminate\Http\Request;
 
 /**
@@ -16,24 +17,29 @@ class StellarObjectController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @param  int  $stellarSystem Identifiant of stellar system
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return response()->json(StellarObject::get());
+        $objects = StellarSystem::find($id)->stellarObjects;
+
+        return response()->json($objects);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StellarObjectStoreRequest $request
+     * @param  int  $stellarSystem Identifiant of stellar system
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StellarObjectStoreRequest $request)
+    public function store(StellarObjectStoreRequest $request, $stellarSystem)
     {
-        $stellarObject = StellarObject::create($request->all());
+        $stellarObject = StellarSystem::find($stellarSystem)->stellarObjects()->create($request->all());
 
         return response()->json([
             'success'           => $stellarObject instanceof StellarObject,
