@@ -18,7 +18,7 @@ class StellarObjectController extends Controller
     /**
      * Display a listing of the resource.
      * 
-     * @param  int  $stellarSystem Stellar system
+     * @param  App\Models\StellarSystem $stellarSystem Stellar system
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class StellarObjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StellarObjectStoreRequest $request
-     * @param  int  $stellarSystem Stellar system
+     * @param  App\Models\StellarSystem $stellarSystem Stellar system
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -48,7 +48,7 @@ class StellarObjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $stellarObject Stellar Object to show
+     * @param  App\Models\StellarSystem $stellarObject Stellar Object to show
      * @return \Illuminate\Http\Response
      */
     public function show(StellarObject $stellarObject)
