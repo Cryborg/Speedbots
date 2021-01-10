@@ -55,7 +55,7 @@ class RaceCommand extends Command
         $this->authUser = Auth::user();
 
         // Number of SB on the track when the race starts
-        $this->nbSpeedbotsAtStart = 50;
+        $this->nbSpeedbotsAtStart = 500;
 
         // Random race ID to identify it in the race_logs DB table
         $this->raceId = Str::random(10);
@@ -305,11 +305,13 @@ class RaceCommand extends Command
                 $hull->pivot->save();
 
                 $message = trans('race.component_damage', [
-                    'component' => 'hull',
-                    'damage'    => $totalDamage,
-                    'shooter'   => $shooterSB->user->name,
-                    'target'    => $targetSB->user->name,
-                    'weapon'    => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
+                    'component'    => 'hull',
+                    'damage'       => $totalDamage,
+                    'shooter'      => $shooterSB->name,
+                    'shooter_user' => $shooterSB->user->name,
+                    'target'       => $targetSB->name,
+                    'target_user'  => $targetSB->user->name,
+                    'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
                 ]);
 
                 $this->writeLog($message, null, $targetSB);
