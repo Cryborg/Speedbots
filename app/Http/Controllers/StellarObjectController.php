@@ -18,28 +18,26 @@ class StellarObjectController extends Controller
     /**
      * Display a listing of the resource.
      * 
-     * @param  int  $stellarSystem Identifiant of stellar system
+     * @param  int  $stellarSystem Stellar system
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(StellarSystem $stellarSystem)
     {
-        $objects = StellarSystem::find($id)->stellarObjects;
-
-        return response()->json($objects);
+        return response()->json($stellarSystem->stellarObjects);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StellarObjectStoreRequest $request
-     * @param  int  $stellarSystem Identifiant of stellar system
+     * @param  int  $stellarSystem Stellar system
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StellarObjectStoreRequest $request, $stellarSystem)
+    public function store(StellarObjectStoreRequest $request, StellarSystem $stellarSystem)
     {
-        $stellarObject = StellarSystem::find($stellarSystem)->stellarObjects()->create($request->all());
+        $stellarObject = $stellarSystem->stellarObjects()->create($request->all());
 
         return response()->json([
             'success'           => $stellarObject instanceof StellarObject,
@@ -50,13 +48,11 @@ class StellarObjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $stellarObject Stellar Object to show
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(StellarObject $stellarObject)
     {
-        $stellarObject = StellarObject::find($id);
-
         return response()->json([
             'success'        => $stellarObject instanceof StellarObject,
             'stellar_object' => $stellarObject
