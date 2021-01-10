@@ -12,11 +12,6 @@ class Ship extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = [
-        'components',
-        'user'
-    ];
-
     /**
      * @return mixed
      */

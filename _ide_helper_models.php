@@ -17,7 +17,6 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property int $length
- * @property int $width
  * @property int $gravity
  * @property string $gain_kill
  * @property string $gain_victory
@@ -34,7 +33,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Circuit whereLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circuit whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Circuit whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Circuit whereWidth($value)
  */
 	class Circuit extends \Eloquent {}
 }
@@ -111,6 +109,8 @@ namespace App\Models{
  * @property int $id
  * @property string $race_id
  * @property string $comments
+ * @property array|null $shooter_state
+ * @property array|null $target_state
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|RaceLog newModelQuery()
@@ -120,6 +120,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereRaceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereShooterState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereTargetState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RaceLog whereUpdatedAt($value)
  */
 	class RaceLog extends \Eloquent {}
@@ -154,8 +156,9 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
+ * @property string $name
  * @property string $class
- * @property int $health
+ * @property float $health
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Component[] $components
@@ -170,6 +173,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereHealth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ship whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereUserId($value)
  */
@@ -204,23 +208,9 @@ namespace App\Models{
 /**
  * App\Models\Upgrade
  *
- * @property int $id
- * @property string $upgradable_type
- * @property int $upgradable_id
- * @property int $level
- * @property int $amount
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Upgrade newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Upgrade newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Upgrade query()
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereLevel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereUpgradableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade whereUpgradableType($value)
  */
 	class Upgrade extends \Eloquent {}
 }
@@ -273,9 +263,15 @@ namespace App\Models{
  * @property int $range
  * @property int $accuracy
  * @property int $direction In which direction will it shoot?
- * @property int $level
+ * @property int $quality
+ * @property int $rarity
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read float|int|mixed $max_damage
+ * @property-read float|int|mixed $min_damage
+ * @property-read array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null $quality_text
+ * @property-read array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null $rarity_text
+ * @property-read mixed $updated_damage
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon query()
@@ -285,9 +281,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereDamage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereDirection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereQuality($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereRange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereRarity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereSalvo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereUpdatedAt($value)

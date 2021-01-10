@@ -18,7 +18,6 @@ class CreateCircuitsTable extends Migration
 
             $table->string('name');
             $table->integer('length')->default(1000);
-            $table->integer('width')->default(1);
             $table->integer('gravity')->default(100);
             $table->json('gain_kill');
             $table->json('gain_victory');
