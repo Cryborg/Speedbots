@@ -48,7 +48,7 @@ class StellarObjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  App\Models\StellarSystem $stellarObject Stellar Object to show
+     * @param  App\Models\StellarObject $stellarObject Stellar Object to show
      * @return \Illuminate\Http\Response
      */
     public function show(StellarObject $stellarObject)
