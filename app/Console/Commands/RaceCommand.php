@@ -47,7 +47,7 @@ class RaceCommand extends Command
     {
         parent::__construct();
 
-//        Auth::login(User::find(1), true);
+        Auth::login(User::find(1), true);
 
         // Logs all attacks
         $this->attackLogs = collect();
@@ -55,7 +55,7 @@ class RaceCommand extends Command
         $this->authUser = Auth::user();
 
         // Number of SB on the track when the race starts
-        $this->nbSpeedbotsAtStart = 500;
+        $this->nbSpeedbotsAtStart = 50;
 
         // Random race ID to identify it in the race_logs DB table
         $this->raceId = Str::random(10);
@@ -293,29 +293,8 @@ class RaceCommand extends Command
 
             $totalDamage = $hits * $weapon->updated_damage;
 
-            // Check if the target has a hull
-            $hull = $targetSB->hull();
-            if ($hull->count() > 0) {
-                $hull->pivot->health -= $totalDamage;
-
-                if ($hull->pivot->health < 0) {
-                    $hull->pivot->health = 0;
-                }
-
-                $hull->pivot->save();
-
-                $message = trans('race.component_damage', [
-                    'component'    => 'hull',
-                    'damage'       => $totalDamage,
-                    'shooter'      => $shooterSB->name,
-                    'shooter_user' => $shooterSB->user->username,
-                    'target'       => $targetSB->name,
-                    'target_user'  => $targetSB->user->username,
-                    'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
-                ]);
-
-                $this->writeLog($message, null, $targetSB);
-            }
+            // Deal damage to all components
+            $this->dealDamageToComponents($shooterSB, $targetSB, $weapon, $totalDamage);
 
             // Remove the fired ammo
             $weapon->pivot->ammo -= $weapon->salvo;
@@ -324,12 +303,41 @@ class RaceCommand extends Command
                 $weapon->pivot->ammo = 0;
 
                 $this->writeLog(trans('race.no_more_ammo', [
-                    'shooter' => $shooterSB->user->username,
+                    'shooter' => $shooterSB->user->name,
                     'weapon'  => $weapon->name,
                 ]), $weapon);
             }
 
             $weapon->pivot->save();
+        }
+    }
+
+    private function dealDamageToComponents(Ship $shooterSB, Ship $targetSB, Weapon $weapon, float $totalDamage)
+    {
+        // Check if the target has a hull
+        $hull = $targetSB->hull();
+        if ($hull->count() > 0) {
+            $hull->pivot->health -= $totalDamage;
+
+            if ($hull->pivot->health < 0) {
+                $otherDamage = $hull->pivot->health;
+
+                $hull->pivot->health = 0;
+            }
+
+            $hull->pivot->save();
+
+            $message = trans('race.component_damage', [
+                'component'    => 'hull',
+                'damage'       => $totalDamage,
+                'shooter'      => $shooterSB->name,
+                    'shooter_user' => $shooterSB->user->username,
+                'target'       => $targetSB->name,
+                    'target_user'  => $targetSB->user->username,
+                'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
+            ]);
+
+            $this->writeLog($message, null, $targetSB);
         }
     }
 
