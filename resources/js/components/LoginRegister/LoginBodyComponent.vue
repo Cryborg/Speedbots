@@ -1,68 +1,28 @@
 <template>
-    <div class="container">
-        <div class="box-login">
-            <div class="logo">Speedbots</div>
-            <div class="logo">Token : {{ token }} </div>
-            <div class="login-item">
-                <form action="api/login" method="post" class="form form-login">
-                    <div class="form-field">
-                        <label class="user" for="login-email">
-                            <font-awesome-icon icon="at"></font-awesome-icon>
-                            <span class="hidden">Adresse email</span>
-                        </label>
-                        <input id="login-email" type="email" class="form-input" v-model="email" placeholder="Adresse email" required>
-                    </div>
-
-                    <div class="form-field">
-                        <label class="lock" for="login-password">
-                            <font-awesome-icon icon="lock"></font-awesome-icon>
-                            <span class="hidden">Mot de passe</span>
-                        </label>
-                        <input id="login-password" type="password" class="form-input" v-model="password" placeholder="Mot de passe" required>
-                    </div>
-
-                    <div class="form-field">
-                        <input type="button" v-on:click="login" value="Connexion">
-                    </div>
-                </form>
-            </div>
+    <form action="api/login" method="post" class="form form-login">
+        <div class="form-field">
+            <label class="user" for="login-email">
+                <font-awesome-icon icon="at"></font-awesome-icon>
+                <span class="hidden">Adresse email</span>
+            </label>
+            <input id="login-email" type="email" class="form-input" v-model="email" placeholder="Adresse email" required>
         </div>
-    </div>
+
+        <div class="form-field">
+            <label class="lock" for="login-password">
+                <font-awesome-icon icon="lock"></font-awesome-icon>
+                <span class="hidden">Mot de passe</span>
+            </label>
+            <input id="login-password" type="password" class="form-input" v-model="password" placeholder="Mot de passe" required>
+        </div>
+
+        <div class="form-field">
+            <input type="button" v-on:click="login" value="Connexion">
+        </div>
+    </form>
 </template>
 
 <style lang="scss" scoped>
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    font-family: 'lato', sans-serif;
-    color: #fff;
-}
-.box-login {
-    background:rgba(58,63,68,0.5);
-    border-radius: 5px;
-    box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
-    width:450px;
-    display: flex;  
-    flex-direction: column;
-}
-
-.logo{
-  font-family: "museo-slab";  
-  font-size:20px;
-  text-align: center;
-  padding: 20px 20px 0;
-  margin:0;
-}
-
-.login-item {
-	color: #ffff;
-	padding:25px 25px 0;
-	margin: 20px 20px 0;	
-	border-radius: 3px;
-}
-
 input {
   border: 0;
   color: inherit;
@@ -129,8 +89,6 @@ input {
   display: flex;
   margin-bottom: 2rem;
 }
-
-
 .hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -141,12 +99,6 @@ input {
   position: absolute;
   width: 1px;
 }
-
-.text--center {
-  text-align: center;
-}
-
-
 </style>
 
 <script>
@@ -169,6 +121,9 @@ input {
                     password : this.$data.password,
                 });
             },
+        },
+        mounted() {
+          // console.log(this.$router);
         },
     }
 </script>
