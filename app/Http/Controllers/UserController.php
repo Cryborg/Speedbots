@@ -36,7 +36,7 @@ class UserController extends ControllerBase
             return response()->json([
                 "status"  => "success",
                 "message" => "Success! registration completed",
-                "data"    => $user,
+                "token"    => $user->tokens,
             ]);
         }
 

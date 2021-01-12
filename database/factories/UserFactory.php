@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Component;
 use App\Models\Role;
+use App\Models\Ship;
 use App\Models\User;
 use App\Models\Weapon;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,14 +30,16 @@ class UserFactory extends Factory
             'name'              => $this->faker->unique()->firstName,
             'email'             => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // "password"
+            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            // "password"
             'remember_token'    => Str::random(10),
         ];
     }
 
     public function configure()
     {
-        $playerRole = Role::where('slug', 'player')->first();
+        $playerRole = Role::where('slug', 'player')
+                          ->first();
 
         return $this->afterCreating(function (User $user) use ($playerRole) {
             $user->createToken('APIToken');
@@ -48,10 +51,9 @@ class UserFactory extends Factory
 
             // Mothership
             $user->ships()->create([
-                'name'  => 'Mothership',
+                'name'    => 'Mothership',
                 'class'   => 'mothership',
-                'health'   => 1000,
-                'user_id' => $user->id,
+                'health'  => 1000,
             ]);
 
             // Speedbots and components
@@ -69,30 +71,31 @@ class UserFactory extends Factory
                 'power_supply' => [$powerSupply->id => ['health' => $powerSupply->health]],
             ];
 
-            $user->ships()
-                 ->create([
-                              'name'    => 'SB-' . $user->id,
-                              'class'   => 'speedbot',
-                              'health'  => 10,
-                              'user_id' => $user->id,
-                          ])
-                 ->each(static function ($ship) use ($components, $frame) {
-                     foreach ($components as $component) {
-                         $ship->components()
-                              ->syncWithoutDetaching($component);
-                     }
+            for ($j = 1; $j <= 10; $j++) {
+                $ship = Ship::create([
+                    'name'    => 'SB-' . $j,
+                    'class'   => 'speedbot',
+                    'health'  => 10,
+                    'user_id' => $user->id,
+                ]);
 
-                     // Give as much weapons as it can carry
-                     for ($i = 1; $i <= $frame->slots; $i++) {
-                         $weapon = Weapon::inRandomOrder()->first();
-                         $ship->weapons()
-                              ->sync([$weapon->id => [
-                                  'ammo' => $weapon->ammo,
-                                  'damage' => $weapon->damage,
-                                  'accuracy' => $weapon->accuracy,
-                              ]]);
-                     }
-                 });
+                foreach ($components as $component) {
+                    $ship->components()->syncWithoutDetaching($component);
+                }
+
+                // Give as much weapons as it can carry
+                for ($i = 1; $i <= $frame->slots; $i++) {
+                    $weapon = Weapon::inRandomOrder()
+                                    ->first();
+                    $ship->weapons()->syncWithoutDetaching([
+                        $weapon->id => [
+                            'ammo'     => $weapon->ammo,
+                            'damage'   => $weapon->damage,
+                            'accuracy' => $weapon->accuracy,
+                        ],
+                    ]);
+                }
+            }
         });
     }
 }

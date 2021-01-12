@@ -18,7 +18,7 @@ class CreateGalaxiesTable extends Migration
 
             $table->string('name')
                 ->comment('Name of the Galaxy');
-            $table->string('description')
+            $table->text('description')
                 ->comment('Description of the Galaxy');
 
             $table->timestamps();
