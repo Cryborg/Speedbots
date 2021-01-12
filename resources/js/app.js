@@ -39,3 +39,4 @@ const app = new Vue({
     store,
     router,
     validate
+});
