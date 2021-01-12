@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Circuit;
+use App\Models\Race;
 use App\Models\RaceLog;
 use App\Models\Ship;
 use App\Models\User;
@@ -29,7 +30,8 @@ class RaceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'race:start';
+    protected $signature = 'race:start
+                            {--r|race=  : ID of the race to start}';
 
     /**
      * The console command description.
@@ -53,12 +55,6 @@ class RaceCommand extends Command
         $this->attackLogs = collect();
 
         $this->authUser = Auth::user();
-
-        // Number of SB on the track when the race starts
-        $this->nbSpeedbotsAtStart = 50;
-
-        // Random race ID to identify it in the race_logs DB table
-        $this->raceId = Str::random(10);
     }
 
     /**
@@ -70,6 +66,19 @@ class RaceCommand extends Command
     {
         ini_set('max_execution_time', -1);
         $startTime = now();
+
+        if ($this->option('race') && is_numeric($this->option('race'))) {
+            $race = Race::find($this->option('race'));
+
+            $this->nbSpeedbotsAtStart = $race->nb_opponents;
+            $this->raceId = $race->id;
+        } else {
+            // Number of SB on the track when the race starts
+            $this->nbSpeedbotsAtStart = 50;
+
+            // Random race ID to identify it in the race_logs DB table
+            $this->raceId = Str::random(10);
+        }
 
         // Take first circuit in DB
         $circuit = Circuit::firstOrFail();
