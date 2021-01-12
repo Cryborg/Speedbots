@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import LoginBodyComponent from './components/LoginRegister/LoginBodyComponent'
-import RegisterBodyComponent from './components/LoginRegister/RegisterBodyComponent'
+import AuthLogin from './components/Auth/AuthLogin'
+import AuthRegister from './components/Auth/AuthRegister'
 
 Vue.use(VueRouter);
 
 
 export default new VueRouter({
     routes : [
-      { path: '/login', component: LoginBodyComponent },
-      { path: '/register', component: RegisterBodyComponent }
+      { path: '/', component: AuthLogin },
+      { path: '/register', component: AuthRegister }
     ]
   });

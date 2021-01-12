@@ -10,7 +10,7 @@
     </head>
     <body style="background-color : #d2d2d2;">
         <div id="app">
-            <login-register-box-component></login-box-component>
+            <auth-box></auth-box>
         </div>
     </body>
     <script src="{{ asset('js/app.js') }}"></script>
