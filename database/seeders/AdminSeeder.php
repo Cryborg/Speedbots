@@ -21,16 +21,16 @@ class AdminSeeder extends Seeder
         // Administration accounts.
         // Everything that does not belong to a user belongs to the Administration.
         $admin = User::factory()->create([
-            'name' => 'Administration',
+            'username' => 'Administration',
             'email' => 'administration@speedbots.fr',
         ]);
 
         $cryborg = User::factory()->create([
-            'name' => 'Cryborg',
+            'username' => 'Cryborg',
             'email' => 'cryborg@gmail.com'
         ]);
         $saromase = User::factory()->create([
-            'name' => 'Saromase',
+            'username' => 'Saromase',
             'email' => 'seiteromain.dev@gmail.com',
         ]);
 
@@ -53,7 +53,7 @@ class AdminSeeder extends Seeder
                 PersonalAccessToken::where('tokenable_id', $admin->id)
                                    ->first()
                                    ->update([
-                                                'token' => 'this_is_' . $admin->name . 's_token',
+                                                'token' => 'this_is_' . $admin->username . 's_token',
                                             ]);
             }
         }

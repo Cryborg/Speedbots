@@ -47,7 +47,7 @@ class RaceCommand extends Command
     {
         parent::__construct();
 
-        Auth::login(User::find(1), true);
+//        Auth::login(User::find(1), true);
 
         // Logs all attacks
         $this->attackLogs = collect();
@@ -157,7 +157,7 @@ class RaceCommand extends Command
         if ($totalAmmoLeft <= 0) {
             $message = $this->speedbotsRacing->count() . ' - ' . trans('race.speedbot_destroyed', [
                     'speedbot'   => $speedbot->name,
-                    'belongs_to' => $speedbot->user->name,
+                    'belongs_to' => $speedbot->user->username,
                 ]);
 
             $this->speedbotsRacing = $this->speedbotsRacing->filter(function ($sb) use ($speedbot) {
@@ -308,9 +308,9 @@ class RaceCommand extends Command
                     'component'    => 'hull',
                     'damage'       => $totalDamage,
                     'shooter'      => $shooterSB->name,
-                    'shooter_user' => $shooterSB->user->name,
+                    'shooter_user' => $shooterSB->user->username,
                     'target'       => $targetSB->name,
-                    'target_user'  => $targetSB->user->name,
+                    'target_user'  => $targetSB->user->username,
                     'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
                 ]);
 
@@ -324,7 +324,7 @@ class RaceCommand extends Command
                 $weapon->pivot->ammo = 0;
 
                 $this->writeLog(trans('race.no_more_ammo', [
-                    'shooter' => $shooterSB->user->name,
+                    'shooter' => $shooterSB->user->username,
                     'weapon'  => $weapon->name,
                 ]), $weapon);
             }

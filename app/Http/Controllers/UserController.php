@@ -41,8 +41,8 @@ class UserController extends ControllerBase
         }
 
         return response()->json([
-            "status"  => "failed",
-            "message" => "Registration failed!",
+            'status'  => 'Failed',
+            'message' => 'Registration failed!',
         ]);
     }
 
@@ -55,9 +55,9 @@ class UserController extends ControllerBase
      */
     public function login(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
-            "email"    => "required|email",
+            "email"    => "required_without:username|email",
+            "username" => "required_without:email",
             "password" => "required",
         ]);
 
@@ -68,22 +68,22 @@ class UserController extends ControllerBase
         if (Auth::attempt([
               'email'    => $request->email,
               'password' => $request->password,
+          ]) || Auth::attempt([
+              'username' => $request->username,
+              'password' => $request->password,
           ])) {
             $user = Auth::user();
             $token = $user->createToken('token')->plainTextToken;
 
             return response()->json([
-                "status" => "success",
-                "login"  => true,
-                "token"  => $token,
-                "data"   => $this->authUser,
+                'success' => true,
+                'token'   => $token,
             ]);
         }
 
         return response()->json([
-            "status"  => "failed",
-            "success" => false,
-            "message" => "Whoops! invalid password",
+            'success' => false,
+            'message' => 'Whoops! invalid password',
         ]);
     }
 
