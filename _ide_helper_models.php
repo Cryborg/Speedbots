@@ -182,6 +182,34 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\StellarObject
+ *
+ * @property int $id
+ * @property int $stellar_system_id
+ * @property string $name Name of stellar object
+ * @property string $description Description of stellar object
+ * @property string $type Type of stellar object. [planet|star|shipwreck|circuit|asteroid|satellite|portal]
+ * @property \Illuminate\Support\Carbon|null $disappear_at If the stellar object is ephemeral
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\StellarSystem $stellarSystem
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereDisappearAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereStellarSystemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereUpdatedAt($value)
+ */
+	class StellarObject extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\StellarSystem
  *
  * @property int $id
@@ -191,6 +219,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Galaxy $galaxy
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StellarObject[] $stellarObjects
+ * @property-read int|null $stellar_objects_count
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem query()
@@ -206,21 +236,10 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Upgrade
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Upgrade query()
- */
-	class Upgrade extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\User
  *
  * @property int $id
- * @property string $name
+ * @property string $username
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -242,10 +261,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  */
 	class User extends \Eloquent {}
 }

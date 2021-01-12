@@ -6,7 +6,6 @@ use App\Http\Controllers\StellarSystemController;
 use App\Http\Controllers\StellarObjectController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ShipController;
-use App\Http\Controllers\UpgradeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeaponController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +35,5 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('stellar_systems', StellarSystemController::class);
     Route::apiResource('stellar_objects', StellarObjectController::class)->except(['index', 'store']);
     Route::apiResource('stellar_systems.stellar_objects', StellarObjectController::class)->only(['index', 'store']);
-    Route::apiResource('upgrades', UpgradeController::class);
     Route::apiResource('weapons', WeaponController::class);
 });
