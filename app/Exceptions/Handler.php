@@ -43,23 +43,28 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if ($request->wantsJson()) {
+        $response = [
+            'error_type' => get_class($e),
+            'message' => $e->getMessage(),
+        ];
+
+        if ($request->is('api*')) {
             if ($e instanceof AuthenticationException) {
-                return response()->json(['message' => 'Unauthenticated.'], 403);
+                $response['message'] = 'Unauthenticated';
+                return response()->json($response, 403);
             }
 
             if ($e instanceof ModelNotFoundException) {
-                return response()->json(['message' => $e->getMessage()], 404);
+                $response['message'] = 'This ID does not exist';
+                return response()->json($response, 404);
             }
 
             if ($e instanceof RouteNotFoundException) {
-                return response()->json(['message' => $e->getMessage(),], 500);
+                $response['message'] = 'This route does not exist';
+                return response()->json($response, 500);
             }
 
-            return response()->json([
-                'error_type' => get_class($e),
-                'message' => $e->getMessage(),
-            ]);
+            return response()->json($response);
         }
 
         return parent::render($request, $e);

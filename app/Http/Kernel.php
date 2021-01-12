@@ -62,9 +62,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            JsonMiddleware::class,
             'throttle:api',
             SubstituteBindings::class,
-            JsonMiddleware::class,
         ],
     ];
 
