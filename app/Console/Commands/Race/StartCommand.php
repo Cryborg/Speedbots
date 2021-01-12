@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Race;
 
 use App\Models\Circuit;
 use App\Models\Race;
@@ -11,9 +11,8 @@ use App\Models\Weapon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
-class RaceCommand extends Command
+class StartCommand extends Command
 {
     public            $authUser;
 
@@ -67,27 +66,39 @@ class RaceCommand extends Command
         ini_set('max_execution_time', -1);
         $startTime = now();
 
-        if ($this->option('race') && is_numeric($this->option('race'))) {
-            $race = Race::find($this->option('race'));
+        $raceId = $this->option('race');
+
+        if ($raceId && is_numeric($raceId)) {
+            $race = Race::where('id', $raceId)->first();
+
+            if ($race === null) {
+                $this->error('The race ID#' . $raceId . ' does not exist');
+                return 0;
+            }
 
             $this->nbSpeedbotsAtStart = $race->nb_opponents;
             $this->raceId = $race->id;
         } else {
-            // Number of SB on the track when the race starts
-            $this->nbSpeedbotsAtStart = 50;
-
-            // Random race ID to identify it in the race_logs DB table
-            $this->raceId = Str::random(10);
+            $this->info('┌─────────────────────────────────────────────────────┐');
+            $this->info('│   You must specify a race ID with the -r argument   │');
+            $this->info('├─────────────────────────────────────────────────────┤');
+            $this->info('│   Example:                                          │');
+            $this->info('│      php artisan race:start -r 42                   │');
+            $this->info('└─────────────────────────────────────────────────────┘');
+            return 1;
         }
 
         // Take first circuit in DB
         $circuit = Circuit::firstOrFail();
 
-        // Pick some random SB
-        $opponents = Ship::inRandomOrder()
-                         ->where('class', 'speedbot')
-                         ->limit($this->nbSpeedbotsAtStart)
-                         ->get();
+        // Get the list of participants from the races_queues table
+
+
+
+
+
+
+
 
         $this->speedbotsRacing = $opponents;
 
