@@ -30,8 +30,7 @@ class UserFactory extends Factory
             'name'              => $this->faker->unique()->firstName,
             'email'             => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            // "password"
+            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // "password"
             'remember_token'    => Str::random(10),
         ];
     }
@@ -45,56 +44,7 @@ class UserFactory extends Factory
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {
-                $user->roles()
-                     ->attach($playerRole);
-            }
-
-            // Mothership
-            $user->ships()->create([
-                'name'    => 'Mothership',
-                'class'   => 'mothership',
-                'health'  => 1000,
-            ]);
-
-            // Speedbots and components
-            $core        = Component::where('name', 'core')->firstOrFail();
-            $engine      = Component::where('name', 'engine')->firstOrFail();
-            $frame       = Component::where('name', 'frame')->firstOrFail();
-            $hull        = Component::where('name', 'hull')->firstOrFail();
-            $powerSupply = Component::where('name', 'power_supply')->firstOrFail();
-
-            $components = [
-                'core'         => [$core->id => ['health' => $core->health]],
-                'engine'       => [$engine->id => ['health' => $engine->health]],
-                'frame'        => [$frame->id => ['health' => $frame->health]],
-                'hull'         => [$hull->id => ['health' => $hull->health]],
-                'power_supply' => [$powerSupply->id => ['health' => $powerSupply->health]],
-            ];
-
-            for ($j = 1; $j <= 10; $j++) {
-                $ship = Ship::create([
-                    'name'    => 'SB-' . $j,
-                    'class'   => 'speedbot',
-                    'health'  => 10,
-                    'user_id' => $user->id,
-                ]);
-
-                foreach ($components as $component) {
-                    $ship->components()->syncWithoutDetaching($component);
-                }
-
-                // Give as much weapons as it can carry
-                for ($i = 1; $i <= $frame->slots; $i++) {
-                    $weapon = Weapon::inRandomOrder()
-                                    ->first();
-                    $ship->weapons()->syncWithoutDetaching([
-                        $weapon->id => [
-                            'ammo'     => $weapon->ammo,
-                            'damage'   => $weapon->damage,
-                            'accuracy' => $weapon->accuracy,
-                        ],
-                    ]);
-                }
+                $user->roles()->attach($playerRole);
             }
         });
     }

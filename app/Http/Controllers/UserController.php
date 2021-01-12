@@ -30,13 +30,13 @@ class UserController extends ControllerBase
         $inputs             = $request->all();
         $inputs["password"] = Hash::make($request->password);
 
-        $user = User::create($inputs);
+        $user = User::factory()->create($inputs);
 
         if ($user instanceof User) {
             return response()->json([
-                "status"  => "success",
-                "message" => "Success! registration completed",
-                "token"    => $user->tokens,
+                'status'  => 'success',
+                'message' => 'Success! Registration completed',
+                'user'    => $user,
             ]);
         }
 
@@ -65,19 +65,11 @@ class UserController extends ControllerBase
             return response()->json(["validation_errors" => $validator->errors()]);
         }
 
-        $user = User::where("email", $request->email)->first();
-
-        if (is_null($user)) {
-            return response()->json([
-                "status"  => "failed",
-                "message" => "Failed! email not found",
-            ]);
-        }
-
         if (Auth::attempt([
               'email'    => $request->email,
               'password' => $request->password,
           ])) {
+            $user = Auth::user();
             $token = $user->createToken('token')->plainTextToken;
 
             return response()->json([
