@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GalaxyStoreRequest;
+use App\Http\Requests\GalaxyUpdateRequest;
 use App\Models\Galaxy;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -17,11 +19,15 @@ class GalaxyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $galaxies = Galaxy::all();
+
+        return response()->json([
+            'galaxies' => $galaxies,
+        ]);
     }
 
     /**
@@ -29,9 +35,9 @@ class GalaxyController extends Controller
      *
      * @param \App\Http\Requests\GalaxyStoreRequest $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(GalaxyStoreRequest $request)
+    public function store(GalaxyStoreRequest $request): JsonResponse
     {
         $galaxy = Galaxy::create($request->all());
 
@@ -44,34 +50,48 @@ class GalaxyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Galaxy $galaxy
+     *
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(Galaxy $galaxy): JsonResponse
     {
-        //
+        return response()->json([
+            'galaxy' => $galaxy,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\GalaxyUpdateRequest $request
+     * @param \App\Models\Galaxy                     $galaxy
+     *
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(GalaxyUpdateRequest $request, Galaxy $galaxy): JsonResponse
     {
-        //
+        $updated = $galaxy->update($request->all());
+
+        return response()->json([
+            'success' => $updated,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Galaxy $galaxy
+     *
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Galaxy $galaxy): JsonResponse
     {
-        //
+        $deleted = $galaxy->delete();
+
+        return response()->json([
+            'success' => $deleted,
+        ]);
     }
 }
