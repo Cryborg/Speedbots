@@ -1,11 +1,11 @@
 <template>
     <div class="header">
         <login-register-header-item-component
-            name="connexion"
+            name="log in"
             route="login"
         ></login-register-header-item-component>
         <login-register-header-item-component 
-            name="inscription"
+            name="register"
             route="register"
         ></login-register-header-item-component>
     </div>

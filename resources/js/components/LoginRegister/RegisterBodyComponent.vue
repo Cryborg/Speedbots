@@ -3,37 +3,42 @@
         <div class="form-field">
             <label class="user" for="register-email">
                 <font-awesome-icon icon="at"></font-awesome-icon>
-                <span class="hidden">Adresse email</span>
+                <span class="hidden">Mail address</span>
             </label>
-            <input id="register-email" type="email" class="form-input" v-model="email" placeholder="Adresse email" required>
+            <input id="register-email" type="email" class="form-input" v-model.lazy="email" placeholder="Mail address" required>
+            <div class="form-field-error-info" v-if="!$v.email.email">Mail address must be valid.</div>
         </div>
 
         <div class="form-field">
             <label class="user" for="register-username">
                 <font-awesome-icon icon="user"></font-awesome-icon>
-                <span class="hidden">Pseudo</span>
+                <span class="hidden">Username</span>
             </label>
-            <input id="register-username" type="text" class="form-input" v-model="name" placeholder="Pseudo" required>
+            <input id="register-username" type="text" class="form-input" v-model.lazy="name" placeholder="Username" required>
+            <div class="form-field-error-info" v-if="!$v.name.minLength">Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
         </div>
 
         <div class="form-field">
             <label class="lock" for="register-password">
                 <font-awesome-icon icon="lock"></font-awesome-icon>
-                <span class="hidden">Mot de passe</span>
+                <span class="hidden">Password</span>
             </label>
-            <input id="register-password" type="password" class="form-input" v-model="password" placeholder="Mot de passe" required>
+            <input id="register-password" type="password" class="form-input" v-model.lazy="password" placeholder="Password" required>
+            <div class="form-field-error-info" v-if="!$v.password.minLength">Password must have at least {{$v.password.$params.minLength.min}} characters.</div>
         </div>
 
         <div class="form-field">
             <label class="lock" for="register-password-confirm">
                 <font-awesome-icon icon="lock"></font-awesome-icon>
-                <span class="hidden">Confimer le mot de passe</span>
+                <span class="hidden">Repeat password</span>
             </label>
-            <input id="register-password-confirm" type="password" class="form-input" v-model="confirmPassword" placeholder="Confimer le mot de passe" required>
+            <input id="register-password-confirm" type="password" class="form-input" v-model.lazy="repeatPassword" placeholder="Repeat password" required>
+            <div class="form-field-error-info" v-if="!$v.repeatPassword.sameAsPassword">Passwords must be identical.</div>
+
         </div>
 
         <div class="form-field">
-            <input type="button" v-on:click="register" value="Inscription">
+            <input type="button" v-on:click="register" value="Register">
         </div>
     </form>
 </template>
@@ -104,7 +109,8 @@ input {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
 }
 .hidden {
   border: 0;
@@ -116,10 +122,20 @@ input {
   position: absolute;
   width: 1px;
 }
+.form-field-error {
+  border: solid 10px red;
+}
+
+.form-field-error-info {
+  position : absolute;
+  bottom : .5rem;
+  color : red;
+}
 </style>
 
 <script>
     import { mapState } from 'vuex'
+    import { required, minLength, between, sameAsPassword, sameAs, email } from 'vuelidate/lib/validators'
     // @todo Request Validator
     export default {
         data() {
@@ -127,17 +143,38 @@ input {
                 email : '',
                 name : '',
                 password : '',
-                confirmPassword : ''
+                repeatPassword : ''
             }
         },
         methods: {
             register(){
-                this.$store.dispatch( 'user/register', {
+                if (this.$v.$invalid) {
+                  console.log('@todo Retour erreur.');
+                } else {
+                  this.$store.dispatch( 'user/register', {
                     email    : this.$data.email,
                     name    : this.$data.name,
                     password : this.$data.password,
-                });
+                  });
+                }
             },
+        },
+        validations: {
+          email : {
+            required,
+            email
+          },
+          name : {
+            required,
+            minLength : minLength(4)
+          },
+          password : {
+            minLength : minLength(6)
+          },
+          repeatPassword: {
+            required,
+            sameAsPassword: sameAs('password')
+          }
         },
         mounted() {
           // console.log(this.$router);

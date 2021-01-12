@@ -5,6 +5,7 @@ window.Vue = require('vue');
 import store from './store'
 import axios from 'axios'
 import router from './router'
+import validate from './validate'
 
 // Add Font Awesome
 // @todo Make it on helper
@@ -36,5 +37,6 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 const app = new Vue({
     el: '#app',
     store,
-    router
+    router,
+    validate
 });

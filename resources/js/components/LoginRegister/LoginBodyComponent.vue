@@ -3,21 +3,21 @@
         <div class="form-field">
             <label class="user" for="login-email">
                 <font-awesome-icon icon="at"></font-awesome-icon>
-                <span class="hidden">Adresse email</span>
+                <span class="hidden">Mail address</span>
             </label>
-            <input id="login-email" type="email" class="form-input" v-model="email" placeholder="Adresse email" required>
+            <input id="login-email" type="email" class="form-input" v-model="email" placeholder="Mail address" required>
         </div>
 
         <div class="form-field">
             <label class="lock" for="login-password">
                 <font-awesome-icon icon="lock"></font-awesome-icon>
-                <span class="hidden">Mot de passe</span>
+                <span class="hidden">Password</span>
             </label>
-            <input id="login-password" type="password" class="form-input" v-model="password" placeholder="Mot de passe" required>
+            <input id="login-password" type="password" class="form-input" v-model="password" placeholder="Password" required>
         </div>
 
         <div class="form-field">
-            <input type="button" v-on:click="login" value="Connexion">
+            <input type="button" v-on:click="login" value="Log in">
         </div>
     </form>
 </template>
