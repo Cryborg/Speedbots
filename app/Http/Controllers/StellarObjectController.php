@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StellarObjectStoreRequest;
 use App\Models\StellarObject;
 use App\Models\StellarSystem;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -16,26 +17,28 @@ use Illuminate\Http\Request;
 class StellarObjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * 
-     * @param  App\Models\StellarSystem $stellarSystem Stellar system
+     * List stellar objects of a given stellar system
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\StellarSystem $stellarSystem Stellar system
+     *
+     * @return JsonResponse
      */
-    public function index(StellarSystem $stellarSystem)
+    public function index(StellarSystem $stellarSystem): JsonResponse
     {
-        return response()->json($stellarSystem->stellarObjects);
+        return response()->json([
+            'stellar_objects' => $stellarSystem->stellarObjects,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StellarObjectStoreRequest $request
-     * @param  App\Models\StellarSystem $stellarSystem Stellar system
+     * @param \App\Models\StellarSystem                    $stellarSystem Stellar system
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(StellarObjectStoreRequest $request, StellarSystem $stellarSystem)
+    public function store(StellarObjectStoreRequest $request, StellarSystem $stellarSystem): JsonResponse
     {
         $stellarObject = $stellarSystem->stellarObjects()->create($request->all());
 
@@ -48,13 +51,13 @@ class StellarObjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  App\Models\StellarObject $stellarObject Stellar Object to show
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\StellarObject $stellarObject Stellar Object to show
+     *
+     * @return JsonResponse
      */
-    public function show(StellarObject $stellarObject)
+    public function show(StellarObject $stellarObject): JsonResponse
     {
         return response()->json([
-            'success'        => $stellarObject instanceof StellarObject,
             'stellar_object' => $stellarObject
         ]);
     }
@@ -62,23 +65,34 @@ class StellarObjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request  $request
+     * @param \App\Models\StellarObject $stellarObject
+     *
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, StellarObject $stellarObject): JsonResponse
     {
-        
+        $updated = $stellarObject->update($request->all());
+
+        return response()->json([
+            'success' => $updated,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\StellarObject $stellarObject
+     *
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(StellarObject $stellarObject): JsonResponse
     {
-        //
+        $deleted = $stellarObject->delete();
+
+        return response()->json([
+            'success' => $deleted,
+        ]);
     }
 }
