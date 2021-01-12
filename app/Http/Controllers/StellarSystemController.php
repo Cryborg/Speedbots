@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StellarSystemStoreRequest;
 use App\Models\StellarSystem;
 use App\Models\Galaxy;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -16,25 +17,30 @@ use Illuminate\Http\Request;
 class StellarSystemController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List all stellar systems of a given galaxy
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Galaxy $galaxy
+     *
+     * @return JsonResponse
      */
-    public function index()
+    public function index(Galaxy $galaxy): JsonResponse
     {
-        //
+        $stellarSystems = $galaxy->stellarSystems;
+
+        return response()->json($stellarSystems);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new stellar system to the given galaxy
      *
      * @param \App\Http\Requests\StellarSystemStoreRequest $request
+     * @param \App\Models\Galaxy                           $galaxy
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(StellarSystemStoreRequest $request)
+    public function store(StellarSystemStoreRequest $request, Galaxy $galaxy): JsonResponse
     {
-        $stellarSystem = StellarSystem::create($request->all());
+        $stellarSystem = $galaxy->stellarSystems()->create($request->all());
 
         return response()->json([
             'success'   => $stellarSystem instanceof StellarSystem,
@@ -43,36 +49,48 @@ class StellarSystemController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a stellar system
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\StellarSystem $stellarSystem
+     *
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(StellarSystem $stellarSystem): JsonResponse
     {
-        //
+        return response()->json($stellarSystem);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a stellar system
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request  $request
+     * @param \App\Models\StellarSystem $stellarSystem
+     *
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, StellarSystem $stellarSystem): JsonResponse
     {
-        //
+        $updated = $stellarSystem->update($request->all());
+
+        return response()->json([
+            'success' => $updated,
+        ]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a stellar system
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\StellarSystem $stellarSystem
+     *
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(StellarSystem $stellarSystem): JsonResponse
     {
-        //
+        $deleted = $stellarSystem->delete();
+
+        return response()->json([
+            'success' => $deleted,
+        ]);
     }
 }

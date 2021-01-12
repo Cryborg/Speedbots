@@ -14,7 +14,6 @@ class StellarSystemStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'galaxy_id'   => 'required|exists:galaxies,id',
             'name'        => 'required',
             'description' => 'required',
         ];

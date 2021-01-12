@@ -32,8 +32,12 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('components', ComponentController::class);
     Route::apiResource('circuits', CircuitController::class);
     Route::apiResource('galaxies', GalaxyController::class);
-    Route::apiResource('stellar_systems', StellarSystemController::class);
+
+    Route::apiResource('stellar_systems', StellarSystemController::class)->except(['index', 'store']);
+    Route::apiResource('galaxies.stellar_systems', StellarSystemController::class)->only(['index', 'store']);
+
     Route::apiResource('stellar_objects', StellarObjectController::class)->except(['index', 'store']);
     Route::apiResource('stellar_systems.stellar_objects', StellarObjectController::class)->only(['index', 'store']);
+
     Route::apiResource('weapons', WeaponController::class);
 });
