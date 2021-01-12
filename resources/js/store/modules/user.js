@@ -19,6 +19,15 @@ const actions = {
             console.log(error);
         });
     },
+    register( { commit }, data ){
+      axios.post('/api/register', data)
+      .then(function (response) {
+          commit("setToken", response.data.token);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+    },
 }
 
 // mutations

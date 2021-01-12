@@ -8,9 +8,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
-    <body style="background-color : #040080;">
+    <body style="background-color : #d2d2d2;">
         <div id="app">
-            <login-box></login-box>
+            <login-register-box-component></login-box-component>
         </div>
     </body>
     <script src="{{ asset('js/app.js') }}"></script>
