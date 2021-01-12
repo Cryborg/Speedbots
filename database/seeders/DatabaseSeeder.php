@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GalaxySeeder::class);
         $this->call(WeaponSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(RaceSeeder::class);
 
         // Dev seeds
         if (!app()->environment('production')) {

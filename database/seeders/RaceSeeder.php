@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Circuit;
+use App\Models\Race;
 use Illuminate\Database\Seeder;
 
-class CircuitSeeder extends Seeder
+class RaceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,8 @@ class CircuitSeeder extends Seeder
      */
     public function run()
     {
-        Circuit::factory(100)->create();
+        Race::factory(100)->create([
+            'circuit_id' => Circuit::inRandomOrder()->first()->id
+        ]);
     }
 }
