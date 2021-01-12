@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CircuitStoreRequest extends FormRequest
+class CircuitUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,11 +14,11 @@ class CircuitStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'length' => 'required|integer',
+            'name' => 'string',
+            'length' => 'integer',
             'gravity' => 'integer',
-            'gain_kill' => 'required|integer',
-            'gain_victory' => 'required|integer',
+            'gain_kill' => 'integer',
+            'gain_victory' => 'integer',
         ];
     }
 }

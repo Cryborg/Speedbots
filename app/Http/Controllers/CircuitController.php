@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CircuitStoreRequest;
+use App\Http\Requests\CircuitUpdateRequest;
 use App\Models\Circuit;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Class CircuitController
@@ -17,11 +18,22 @@ class CircuitController extends Controller
     /**
      * List circuits
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        /**
+         * Determine how we filter this:
+         * - by stellar system
+         * - by planet
+         * - by creator
+         * - ...
+         */
+
+        // For the moment, show all
+        return response()->json([
+            'circuits' => Circuit::all(),
+        ]);
     }
 
     /**
@@ -29,9 +41,9 @@ class CircuitController extends Controller
      *
      * @param \App\Http\Requests\CircuitStoreRequest $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(CircuitStoreRequest $request)
+    public function store(CircuitStoreRequest $request): JsonResponse
     {
         $circuit = Circuit::create($request->all());
 
@@ -44,34 +56,48 @@ class CircuitController extends Controller
     /**
      * Show a circuit details
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Circuit $circuit
+     *
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(Circuit $circuit): JsonResponse
     {
-        //
+        return response()->json([
+            'circuit' => $circuit
+        ]);
     }
 
     /**
      * Update a circuit
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\CircuitUpdateRequest $request
+     * @param \App\Models\Circuit                     $circuit
+     *
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(CircuitUpdateRequest $request, Circuit $circuit): JsonResponse
     {
-        //
+        $updated = $circuit->update($request->all());
+
+        return response()->json([
+            'success' => $updated,
+        ]);
     }
 
     /**
      * Delete a circuit
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Circuit $circuit
+     *
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Circuit $circuit): JsonResponse
     {
-        //
+        $deleted = $circuit->delete();
+
+        return response()->json([
+            'success' => $deleted,
+        ]);
     }
 }
