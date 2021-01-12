@@ -10,6 +10,8 @@ class Weapon extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     /**
      * FIXME: will have to go in a trait when used elsewhere
      *

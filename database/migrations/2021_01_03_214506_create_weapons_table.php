@@ -19,7 +19,7 @@ class CreateWeaponsTable extends Migration
             $table->string('name', 20);
             $table->string('type', 20)->default('ballistic')
                 ->comment('Ballistic, EMP, laser, plasma,...');
-            $table->integer('damage')->default(2);
+            $table->float('damage')->default(2);
             $table->integer('ammo')->default(10)
                 ->comment('Total ammunition');
             $table->integer('salvo')->default(1)
