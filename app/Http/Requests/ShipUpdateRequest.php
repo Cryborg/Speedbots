@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShipStoreRequest extends FormRequest
+class ShipUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,9 @@ class ShipStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
-            'name'    => 'required',
-            'class'   => 'required',
+            'user_id' => 'exists:users,id',
+            'name'    => '',
+            'class'   => '',
             'health'  => '',
         ];
     }
