@@ -8,7 +8,6 @@ use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -51,7 +50,7 @@ class UserController extends ControllerBase
     /**
      * Login user
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\UserLoginRequest $request
      *
      * @return JsonResponse
      */
@@ -79,7 +78,14 @@ class UserController extends ControllerBase
         ]);
     }
 
-    public function logout(Request $request)
+    /**
+     * Logout the user
+     * 
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
 
