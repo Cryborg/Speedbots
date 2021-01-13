@@ -2219,6 +2219,42 @@
 					"response": []
 				},
 				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5d590a98-65af-4868-ae34-82c13ec7e89d",
+								"exec": [
+									"pm.test(\"set the access token to an env variable\", function () {",
+									"    pm.environment.set(\"access_token\", pm.response.json().token);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Details",
 					"request": {
 						"method": "GET",
