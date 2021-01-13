@@ -14,7 +14,7 @@
             <!-- Home -->
             <vs-sidebar-item :to="{name : 'app'}" id="home">
                 <template #icon>
-                    <i class='bx bx-home'></i>
+                    <font-awesome-icon icon="home"></font-awesome-icon>
                 </template>
                 Home
             </vs-sidebar-item>
@@ -24,7 +24,7 @@
                 <template #header>
                     <vs-sidebar-item arrow>
                         <template #icon>
-                            <i class='bx bx-group'></i>
+                            <font-awesome-icon :icon="['fab', 'galactic-senate']"></font-awesome-icon>
                         </template>
                         Galaxy
                     </vs-sidebar-item>
@@ -51,7 +51,7 @@
                 <template #header>
                     <vs-sidebar-item arrow>
                         <template #icon>
-                            <i class='bx bx-group'></i>
+                            <font-awesome-icon icon="space-shuttle"></font-awesome-icon>
                         </template>
                         Ships
                     </vs-sidebar-item>
