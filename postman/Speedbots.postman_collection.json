@@ -1,0 +1,2592 @@
+{
+	"info": {
+		"_postman_id": "5e4dde1b-a2d5-4482-b6a7-0d2ea077177f",
+		"name": "Speedbots",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Circuits",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/circuits/:circuit_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"circuits",
+								":circuit_id"
+							],
+							"variable": [
+								{
+									"key": "circuit_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get one",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/circuits/:circuit_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"circuits",
+										":circuit_id"
+									],
+									"variable": [
+										{
+											"key": "circuit_id",
+											"value": "1",
+											"description": "Required, integer"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Jan 2021 19:31:00 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"circuit\": {\n        \"id\": 1,\n        \"name\": \"Test\",\n        \"length\": 1000,\n        \"gravity\": 1,\n        \"gain_kill\": \"10\",\n        \"gain_victory\": \"50\",\n        \"created_at\": \"2021-01-12T19:21:04.000000Z\",\n        \"updated_at\": \"2021-01-12T19:21:04.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/circuits",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"circuits"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/circuits",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"circuits"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Jan 2021 19:32:04 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"circuits\": [\n        {\n            \"id\": 1,\n            \"name\": \"Test\",\n            \"length\": 1000,\n            \"gravity\": 1,\n            \"gain_kill\": \"10\",\n            \"gain_victory\": \"50\",\n            \"created_at\": \"2021-01-12T19:21:04.000000Z\",\n            \"updated_at\": \"2021-01-12T19:21:04.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Circuit 2",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "1000",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "gravity",
+									"value": "1",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "gain_kill",
+									"value": "10",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "gain_victory",
+									"value": "100",
+									"description": "Required, integer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/circuits",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"circuits"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Circuit 2",
+											"description": "Required, string",
+											"type": "text"
+										},
+										{
+											"key": "length",
+											"value": "1000",
+											"description": "Required, integer",
+											"type": "text"
+										},
+										{
+											"key": "gravity",
+											"value": "1",
+											"description": "Required, integer",
+											"type": "text"
+										},
+										{
+											"key": "gain_kill",
+											"value": "10",
+											"description": "Required, integer",
+											"type": "text"
+										},
+										{
+											"key": "gain_victory",
+											"value": "100",
+											"description": "Required, integer",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/circuits",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"circuits"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Jan 2021 19:32:17 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"circuit_id\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Bouh",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "",
+									"description": "Required, integer",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gravity",
+									"value": "",
+									"description": "Required, integer",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gain_kill",
+									"value": "",
+									"description": "Required, integer",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gain_victory",
+									"value": "",
+									"description": "Required, integer",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/circuits/:circuit_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"circuits",
+								":circuit_id"
+							],
+							"variable": [
+								{
+									"key": "circuit_id",
+									"value": "2",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update one",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Bouh",
+											"description": "Required, string",
+											"type": "text"
+										},
+										{
+											"key": "length",
+											"value": "",
+											"description": "Required, integer",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "gravity",
+											"value": "",
+											"description": "Required, integer",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "gain_kill",
+											"value": "",
+											"description": "Required, integer",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "gain_victory",
+											"value": "",
+											"description": "Required, integer",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/circuits/:circuit_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"circuits",
+										":circuit_id"
+									],
+									"variable": [
+										{
+											"key": "circuit_id",
+											"value": "1",
+											"description": "Required, integer"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Jan 2021 19:32:29 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/circuits/:circuit_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"circuits",
+								":circuit_id"
+							],
+							"variable": [
+								{
+									"key": "circuit_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete one",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/circuits/:circuit_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"circuits",
+										":circuit_id"
+									],
+									"variable": [
+										{
+											"key": "circuit_id",
+											"value": "2",
+											"description": "Required, integer"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Jan 2021 19:32:38 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "12736e78-c951-45fd-8956-f719c14632b8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8c5d318-21c7-4076-8932-da7225892c62",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Components",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/components/:component_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"components",
+								":component_id"
+							],
+							"variable": [
+								{
+									"key": "component_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/components",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"components"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New component",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "health",
+									"value": "3",
+									"description": "Required, integet",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "3",
+									"description": "Required, integet",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "3",
+									"description": "Required, integet",
+									"type": "text"
+								},
+								{
+									"key": "energy_consumption",
+									"value": "3",
+									"description": "Required, integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "power",
+									"value": "3",
+									"description": "Required, integet",
+									"type": "text"
+								},
+								{
+									"key": "slots",
+									"value": "2",
+									"description": "Required, integet",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/components",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"components"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "New component 2",
+									"description": "string",
+									"type": "text"
+								},
+								{
+									"key": "health",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "weight",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "energy_consumption",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "power",
+									"value": "",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "slots",
+									"value": "2",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/components/:component_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"components",
+								":component_id"
+							],
+							"variable": [
+								{
+									"key": "component_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/components/:component_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"components",
+								":component_id"
+							],
+							"variable": [
+								{
+									"key": "component_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "93d53b0a-2434-423f-accb-f68b791a8f98",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "64d2fe3e-c42c-4734-82b5-1dbeac7b6233",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Galaxies",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/galaxies/:galaxy_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies",
+								":galaxy_id"
+							],
+							"variable": [
+								{
+									"key": "galaxy_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/galaxies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Voie lactée",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "C'est chez nous !\nC'est beau hein ?",
+									"description": "Required, text",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/galaxies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Voie lactée 2",
+									"description": "string",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "C'est chez nous !",
+									"description": "text",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/galaxies/:galaxy_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies",
+								":galaxy_id"
+							],
+							"variable": [
+								{
+									"key": "galaxy_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/galaxies/:galaxy_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies",
+								":galaxy_id"
+							],
+							"variable": [
+								{
+									"key": "galaxy_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "524cea13-04fa-4e5a-985f-2c8455dff98b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "54b04ecc-47d4-4bee-a83f-2e14cc9e5a4a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Ships",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ships/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"key": "ship_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all ships of a given user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ships/:user_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "4",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add component",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ship/:ship_id/component/:component_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ship",
+								":ship_id",
+								"component",
+								":component_id"
+							],
+							"variable": [
+								{
+									"description": "Required, integer",
+									"key": "ship_id",
+									"value": "2"
+								},
+								{
+									"key": "component_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create for user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Test SB",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "class",
+									"value": "speedbot",
+									"description": "Required, string (speedbots, mothership)",
+									"type": "text"
+								},
+								{
+									"key": "health",
+									"value": "100",
+									"description": "Required, integer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ships",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "3",
+									"description": "integer",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mon SB à moi",
+									"description": "string",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "class",
+									"value": "speedbot",
+									"description": "string",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "health",
+									"value": "10",
+									"description": "integer",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ships/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"key": "ship_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ships/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"key": "ship_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister ship on race Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ship/:ship_id/component/:component_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ship",
+								":ship_id",
+								"component",
+								":component_id"
+							],
+							"variable": [
+								{
+									"description": "Required, integer",
+									"key": "ship_id",
+									"value": "2"
+								},
+								{
+									"key": "component_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ae1be8a-5066-43c5-91cb-43f2b3a73bd5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c299aca7-9685-4617-9303-f7892b6643e4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Races",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/races/:race_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"races",
+								":race_id"
+							],
+							"variable": [
+								{
+									"key": "race_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/races",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"races"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register ship on race",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/race/:race_id/ship/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"race",
+								":race_id",
+								"ship",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"key": "race_id",
+									"value": "1",
+									"description": "Required, integer"
+								},
+								{
+									"key": "ship_id",
+									"value": "2",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create for user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Test SB",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "class",
+									"value": "speedbot",
+									"description": "Required, string (speedbots, mothership)",
+									"type": "text"
+								},
+								{
+									"key": "health",
+									"value": "100",
+									"description": "Required, integer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ships",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "3",
+									"description": "integer",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mon SB à moi",
+									"description": "string",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "class",
+									"value": "speedbot",
+									"description": "string",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "health",
+									"value": "10",
+									"description": "integer",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ships/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"key": "ship_id",
+									"value": "1101"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unregister ship on race",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/race/:race_id/ship/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"race",
+								":race_id",
+								"ship",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"description": "Required, integer",
+									"key": "race_id",
+									"value": "1"
+								},
+								{
+									"description": "Required, integer",
+									"key": "ship_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ships/:ship_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ships",
+								":ship_id"
+							],
+							"variable": [
+								{
+									"key": "ship_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "69b44d74-6879-4891-85a5-a384b1a88099",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "21ff263d-cf5a-4918-b86c-725c5222b8af",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Stellar objects",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/stellar_objects/:stellar_object_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_objects",
+								":stellar_object_id"
+							],
+							"variable": [
+								{
+									"key": "stellar_object_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all objects of a given system",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/stellar_objects/:stellar_system",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_objects",
+								":stellar_system"
+							],
+							"variable": [
+								{
+									"key": "stellar_system",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create for stellar system",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New Object",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is a stellar object",
+									"description": "Required, text",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "wreckage",
+									"description": "Required, string (planet, asteroid, wreckage, satellite)",
+									"type": "text"
+								},
+								{
+									"key": "disappear_at",
+									"value": "",
+									"description": "Datetime",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/stellar_systems/:stellar_system_id/stellar_objects",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_systems",
+								":stellar_system_id",
+								"stellar_objects"
+							],
+							"variable": [
+								{
+									"key": "stellar_system_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mon nouvel objet",
+									"description": "string",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "speedbot",
+									"description": "text",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "10",
+									"description": "string",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "disappear_at",
+									"value": "",
+									"description": "Datetime",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/stellar_objects/:stellar_object_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_objects",
+								":stellar_object_id"
+							],
+							"variable": [
+								{
+									"key": "stellar_object_id",
+									"value": "98"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/stellar_objects/:stellar_object_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_objects",
+								":stellar_object_id"
+							],
+							"variable": [
+								{
+									"key": "stellar_object_id",
+									"value": "99"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5f5f8658-ab9d-4f27-9525-964bed089ea5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1cc74cf0-60ba-4a0a-8500-fd2568265171",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Stellar systems",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/stellar_systems/:stellar_system_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_systems",
+								":stellar_system_id"
+							],
+							"variable": [
+								{
+									"key": "stellar_system_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all systems of a given galaxy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/galaxies/:galaxies_id/stellar_systems",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies",
+								":galaxies_id",
+								"stellar_systems"
+							],
+							"variable": [
+								{
+									"key": "galaxies_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create for galaxy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New system",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is a stellar system",
+									"description": "Required, text",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/galaxies/:galaxy_id/stellar_systems",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"galaxies",
+								":galaxy_id",
+								"stellar_systems"
+							],
+							"variable": [
+								{
+									"key": "galaxy_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mon nouveau système",
+									"description": "string",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "speedbot",
+									"description": "text",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/stellar_systems/:stellar_system_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_systems",
+								":stellar_system_id"
+							],
+							"variable": [
+								{
+									"key": "stellar_system_id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/stellar_systems/:stellar_system_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stellar_systems",
+								":stellar_system_id"
+							],
+							"variable": [
+								{
+									"key": "stellar_system_id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ec3c379-3718-463b-96b7-d6afab9c76f5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c3b0f46-acd5-47da-a09e-54b75c9f0828",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Cryborg23",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "cryborg23@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4f937c9-ecc0-40d6-80e9-99977e43a23d",
+								"exec": [
+									"pm.test(\"set the access token to an env variable\", function () {",
+									"    pm.environment.set(\"access_token\", pm.response.json().token);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "cryborg@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "cryborg2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0eea83f6-417e-485b-bdcb-f91809fff5ac",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8ae28749-fc56-484d-9ac5-30c4d57b471e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Weapons",
+			"item": [
+				{
+					"name": "Get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weapons/:weapon_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"weapons",
+								":weapon_id"
+							],
+							"variable": [
+								{
+									"key": "weapon_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weapons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"weapons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Arme 1",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "ballistic",
+									"description": "Required, string",
+									"type": "text"
+								},
+								{
+									"key": "damage",
+									"value": "3.4",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "ammo",
+									"value": "3",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "salvo",
+									"value": "3",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "range",
+									"value": "3",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "accuracy",
+									"value": "3",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "direction",
+									"value": "1",
+									"description": "Required, integer",
+									"type": "text"
+								},
+								{
+									"key": "quality",
+									"value": "1",
+									"description": "integer",
+									"type": "text"
+								},
+								{
+									"key": "rarity",
+									"value": "1",
+									"description": "integer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/weapons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"weapons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "New component 2",
+									"description": "string",
+									"type": "text"
+								},
+								{
+									"key": "health",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "weight",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "energy_consumption",
+									"value": "3",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "power",
+									"value": "",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "slots",
+									"value": "2",
+									"description": "integet",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/components/:component_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"components",
+								":component_id"
+							],
+							"variable": [
+								{
+									"key": "component_id",
+									"value": "1",
+									"description": "Required, integer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weapons/:weapon_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"weapons",
+								":weapon_id"
+							],
+							"variable": [
+								{
+									"key": "weapon_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessToken",
+						"value": "{{access_token}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "688fab3d-40d0-496b-86c5-4fd9bf7eda41",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f118e4fa-28c4-40bf-9fea-4f98dbf00bb0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6ad7145f-426f-4e02-8042-4c6f4d5a0005",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "77d7f448-ee77-4798-9103-ddce29eb6c7b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0610d22d-94c1-4f80-8aab-63159c01c134",
+			"key": "baseUrl",
+			"value": "http://local.speedbots.perso/api"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
