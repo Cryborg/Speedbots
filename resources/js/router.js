@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import { isAuthentificated } from './router-guard'
 
 import AuthBox from './components/Auth/AuthBox'
+import AuthLogout from './components/Auth/AuthLogout'
 import AppComponent from './components/AppComponent'
 
 Vue.use(VueRouter);
@@ -21,8 +22,13 @@ export default new VueRouter({
       name : 'register'
     },
     {
+      path: '/auth/logout/',
+      component: AuthLogout,
+      name : 'logout',
+    },
+    {
       path: '/',
-      component: AppComponent ,
+      component: AppComponent,
       name : 'app' ,
       beforeEnter : isAuthentificated,
     }

@@ -11,10 +11,10 @@ import validate from './validate'
 // Add Font Awesome
 // @todo Make it on helper
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faAt, faLock, faUser, faHome, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons'
+import { faAt, faLock, faUser, faHome, faSpaceShuttle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faGalacticSenate } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faAt, faLock, faUser, faHome, faGalacticSenate, faSpaceShuttle)
+library.add(faAt, faLock, faUser, faHome, faGalacticSenate, faSpaceShuttle, faSignOutAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

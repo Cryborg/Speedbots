@@ -72,6 +72,18 @@
                     Speedbots
                 </vs-sidebar-item>
             </vs-sidebar-group>
+
+            <template #footer @click="logout">
+
+
+                <!-- Log out -->
+                <vs-sidebar-item :to="{name : 'logout'}" id="logout">
+                    <template #icon>
+                        <font-awesome-icon icon="sign-out-alt"></font-awesome-icon>
+                    </template>
+                    Log Out
+                </vs-sidebar-item>
+            </template>
         </vs-sidebar>
     </div>
 </template>
@@ -86,5 +98,10 @@ export default {
     data:() => ({
         active: 'home',
     }),
+    methods: {
+        logout() {
+            this.$store.dispatch('logout');
+        }
+    },
 }
 </script>

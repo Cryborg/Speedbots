@@ -9,6 +9,9 @@ const state = () => ({
 const getters = {
     loggedIn(state){
       return state.token !== '';
+    },
+    getToken(state){
+      return state.token;
     }
 }
 
@@ -24,8 +27,7 @@ const actions = {
             console.log(error);
         });
     },
-    register( { commit, dispatch }, data ){
-      console.log(data);
+    register( { dispatch }, data ){
       axios.post('/api/register', data)
       .then(function (response) {
           dispatch('login', {
@@ -37,6 +39,20 @@ const actions = {
           console.log(error);
       });
     },
+    logout( { commit }, data ){
+      axios.post('/api/logout', data, {
+        headers: {
+          Authorization: 'Bearer ' + data //the token is a variable which holds the token
+        }
+      })
+      .then(function (response) {
+        commit("setToken", null);
+        router.push({name : 'login'})
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+    }
 }
 
 // mutations
