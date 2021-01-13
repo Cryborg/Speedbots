@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Race;
 
 use App\Models\Circuit;
+use App\Models\Race;
 use App\Models\RaceLog;
 use App\Models\Ship;
 use App\Models\User;
@@ -10,9 +11,8 @@ use App\Models\Weapon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
-class RaceCommand extends Command
+class StartCommand extends Command
 {
     public            $authUser;
 
@@ -22,14 +22,15 @@ class RaceCommand extends Command
 
     public int        $nbSpeedbotsAtStart;
 
-    public string     $raceId;
+    public Race       $race;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'race:start';
+    protected $signature = 'race:start
+                            {--r|race=  : ID of the race to start}';
 
     /**
      * The console command description.
@@ -47,18 +48,12 @@ class RaceCommand extends Command
     {
         parent::__construct();
 
-//        Auth::login(User::find(1), true);
+        Auth::login(User::find(1), true);
 
         // Logs all attacks
         $this->attackLogs = collect();
 
         $this->authUser = Auth::user();
-
-        // Number of SB on the track when the race starts
-        $this->nbSpeedbotsAtStart = 500;
-
-        // Random race ID to identify it in the race_logs DB table
-        $this->raceId = Str::random(10);
     }
 
     /**
@@ -71,20 +66,49 @@ class RaceCommand extends Command
         ini_set('max_execution_time', -1);
         $startTime = now();
 
+        $raceId = $this->option('race');
+
+        if ($raceId && is_numeric($raceId)) {
+            $race = Race::where('id', $raceId)->first();
+
+            if ($race === null) {
+                $this->error('The race ID#' . $raceId . ' does not exist');
+                return 0;
+            }
+
+            if ($race->ended_at !== null) {
+                $this->info('This race has already ended');
+                return 0;
+            }
+
+            $nbSpeedbotsReady = $race->ships->count();
+            if ($nbSpeedbotsReady < $race->nb_opponents) {
+                $this->info('Waiting for some SB to join in! (' . $nbSpeedbotsReady . '/' . $race->nb_opponents . ')'
+                    . "\n\n" . '(DEV) Run \'php artisan race:queue -r ' . $race->id . '\' first');
+                return 0;
+            }
+
+            $this->nbSpeedbotsAtStart = $race->nb_opponents;
+            $this->race = $race;
+        } else {
+            $this->info('┌─────────────────────────────────────────────────────┐');
+            $this->info('│   You must specify a race ID with the -r argument   │');
+            $this->info('├─────────────────────────────────────────────────────┤');
+            $this->info('│   Example:                                          │');
+            $this->info('│      php artisan race:start -r 42                   │');
+            $this->info('└─────────────────────────────────────────────────────┘');
+            return 1;
+        }
+
         // Take first circuit in DB
         $circuit = Circuit::firstOrFail();
 
-        // Pick some random SB
-        $opponents = Ship::inRandomOrder()
-                         ->where('class', 'speedbot')
-                         ->limit($this->nbSpeedbotsAtStart)
-                         ->get();
-
-        $this->speedbotsRacing = $opponents;
+        // Get the list of participants
+        $this->speedbotsRacing = $this->race->ships;
 
         $track = [];
 
-        $opponents->each(static function (Ship $opponent) use ($circuit, &$track) {
+        $this->speedbotsRacing->each(static function (Ship $opponent) use ($circuit, &$track) {
             $lPosition = mt_rand(1, $circuit->length);
 
             $track[$lPosition][] = [
@@ -117,6 +141,9 @@ class RaceCommand extends Command
                             'direction' => $speedbotData['direction'],
                             'speedbot'  => $speedbotData['speedbot'],
                         ];
+                    } else {
+                        $this->race->ships()
+                           ->updateExistingPivot($speedbotData['speedbot']->id, ['ended_at' => now()]);
                     }
                 }
             }
@@ -132,6 +159,10 @@ class RaceCommand extends Command
         }
 
         $diff = now()->getTimestamp() - $startTime->getTimestamp();
+
+        $this->race->update([
+            'ended_at' => now(),
+        ]);
 
         $this->info('> Ended in ' . $diff . ' seconds for ' . $this->nbSpeedbotsAtStart . ' speedbots.');
     }
@@ -195,7 +226,7 @@ class RaceCommand extends Command
         }
 
         RaceLog::create([
-                            'race_id'       => $this->raceId,
+                            'race_id'       => $this->race->id,
                             'comments'      => $message,
                             'shooter_state' => $shooterState ?? null,
                             'target_state'  => $targetState ?? null,
@@ -293,29 +324,8 @@ class RaceCommand extends Command
 
             $totalDamage = $hits * $weapon->updated_damage;
 
-            // Check if the target has a hull
-            $hull = $targetSB->hull();
-            if ($hull->count() > 0) {
-                $hull->pivot->health -= $totalDamage;
-
-                if ($hull->pivot->health < 0) {
-                    $hull->pivot->health = 0;
-                }
-
-                $hull->pivot->save();
-
-                $message = trans('race.component_damage', [
-                    'component'    => 'hull',
-                    'damage'       => $totalDamage,
-                    'shooter'      => $shooterSB->name,
-                    'shooter_user' => $shooterSB->user->username,
-                    'target'       => $targetSB->name,
-                    'target_user'  => $targetSB->user->username,
-                    'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
-                ]);
-
-                $this->writeLog($message, null, $targetSB);
-            }
+            // Deal damage to all components
+            $this->dealDamageToComponents($shooterSB, $targetSB, $weapon, $totalDamage);
 
             // Remove the fired ammo
             $weapon->pivot->ammo -= $weapon->salvo;
@@ -330,6 +340,35 @@ class RaceCommand extends Command
             }
 
             $weapon->pivot->save();
+        }
+    }
+
+    private function dealDamageToComponents(Ship $shooterSB, Ship $targetSB, Weapon $weapon, float $totalDamage)
+    {
+        // Check if the target has a hull
+        $hull = $targetSB->hull();
+        if ($hull->count() > 0) {
+            $hull->pivot->health -= $totalDamage;
+
+            if ($hull->pivot->health < 0) {
+                $otherDamage = $hull->pivot->health;
+
+                $hull->pivot->health = 0;
+            }
+
+            $hull->pivot->save();
+
+            $message = trans('race.component_damage', [
+                'component'    => 'hull',
+                'damage'       => $totalDamage,
+                'shooter'      => $shooterSB->name,
+                    'shooter_user' => $shooterSB->user->username,
+                'target'       => $targetSB->name,
+                    'target_user'  => $targetSB->user->username,
+                'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
+            ]);
+
+            $this->writeLog($message, null, $targetSB);
         }
     }
 

@@ -104,6 +104,36 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Race
+ *
+ * @property int $id
+ * @property int $circuit_id
+ * @property int $nb_opponents
+ * @property string|null $start_at Date & time of the beginning of the race. If it is null, it starts when the queue is full.
+ * @property string|null $ended_at Date & time of the end of the race.
+ * @property int|null $created_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $creator
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Ship[] $ships
+ * @property-read int|null $ships_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Race newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Race newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Race query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereCircuitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereEndedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereNbOpponents($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereStartAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Race whereUpdatedAt($value)
+ */
+	class Race extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\RaceLog
  *
  * @property int $id
@@ -276,7 +306,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $type Ballistic, EMP, laser, plasma,...
- * @property int $damage
+ * @property float $damage
  * @property int $ammo Total ammunition
  * @property int $salvo How much ammunition is fired in each burst.
  * @property int $range

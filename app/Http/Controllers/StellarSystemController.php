@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StellarSystemStoreRequest;
+use App\Http\Requests\StellarSystemUpdateRequest;
 use App\Models\StellarSystem;
 use App\Models\Galaxy;
+use App\Traits\CrudTrait;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 /**
  * Class StellarSystemController
@@ -16,6 +17,35 @@ use Illuminate\Http\Request;
  */
 class StellarSystemController extends Controller
 {
+    use CrudTrait;
+
+    function model()
+    {
+        return StellarSystem::class;
+    }
+
+    /**
+     * @return array
+     */
+    protected function storeRules(): array
+    {
+        return [
+            'name'        => 'required',
+            'description' => 'required',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function updateRules(): array
+    {
+        return [
+            'name'        => 'string',
+            'description' => 'text',
+        ];
+    }
+
     /**
      * List all stellar systems of a given galaxy
      *
@@ -45,52 +75,6 @@ class StellarSystemController extends Controller
         return response()->json([
             'success'   => $stellarSystem instanceof StellarSystem,
             'stellar_system_id' => $stellarSystem->id
-        ]);
-    }
-
-    /**
-     * Show a stellar system
-     *
-     * @param \App\Models\StellarSystem $stellarSystem
-     *
-     * @return JsonResponse
-     */
-    public function show(StellarSystem $stellarSystem): JsonResponse
-    {
-        return response()->json($stellarSystem);
-    }
-
-    /**
-     * Update a stellar system
-     *
-     * @param \Illuminate\Http\Request  $request
-     * @param \App\Models\StellarSystem $stellarSystem
-     *
-     * @return JsonResponse
-     */
-    public function update(Request $request, StellarSystem $stellarSystem): JsonResponse
-    {
-        $updated = $stellarSystem->update($request->all());
-
-        return response()->json([
-            'success' => $updated,
-        ]);
-    }
-
-    /**
-     * Delete a stellar system
-     *
-     * @param \App\Models\StellarSystem $stellarSystem
-     *
-     * @return JsonResponse
-     * @throws \Exception
-     */
-    public function destroy(StellarSystem $stellarSystem): JsonResponse
-    {
-        $deleted = $stellarSystem->delete();
-
-        return response()->json([
-            'success' => $deleted,
         ]);
     }
 }

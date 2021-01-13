@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bases\ControllerBase;
+use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -53,18 +54,8 @@ class UserController extends ControllerBase
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login(UserLoginRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            "email"    => "required_without:username|email",
-            "username" => "required_without:email",
-            "password" => "required",
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(["validation_errors" => $validator->errors()]);
-        }
-
         if (Auth::attempt([
               'email'    => $request->email,
               'password' => $request->password,

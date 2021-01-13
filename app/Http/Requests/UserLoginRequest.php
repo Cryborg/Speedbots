@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GalaxyUpdateRequest extends FormRequest
+class UserLoginRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,8 +14,9 @@ class GalaxyUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => 'required',
-            'description' => 'required',
+            'email'    => 'required_without:username|email',
+            'username' => 'required_without:email',
+            'password' => 'required',
         ];
     }
 }
