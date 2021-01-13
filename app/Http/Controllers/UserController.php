@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bases\ControllerBase;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,9 +53,9 @@ class UserController extends ControllerBase
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function login(UserLoginRequest $request)
+    public function login(UserLoginRequest $request): JsonResponse
     {
         if (Auth::attempt([
               'email'    => $request->email,
@@ -78,12 +79,17 @@ class UserController extends ControllerBase
         ]);
     }
 
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+    }
+
     /**
      * Get user details
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function user()
+    public function user(): JsonResponse
     {
         if (!is_null($this->authUser)) {
             return response()->json([

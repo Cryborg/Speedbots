@@ -10,21 +10,21 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
   routes : [
-    { 
+    {
       path: '/auth/login/',
       component: AuthBox,
       name : 'login'
     },
-    { 
+    {
       path: '/auth/register/',
       component: AuthBox,
       name : 'register'
     },
-    { 
-      path: '/', 
+    {
+      path: '/',
       component: AppComponent ,
       name : 'app' ,
-      // beforeEnter : isAuthentificated,
+      beforeEnter : isAuthentificated,
     }
   ],
 });
