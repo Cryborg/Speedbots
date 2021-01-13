@@ -334,7 +334,7 @@ class StartCommand extends Command
                 $weapon->pivot->ammo = 0;
 
                 $this->writeLog(trans('race.no_more_ammo', [
-                    'shooter' => $shooterSB->user->name,
+                    'shooter' => $shooterSB->user->username,
                     'weapon'  => $weapon->name,
                 ]), $weapon);
             }
