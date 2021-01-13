@@ -9,7 +9,6 @@ use App\Http\Controllers\RaceController;
 use App\Http\Controllers\ShipController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeaponController;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // user controller routes
-Route::post("register", [UserController::class, "register"]);
-Route::post("login", [UserController::class, "login"]);
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
 
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
@@ -40,8 +39,10 @@ Route::middleware('auth:api')->group(function() {
 
     // Race
     Route::apiResource('races', RaceController::class);
-    Route::get('register/{race_id}/speedbots/{ship_id}', [RaceController::class, 'registerSpeedbot'])
-         ->name('register');
+    Route::get('races/register/{race}/speedbot/{ship}', [RaceController::class, 'registerSpeedbot'])
+         ->name('races.register');
+    Route::get('races/unregister/{race}/speedbot/{ship}', [RaceController::class, 'unregisterSpeedbot'])
+         ->name('races.unregister');
 
     Route::apiResource('stellar_objects', StellarObjectController::class)->except(['index', 'store']);
     Route::apiResource('stellar_systems.stellar_objects', StellarObjectController::class)->only(['index', 'store']);

@@ -7,13 +7,14 @@ use App\Http\Requests\RaceUpdateRequest;
 use App\Models\Race;
 use App\Models\Ship;
 use App\Traits\CrudTrait;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 
 class RaceController extends Controller
 {
     use CrudTrait;
 
-    function model()
+    public function model(): string
     {
         return Race::class;
     }
@@ -51,7 +52,7 @@ class RaceController extends Controller
     }
 
     /**
-     * Register a speedbot on a race
+     * Register a speedbot in a race
      *
      * @param \App\Models\Race $race
      * @param \App\Models\Ship $ship
@@ -68,7 +69,23 @@ class RaceController extends Controller
         }
 
         try {
-            $race->ships()->attach($ship);
+            $race->ships()
+                 ->attach($ship);
+        } catch (QueryException $e) {
+            $message = $e->getMessage();
+
+            // FIXME: complete this when we encounter other errors
+            switch ($e->getCode()) {
+                case 23000:
+                    $message = 'This ship is already on the starting block';
+                    break;
+            }
+
+            return response()->json([
+                'success' => false,
+                'code' => $e->getCode(),        // FIXME: remove this once we have all errors we need
+                'message' => $message,
+            ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -81,6 +98,20 @@ class RaceController extends Controller
         ]);
     }
 
-    // Retirer un SB d'une course
-    // Infos sur une course : pas encore lancée, en cours, terminée
+    /**
+     * Unregister a Speedbot of a race
+     *
+     * @param \App\Models\Race $race
+     * @param \App\Models\Ship $ship
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function unregisterSpeedbot(Race $race, Ship $ship): JsonResponse
+    {
+        $race->ships()->detach($ship);
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
 }
