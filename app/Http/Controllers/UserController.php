@@ -82,6 +82,10 @@ class UserController extends ControllerBase
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**
