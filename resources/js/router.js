@@ -24,7 +24,7 @@ export default new VueRouter({
       path: '/', 
       component: AppComponent ,
       name : 'app' ,
-      beforeEnter : isAuthentificated,
+      // beforeEnter : isAuthentificated,
     }
   ],
 });

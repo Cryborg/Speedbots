@@ -1,6 +1,6 @@
 <template>
     <div>
-        Futur Super Appli !!!
+        <sidebar-container></sidebar-container>
     </div>
 </template>
 
@@ -9,6 +9,7 @@
 </style>
 
 <script>
+
 export default {
     
 }
