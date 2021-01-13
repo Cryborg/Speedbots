@@ -31,14 +31,14 @@
                 </template>
 
                 <!--  -->
-                <vs-sidebar-item id="Instagram">
+                <vs-sidebar-item id="stellar-systems">
                     <template #icon>
                         <i class='bx bxl-instagram'></i>
                     </template>
                     Stellar Systems
                 </vs-sidebar-item>
                 <!-- Hangar -->
-                <vs-sidebar-item id="twitter">
+                <vs-sidebar-item id="stellar-objects">
                     <template #icon>
                         <i class='bx bxl-twitter' ></i>
                     </template>
@@ -58,14 +58,14 @@
                 </template>
 
                 <!--  -->
-                <vs-sidebar-item id="Instagram">
+                <vs-sidebar-item id="mothership">
                     <template #icon>
                         <i class='bx bxl-instagram'></i>
                     </template>
                     Mothership
                 </vs-sidebar-item>
                 <!-- Hangar -->
-                <vs-sidebar-item id="twitter">
+                <vs-sidebar-item id="speedbots">
                     <template #icon>
                         <i class='bx bxl-twitter' ></i>
                     </template>
