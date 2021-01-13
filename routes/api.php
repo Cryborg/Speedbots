@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\GalaxyController;
+use App\Http\Controllers\RaceShipController;
+use App\Http\Controllers\ShipComponentController;
 use App\Http\Controllers\StellarSystemController;
 use App\Http\Controllers\StellarObjectController;
 use App\Http\Controllers\ComponentController;
@@ -23,26 +25,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 // user controller routes
-Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register'])->name('user.register');
+Route::post('login', [UserController::class, 'login'])->name('user.login');
 
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
-    Route::get('user', [UserController::class, 'user']);
+    Route::get('user', [UserController::class, 'user'])->name('user.show');
+
     Route::apiResource('ships', ShipController::class);
     Route::apiResource('components', ComponentController::class);
+    Route::apiResource('ship.component', ShipComponentController::class)->only(['update', 'destroy']);
+
     Route::apiResource('circuits', CircuitController::class);
     Route::apiResource('galaxies', GalaxyController::class);
 
     Route::apiResource('stellar_systems', StellarSystemController::class)->except(['index', 'store']);
     Route::apiResource('galaxies.stellar_systems', StellarSystemController::class)->only(['index', 'store']);
 
-    // Race
     Route::apiResource('races', RaceController::class);
-    Route::get('races/register/{race}/speedbot/{ship}', [RaceController::class, 'registerSpeedbot'])
-         ->name('races.register');
-    Route::get('races/unregister/{race}/speedbot/{ship}', [RaceController::class, 'unregisterSpeedbot'])
-         ->name('races.unregister');
+    Route::apiResource('race.ship', RaceShipController::class)->only(['update', 'destroy']);
 
     Route::apiResource('stellar_objects', StellarObjectController::class)->except(['index', 'store']);
     Route::apiResource('stellar_systems.stellar_objects', StellarObjectController::class)->only(['index', 'store']);

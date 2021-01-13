@@ -14,10 +14,12 @@ class CreateComponentShipTable extends Migration
     public function up()
     {
         Schema::create('component_ship', function (Blueprint $table) {
-            $table->foreignId('component_id');
             $table->foreignId('ship_id');
+            $table->foreignId('component_id');
 
             $table->float('health');
+
+            $table->unique(['ship_id', 'component_id']);
         });
     }
 
