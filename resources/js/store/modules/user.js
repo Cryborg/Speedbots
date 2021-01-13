@@ -1,3 +1,5 @@
+import router from '../../router'
+
 // initial state
 const state = () => ({
   token: '',
@@ -5,7 +7,9 @@ const state = () => ({
 
 // getters
 const getters = {
-
+    loggedIn(state){
+      return state.token !== '';
+    }
 }
 
 // actions
@@ -14,15 +18,20 @@ const actions = {
         axios.post('/api/login', data)
         .then(function (response) {
             commit("setToken", response.data.token);
+            router.push({name : 'app'})
         })
         .catch(function (error) {
             console.log(error);
         });
     },
-    register( { commit }, data ){
+    register( { commit, dispatch }, data ){
+      console.log(data);
       axios.post('/api/register', data)
       .then(function (response) {
-          commit("setToken", response.data.token);
+          dispatch('login', {
+            email : data.email,
+            password : data.password
+          });
       })
       .catch(function (error) {
           console.log(error);

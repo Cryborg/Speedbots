@@ -1,10 +1,11 @@
 <template>
     <div class="container">
         <div class="box-login">
-            <auth-header></auth-header>
+            <auth-header />
             <div class="logo">Speedbots</div>
             <div class="login-item">
-                <router-view></router-view>
+                <auth-login v-if="page === 'login'" />
+                <auth-register v-else />
             </div>
         </div>
     </div>
@@ -48,5 +49,10 @@
 
 <script>
     export default {
+        computed: {
+            page : function () {
+                return this.$route.name;
+            }
+        },
     }
 </script>

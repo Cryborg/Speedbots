@@ -1,7 +1,7 @@
 <template>
     <div class="header">
-        <router-link :to="`/`">Log In</router-link>
-        <router-link :to="`register`">Register</router-link>
+        <router-link :to="{ name : 'login'}">Log In</router-link>
+        <router-link :to="{ name : 'register'}">Register</router-link>
     </div>
 </template>
 

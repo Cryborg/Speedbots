@@ -10,7 +10,7 @@
     </head>
     <body style="background-color : #d2d2d2;">
         <div id="app">
-            <auth-box></auth-box>
+            <router-view></router-view>
         </div>
     </body>
     <script src="{{ asset('js/app.js') }}"></script>

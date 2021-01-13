@@ -72,7 +72,6 @@ export default {
     },
     mounted () {
         this.id = this._uid;
-        console.log(this.v);
     }
 }
 </script>

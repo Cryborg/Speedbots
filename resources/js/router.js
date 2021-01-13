@@ -1,15 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import AuthLogin from './components/Auth/AuthLogin'
-import AuthRegister from './components/Auth/AuthRegister'
+import { isAuthentificated } from './router-guard'
+
+import AuthBox from './components/Auth/AuthBox'
+import AppComponent from './components/AppComponent'
 
 Vue.use(VueRouter);
 
-
 export default new VueRouter({
-    routes : [
-      { path: '/', component: AuthLogin },
-      { path: '/register', component: AuthRegister }
-    ]
-  });
+  routes : [
+    { 
+      path: '/auth/login/',
+      component: AuthBox,
+      name : 'login'
+    },
+    { 
+      path: '/auth/register/',
+      component: AuthBox,
+      name : 'register'
+    },
+    { 
+      path: '/', 
+      component: AppComponent ,
+      name : 'app' ,
+      beforeEnter : isAuthentificated,
+    }
+  ],
+});
