@@ -21,6 +21,9 @@ class CreateRacesQueuesTable extends Migration
             $table->boolean('confirmed')->default(false)
                 ->comment('Has the user confirmed its participation?');
 
+            $table->timestamp('ended_at', 6)->nullable()
+                ->comment('Date & time the SB ended the race');
+
             $table->timestamps();
 
             $table->unique(['race_id', 'ship_id']);

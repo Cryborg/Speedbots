@@ -5,6 +5,7 @@ namespace App\Console\Commands\Race;
 use App\Models\Circuit;
 use App\Models\Race;
 use App\Models\RaceLog;
+use App\Models\RaceQueue;
 use App\Models\Ship;
 use App\Models\User;
 use App\Models\Weapon;
@@ -22,7 +23,7 @@ class StartCommand extends Command
 
     public int        $nbSpeedbotsAtStart;
 
-    public string     $raceId;
+    public Race       $race;
 
     /**
      * The name and signature of the console command.
@@ -76,8 +77,20 @@ class StartCommand extends Command
                 return 0;
             }
 
+            if ($race->ended_at !== null) {
+                $this->info('This race has already ended');
+                return 0;
+            }
+
+            $nbSpeedbotsReady = $race->queues->count();
+            if ($race->queues->count() < $race->nb_opponents) {
+                $this->info('Waiting for some SB to join in! (' . $nbSpeedbotsReady . '/' . $race->nb_opponents . ')'
+                    . "\n\n" . '(DEV) Run \'php artisan race:queue -r ' . $race->id . '\' first');
+                return 0;
+            }
+
             $this->nbSpeedbotsAtStart = $race->nb_opponents;
-            $this->raceId = $race->id;
+            $this->race = $race;
         } else {
             $this->info('┌─────────────────────────────────────────────────────┐');
             $this->info('│   You must specify a race ID with the -r argument   │');
@@ -92,13 +105,10 @@ class StartCommand extends Command
         $circuit = Circuit::firstOrFail();
 
         // Get the list of participants from the races_queues table
-
-
-
-
-
-
-
+        $opponents = collect();
+        RaceQueue::where('race_id', $race->id)->get()->each(static function (RaceQueue $queue) use (&$opponents) {
+            $opponents->push($queue->ship);
+        });
 
         $this->speedbotsRacing = $opponents;
 
@@ -137,6 +147,10 @@ class StartCommand extends Command
                             'direction' => $speedbotData['direction'],
                             'speedbot'  => $speedbotData['speedbot'],
                         ];
+                    } else {
+                        RaceQueue::where('race_id', $this->race->id)
+                            ->where('ship_id', $speedbotData['speedbot']->id)
+                            ->update(['ended_at' => now()]);
                     }
                 }
             }
@@ -152,6 +166,10 @@ class StartCommand extends Command
         }
 
         $diff = now()->getTimestamp() - $startTime->getTimestamp();
+
+        $this->race->update([
+            'ended_at' => now(),
+        ]);
 
         $this->info('> Ended in ' . $diff . ' seconds for ' . $this->nbSpeedbotsAtStart . ' speedbots.');
     }
@@ -215,7 +233,7 @@ class StartCommand extends Command
         }
 
         RaceLog::create([
-                            'race_id'       => $this->raceId,
+                            'race_id'       => $this->race->id,
                             'comments'      => $message,
                             'shooter_state' => $shooterState ?? null,
                             'target_state'  => $targetState ?? null,

@@ -23,6 +23,9 @@ class CreateRacesTable extends Migration
             $table->timestamp('start_at')->nullable()
                  ->comment('Date & time of the beginning of the race. If it is null, it starts when the queue is full.');
 
+            $table->timestamp('ended_at')->nullable()
+                 ->comment('Date & time of the end of the race.');
+
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
 

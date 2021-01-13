@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Relations\RaceQueueRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RacesQueues extends Model
+class RaceQueue extends Model
 {
-    use HasFactory;
+    use HasFactory, RaceQueueRelationships;
 
     protected $fillable = [
         'race_id',
         'ship_id',
         'confirmed',
     ];
+
+    protected $table = 'races_queues';
 }
