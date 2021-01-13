@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ComponentStoreRequest;
-use App\Http\Requests\ComponentUpdateRequest;
 use App\Models\Component;
-use Illuminate\Http\JsonResponse;
+use App\Traits\CrudTrait;
 
 /**
  * Class ComponentController
@@ -15,85 +13,36 @@ use Illuminate\Http\JsonResponse;
  */
 class ComponentController extends Controller
 {
-    /**
-     * List components
-     *
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
+    use CrudTrait;
+
+    function model()
     {
-        /**
-         * List all components?
-         * List all components of a SB?
-         */
-
-        $components = Component::all();
-
-        return response()->json([
-            'components' => $components,
-        ]);
+        return Component::class;
     }
 
-    /**
-     * Create a new component
-     *
-     * @param \App\Http\Requests\ComponentStoreRequest $request
-     *
-     * @return JsonResponse
-     */
-    public function store(ComponentStoreRequest $request): JsonResponse
+    protected function storeRules(): array
     {
-        $component = Component::create($request->all());
-
-        return response()->json([
-            'success' => $component instanceof Component,
-        ]);
+        return [
+            'name'               => 'required|string',
+            'health'             => 'required|integer',
+            'price'              => 'required|integer',
+            'weight'             => 'required|integer',
+            'energy_consumption' => 'integer',
+            'power'              => 'integer',
+            'slots'              => 'integer',
+        ];
     }
 
-    /**
-     * Show a component details
-     *
-     * @param \App\Models\Component $component
-     *
-     * @return JsonResponse
-     */
-    public function show(Component $component): JsonResponse
+    protected function updateRules(): array
     {
-        return response()->json([
-            'component' => $component,
-        ]);
-    }
-
-    /**
-     * Update a component
-     *
-     * @param \App\Http\Requests\ComponentUpdateRequest $request
-     * @param \App\Models\Component                     $component
-     *
-     * @return JsonResponse
-     */
-    public function update(ComponentUpdateRequest $request, Component $component): JsonResponse
-    {
-        $updated = $component->update($request->all());
-
-        return response()->json([
-            'success' => $updated,
-        ]);
-    }
-
-    /**
-     * Delete a component
-     *
-     * @param \App\Models\Component $component
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy(Component $component): JsonResponse
-    {
-        $deleted = $component->delete();
-
-        return response()->json([
-            'success' => $deleted,
-        ]);
+        return [
+            'name'               => 'string',
+            'health'             => 'integer',
+            'price'              => 'integer',
+            'weight'             => 'integer',
+            'energy_consumption' => 'integer',
+            'power'              => 'integer',
+            'slots'              => 'integer',
+        ];
     }
 }

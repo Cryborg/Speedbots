@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\WeaponStoreRequest;
-use App\Http\Requests\WeaponUpdateRequest;
 use App\Models\Weapon;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Traits\CrudTrait;
 
 /**
  * Class WeaponController
@@ -16,80 +13,42 @@ use Illuminate\Http\Request;
  */
 class WeaponController extends Controller
 {
-    /**
-     * List weapons
-     *
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
-    {
-        $weapons = Weapon::all();
+    use CrudTrait;
 
-        return response()->json([
-            'weapons' => $weapons,
-        ]);
+    function model()
+    {
+        return Weapon::class;
     }
 
-    /**
-     * Create a weapon
-     *
-     * @param \App\Http\Requests\WeaponStoreRequest $request
-     *
-     * @return JsonResponse
-     */
-    public function store(WeaponStoreRequest $request): JsonResponse
+    protected function storeRules(): array
     {
-        $weapon = Weapon::create($request->all());
-
-        return response()->json([
-            'success' => $weapon instanceof Weapon,
-            'weapon_id' => optional($weapon)->id,
-        ]);
+        return [
+            'name'      => 'required|string',
+            'type'      => 'required|string',
+            'damage'    => 'required|numeric',
+            'ammo'      => 'required|integer',
+            'salvo'     => 'required|integer',
+            'range'     => 'required|integer',
+            'accuracy'  => 'required|integer',
+            'direction' => 'integer',
+            'quality'   => 'integer',
+            'rarity'    => 'integer',
+        ];
     }
 
-    /**
-     * Show weapon details
-     *
-     * @param \App\Models\Weapon $weapon
-     *
-     * @return JsonResponse
-     */
-    public function show(Weapon $weapon): JsonResponse
+    protected function updateRules(): array
     {
-        return response()->json($weapon);
-    }
-
-    /**
-     * Update a weapon
-     *
-     * @param \App\Http\Requests\WeaponUpdateRequest $request
-     * @param \App\Models\Weapon                     $weapon
-     *
-     * @return JsonResponse
-     */
-    public function update(WeaponUpdateRequest $request, Weapon $weapon): JsonResponse
-    {
-        $updated = $weapon->update($request->all());
-
-        return response()->json([
-            'success' => $updated,
-        ]);
-    }
-
-    /**
-     * Delete a weapon
-     *
-     * @param \App\Models\Weapon $weapon
-     *
-     * @return JsonResponse
-     * @throws \Exception
-     */
-    public function destroy(Weapon $weapon): JsonResponse
-    {
-        $deleted = $weapon->delete();
-
-        return response()->json([
-            'success' => $deleted,
-        ]);
+        return [
+            'name'      => 'string',
+            'type'      => 'string',
+            'damage'    => 'numeric',
+            'ammo'      => 'integer',
+            'salvo'     => 'integer',
+            'range'     => 'integer',
+            'accuracy'  => 'integer',
+            'direction' => 'integer',
+            'quality'   => 'integer',
+            'rarity'    => 'integer',
+        ];
     }
 }

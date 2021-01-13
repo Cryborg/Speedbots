@@ -3,7 +3,6 @@
 namespace App\Console\Commands\Race;
 
 use App\Models\Race;
-use App\Models\RaceQueue;
 use App\Models\Ship;
 use Illuminate\Console\Command;
 
@@ -68,11 +67,7 @@ class QueueCommand extends Command
 
         // ...and add them to the queue
         $opponents->each(static function ($opponent) use ($race) {
-            RaceQueue::create([
-                'race_id' => $race->id,
-                'ship_id' => $opponent->id,
-                'confirmed' => true
-            ]);
+            $race->ships()->attach($opponent->id);
         });
 
         $this->info($opponents->count() . ' SB have been added to race #' . $race->id);

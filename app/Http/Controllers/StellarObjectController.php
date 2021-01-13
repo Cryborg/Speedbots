@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StellarObjectStoreRequest;
+use App\Http\Requests\StellarObjectUpdateRequest;
 use App\Models\StellarObject;
 use App\Models\StellarSystem;
+use App\Traits\CrudTrait;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 /**
  * Class StellarObjectController
@@ -16,6 +17,34 @@ use Illuminate\Http\Request;
  */
 class StellarObjectController extends Controller
 {
+    use CrudTrait;
+
+    function model()
+    {
+        return StellarObject::class;
+    }
+
+    protected function storeRules(): array
+    {
+        return [
+            'name'              => 'required',
+            'description'       => 'required',
+            'type'              => 'required',
+            'disappear_at'      => 'nullable'
+        ];
+    }
+
+    protected function updateRules(): array
+    {
+        return [
+            'stellar_system_id' => 'exists:stellar_systems,id',
+            'name'              => '',
+            'description'       => '',
+            'type'              => '',
+            'disappear_at'      => ''
+        ];
+    }
+
     /**
      * List stellar objects of a given stellar system
      *
@@ -45,54 +74,6 @@ class StellarObjectController extends Controller
         return response()->json([
             'success'           => $stellarObject instanceof StellarObject,
             'stellar_object_id' => $stellarObject->id
-        ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\StellarObject $stellarObject Stellar Object to show
-     *
-     * @return JsonResponse
-     */
-    public function show(StellarObject $stellarObject): JsonResponse
-    {
-        return response()->json([
-            'stellar_object' => $stellarObject
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request  $request
-     * @param \App\Models\StellarObject $stellarObject
-     *
-     * @return JsonResponse
-     */
-    public function update(Request $request, StellarObject $stellarObject): JsonResponse
-    {
-        $updated = $stellarObject->update($request->all());
-
-        return response()->json([
-            'success' => $updated,
-        ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\StellarObject $stellarObject
-     *
-     * @return JsonResponse
-     * @throws \Exception
-     */
-    public function destroy(StellarObject $stellarObject): JsonResponse
-    {
-        $deleted = $stellarObject->delete();
-
-        return response()->json([
-            'success' => $deleted,
         ]);
     }
 }

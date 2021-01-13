@@ -2,7 +2,7 @@
 
 namespace App\Models\Relations;
 
-use App\Models\RaceQueue;
+use App\Models\Ship;
 use App\Models\User;
 
 trait RaceRelationships
@@ -12,8 +12,9 @@ trait RaceRelationships
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function queues()
+    public function ships()
     {
-        return $this->hasMany(RaceQueue::class);
+        return $this->belongsToMany(Ship::class)
+            ->withPivot('ended_at');
     }
 }

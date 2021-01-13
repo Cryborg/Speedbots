@@ -5,7 +5,6 @@ namespace App\Console\Commands\Race;
 use App\Models\Circuit;
 use App\Models\Race;
 use App\Models\RaceLog;
-use App\Models\RaceQueue;
 use App\Models\Ship;
 use App\Models\User;
 use App\Models\Weapon;
@@ -82,8 +81,8 @@ class StartCommand extends Command
                 return 0;
             }
 
-            $nbSpeedbotsReady = $race->queues->count();
-            if ($race->queues->count() < $race->nb_opponents) {
+            $nbSpeedbotsReady = $race->ships->count();
+            if ($nbSpeedbotsReady < $race->nb_opponents) {
                 $this->info('Waiting for some SB to join in! (' . $nbSpeedbotsReady . '/' . $race->nb_opponents . ')'
                     . "\n\n" . '(DEV) Run \'php artisan race:queue -r ' . $race->id . '\' first');
                 return 0;
@@ -104,17 +103,12 @@ class StartCommand extends Command
         // Take first circuit in DB
         $circuit = Circuit::firstOrFail();
 
-        // Get the list of participants from the races_queues table
-        $opponents = collect();
-        RaceQueue::where('race_id', $race->id)->get()->each(static function (RaceQueue $queue) use (&$opponents) {
-            $opponents->push($queue->ship);
-        });
-
-        $this->speedbotsRacing = $opponents;
+        // Get the list of participants
+        $this->speedbotsRacing = $this->race->ships;
 
         $track = [];
 
-        $opponents->each(static function (Ship $opponent) use ($circuit, &$track) {
+        $this->speedbotsRacing->each(static function (Ship $opponent) use ($circuit, &$track) {
             $lPosition = mt_rand(1, $circuit->length);
 
             $track[$lPosition][] = [
@@ -148,9 +142,8 @@ class StartCommand extends Command
                             'speedbot'  => $speedbotData['speedbot'],
                         ];
                     } else {
-                        RaceQueue::where('race_id', $this->race->id)
-                            ->where('ship_id', $speedbotData['speedbot']->id)
-                            ->update(['ended_at' => now()]);
+                        $this->race->ships()
+                           ->updateExistingPivot($speedbotData['speedbot']->id, ['ended_at' => now()]);
                     }
                 }
             }

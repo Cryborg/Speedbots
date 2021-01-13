@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRacesQueuesTable extends Migration
+class CreateRaceShipTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRacesQueuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('races_queues', function (Blueprint $table) {
+        Schema::create('race_ship', function (Blueprint $table) {
             $table->foreignId('race_id');
 
             $table->foreignId('ship_id');
-
-            $table->boolean('confirmed')->default(false)
-                ->comment('Has the user confirmed its participation?');
 
             $table->timestamp('ended_at', 6)->nullable()
                 ->comment('Date & time the SB ended the race');
@@ -37,6 +34,6 @@ class CreateRacesQueuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('races_queues');
+        Schema::dropIfExists('race_ship');
     }
 }

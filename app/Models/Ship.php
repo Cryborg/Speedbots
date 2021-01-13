@@ -51,4 +51,20 @@ class Ship extends Model
     {
         return $this->components->where('name', 'power_supply')->first();
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpeedbot()
+    {
+        return $this->class === 'speedbot';
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMothership()
+    {
+        return $this->class === 'mothership';
+    }
 }
