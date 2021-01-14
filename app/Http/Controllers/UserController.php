@@ -80,7 +80,7 @@ class UserController extends ControllerBase
 
     /**
      * Logout the user
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\JsonResponse
