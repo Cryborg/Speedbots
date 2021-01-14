@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WeaponSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(RaceSeeder::class);
+        $this->call(MaterialSeeder::class);
 
         // Dev seeds
         if (!app()->environment('production')) {

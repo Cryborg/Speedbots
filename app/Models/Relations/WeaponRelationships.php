@@ -2,10 +2,10 @@
 
 namespace App\Models\Relations;
 
-trait ComponentRelationships
+trait WeaponRelationships
 {
     public function getNameAttribute()
     {
-        return trans('component.' . $this->stub);
+        return trans('weapon.' . $this->stub);
     }
 }

@@ -16,7 +16,7 @@ class ComponentSeeder extends Seeder
     {
         // Frame
         Component::create([
-            'name' => 'frame',
+            'stub' => 'frame',
             'health' => 20,
             'price' => 100,
             'weight' => 200,
@@ -27,7 +27,7 @@ class ComponentSeeder extends Seeder
 
         // Engine
         Component::create([
-            'name' => 'engine',
+            'stub' => 'engine',
             'health' => 10,
             'price' => 1000,
             'weight' => null,
@@ -38,7 +38,7 @@ class ComponentSeeder extends Seeder
 
         // Core unit
         Component::create([
-            'name' => 'core',
+            'stub' => 'core',
             'health' => 5,
             'price' => 500,
             'weight' => 10,
@@ -49,7 +49,7 @@ class ComponentSeeder extends Seeder
 
         // Power supply
         Component::create([
-            'name' => 'power_supply',
+            'stub' => 'power_supply',
             'health' => 5,
             'price' => 500,
             'weight' => 100,
@@ -60,7 +60,7 @@ class ComponentSeeder extends Seeder
 
         // Hull
         Component::create([
-            'name' => 'hull',
+            'stub' => 'hull',
             'health' => 1000,
             'price' => 150,
             'weight' => 300,

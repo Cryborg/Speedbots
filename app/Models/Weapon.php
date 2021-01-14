@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Classes\Constants;
+use App\Models\Relations\WeaponRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Weapon extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        WeaponRelationships;
 
     protected $guarded = ['id'];
 

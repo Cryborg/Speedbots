@@ -2,10 +2,10 @@
 
 namespace App\Models\Relations;
 
-trait ComponentRelationships
+trait MaterialRelationships
 {
     public function getNameAttribute()
     {
-        return trans('component.' . $this->stub);
+        return trans('material.' . $this->stub);
     }
 }

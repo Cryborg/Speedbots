@@ -30,11 +30,11 @@ class UserSeeder extends Seeder
                   ]);
 
             // Assign Speedbots with components
-            $core        = Component::where('name', 'core')->firstOrFail();
-            $engine      = Component::where('name', 'engine')->firstOrFail();
-            $frame       = Component::where('name', 'frame')->firstOrFail();
-            $hull        = Component::where('name', 'hull')->firstOrFail();
-            $powerSupply = Component::where('name', 'power_supply')->firstOrFail();
+            $core        = Component::where('stub', 'core')->firstOrFail();
+            $engine      = Component::where('stub', 'engine')->firstOrFail();
+            $frame       = Component::where('stub', 'frame')->firstOrFail();
+            $hull        = Component::where('stub', 'hull')->firstOrFail();
+            $powerSupply = Component::where('stub', 'power_supply')->firstOrFail();
 
             $components = [
                 'core'         => [$core->id => ['health' => $core->health]],
