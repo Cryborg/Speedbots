@@ -16,7 +16,7 @@ class CreateComponentsTable extends Migration
         Schema::create('components', function (Blueprint $table) {
             $table->id();
 
-            $table->string('stub', 20)
+            $table->string('slug', 20)
                 ->comment('Once translated it will give the component name.');
             $table->integer('health')->comment('Health points');
             $table->integer('price');

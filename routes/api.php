@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\GalaxyController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\RaceShipController;
 use App\Http\Controllers\ShipComponentController;
 use App\Http\Controllers\StellarSystemController;
@@ -33,21 +34,22 @@ Route::middleware('auth:api')->group(function() {
     Route::post('logout', [UserController::class, 'logout'])->name('user.logout');
     Route::get('user', [UserController::class, 'user'])->name('user.show');
 
-    Route::apiResource('ships', ShipController::class);
-    Route::apiResource('components', ComponentController::class);
-    Route::apiResource('ship.component', ShipComponentController::class)->only(['update', 'destroy']);
-
     Route::apiResource('circuits', CircuitController::class);
+    Route::apiResource('components', ComponentController::class);
     Route::apiResource('galaxies', GalaxyController::class);
-
-    Route::apiResource('stellar_systems', StellarSystemController::class)->except(['index', 'store']);
-    Route::apiResource('galaxies.stellar_systems', StellarSystemController::class)->only(['index', 'store']);
+    Route::apiResource('materials', MaterialController::class);
 
     Route::apiResource('races', RaceController::class);
     Route::apiResource('race.ship', RaceShipController::class)->only(['update', 'destroy']);
 
+    Route::apiResource('ships', ShipController::class);
+    Route::apiResource('ship.component', ShipComponentController::class)->only(['update', 'destroy']);
+
     Route::apiResource('stellar_objects', StellarObjectController::class)->except(['index', 'store']);
     Route::apiResource('stellar_systems.stellar_objects', StellarObjectController::class)->only(['index', 'store']);
+
+    Route::apiResource('stellar_systems', StellarSystemController::class)->except(['index', 'store']);
+    Route::apiResource('galaxies.stellar_systems', StellarSystemController::class)->only(['index', 'store']);
 
     Route::apiResource('weapons', WeaponController::class);
 

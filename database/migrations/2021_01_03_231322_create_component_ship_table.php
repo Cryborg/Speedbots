@@ -11,13 +11,17 @@ class CreateComponentShipTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('component_ship', function (Blueprint $table) {
             $table->foreignId('ship_id');
             $table->foreignId('component_id');
 
-            $table->float('health');
+            $table->float('health')
+                ->comment('Health updated during a race.');
+
+            $table->unsignedInteger('level')->default(1)
+                ->comment('Upgraded level of the component.');
 
             $table->unique(['ship_id', 'component_id']);
         });
@@ -28,7 +32,7 @@ class CreateComponentShipTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('component_ship');
     }

@@ -6,6 +6,6 @@ trait WeaponRelationships
 {
     public function getNameAttribute()
     {
-        return trans('weapon.' . $this->stub);
+        return trans('weapon.' . $this->slug);
     }
 }

@@ -6,6 +6,6 @@ trait ComponentRelationships
 {
     public function getNameAttribute()
     {
-        return trans('component.' . $this->stub);
+        return trans('component.' . $this->slug);
     }
 }

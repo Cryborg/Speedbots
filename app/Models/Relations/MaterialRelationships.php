@@ -6,6 +6,6 @@ trait MaterialRelationships
 {
     public function getNameAttribute()
     {
-        return trans('material.' . $this->stub);
+        return trans('material.' . $this->slug);
     }
 }

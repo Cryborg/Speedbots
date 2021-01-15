@@ -20,7 +20,7 @@ class WeaponSeeder extends Seeder
         for ($quality = 1; $quality <= 5; $quality++) {
             for ($rarity = 1; $rarity <= 5; $rarity++) {
                 Weapon::create([
-                                   'stub'      => 'uzi',
+                                   'slug'      => 'uzi',
                                    'type'      => 'ballistic',
                                    'damage'    => 1,
                                    'ammo'      => 500,
@@ -33,7 +33,7 @@ class WeaponSeeder extends Seeder
                                ]);
 
                 Weapon::create([
-                                   'stub'      => 'lasergun',
+                                   'slug'      => 'lasergun',
                                    'type'      => 'laser',
                                    'damage'    => 10,
                                    'ammo'      => 50,

@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Component;
+use App\Models\Material;
 use App\Models\Role;
-use App\Models\Ship;
 use App\Models\User;
-use App\Models\Weapon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -40,12 +38,22 @@ class UserFactory extends Factory
         $playerRole = Role::where('slug', 'player')
                           ->first();
 
-        return $this->afterCreating(function (User $user) use ($playerRole) {
+        $creditMaterial = Material::where('slug', 'credits')
+                                  ->firstOrFail();
+
+        return $this->afterCreating(function (User $user) use ($playerRole, $creditMaterial) {
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {
                 $user->roles()->attach($playerRole);
             }
+
+            // Give a few credits to the user
+            $user->inventory()->syncWithoutDetaching([
+                $creditMaterial->id => [
+                    'amount' => 100
+                ]
+            ]);
         });
     }
 }

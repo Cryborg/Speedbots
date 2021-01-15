@@ -48,7 +48,7 @@ class StartCommand extends Command
     {
         parent::__construct();
 
-        Auth::login(User::find(1), true);
+        //Auth::login(User::find(1), true);
 
         // Logs all attacks
         $this->attackLogs = collect();

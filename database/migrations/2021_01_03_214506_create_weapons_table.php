@@ -16,7 +16,7 @@ class CreateWeaponsTable extends Migration
         Schema::create('weapons', function (Blueprint $table) {
             $table->id();
 
-            $table->string('stub', 20)
+            $table->string('slug', 20)
                 ->comment('Once translated this will give the weapon name.');
             $table->string('type', 20)->default('ballistic')
                 ->comment('Ballistic, EMP, laser, plasma,...');

@@ -60,4 +60,43 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function getCredits()
+    {
+        return $this->inventory->where('slug', 'credits')->first()->pivot->amount;
+    }
+
+    /**
+     * Add credits
+     *
+     * @param int $amount
+     *
+     * @return User
+     */
+    public function addCredits(int $amount): User
+    {
+        $creditsPivot = $this->inventory
+            ->where('slug', 'credits')->first()->pivot;
+        $creditsPivot->amount += $amount;
+        $creditsPivot->save;
+
+        return $this;
+    }
+
+    /**
+     * Subtract credits
+     *
+     * @param int $amount
+     *
+     * @return User
+     */
+    public function subCredits(int $amount): User
+    {
+        $creditsPivot = $this->inventory
+            ->where('slug', 'credits')->first()->pivot;
+        $creditsPivot->amount -= $amount;
+        $creditsPivot->save;
+
+        return $this;
+    }
 }

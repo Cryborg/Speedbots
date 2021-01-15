@@ -15,26 +15,50 @@ class MaterialSeeder extends Seeder
     public function run()
     {
         $materials = [
+            // Unique
             [
-                'stub' => 'credits',
+                'slug' => 'credits',
                 'rarity' => 0,
                 'value' => null,
             ],
+
+            // Rarity 1
             [
-                'stub' => 'durdurium',
+                'slug' => 'energy',
+                'rarity' => 1,
+                'value' => 1,
+            ],
+            [
+                'slug' => 'metal',
+                'rarity' => 1,
+                'value' => 5,
+            ],
+            [
+                'slug' => 'carcite',
+                'rarity' => 1,
+                'value' => 10,
+            ],
+            [
+                'slug' => 'lithonium',
+                'rarity' => 1,
+                'value' => 20,
+            ],
+
+            // Rarity 2
+            [
+                'slug' => 'durdurium',
                 'rarity' => 2,
                 'value' => 10,
             ],
             [
-                'stub' => 'lithonium',
-                'rarity' => 5,
-                'value' => 100,
-            ],
-            [
-                'stub' => 'helium3',
+                'slug' => 'helium3',
                 'rarity' => 2,
                 'value' => 20,
             ],
+
+            // Rarity 3
+            // Rarity 4
+            // Rarity 5
         ];
 
         Material::insert($materials);
