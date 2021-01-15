@@ -39,14 +39,27 @@ class InventoryController extends Controller
      */
     public function store(Request $request, User $user): JsonResponse
     {
-        $result = $user->components()->syncWithoutDetaching([
-            $request->get('component_id') => [
-                'level' => $request->get('level')
-            ]
+        $component = Component::findOrFail($request->get('component_id'));
+
+        $default = [
+            'health' => $component->health,
+            'level' => 1,
+        ];
+
+        if ($request->get('level', null) !== null) {
+            $default['level'] = $request->get('level');
+        }
+
+        if ($request->get('health', null) !== null) {
+            $default['health'] = $request->get('health');
+        }
+
+        $user->components()->attach([
+            $component->id => $default
         ]);
 
         return response()->json([
-            'success' => is_array($result['attached']) && count($result['attached']) > 0,
+            'success' => true,
         ]);
     }
 
@@ -66,9 +79,8 @@ class InventoryController extends Controller
         $userComponent = $user->components->find($inventory->id);
 
         return response()->json([
-            'success' => $userComponent instanceof Component,
-            'data' => $userComponent,
-            'test' => $inventory->id
+            'success' => $userComponent !== null,
+            'result' => $userComponent ?: trans('inventory.component_not_found'),
         ]);
     }
 
@@ -83,7 +95,7 @@ class InventoryController extends Controller
      */
     public function update(Request $request, User $user, Component $component): JsonResponse
     {
-        $updated = $user->components()->syncWithoutDetaching([
+        $updated = $user->components()->update([
             $component->id => $request->all()
         ]);
 

@@ -11,15 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait ShipRelationships
 {
     /**
-     * @return BelongsToMany
-     */
-    public function components(): BelongsToMany
-    {
-        return $this->belongsToMany(Component::class)
-                    ->withPivot('health');
-    }
-
-    /**
      * @return BelongsTo
      */
     public function user(): BelongsTo

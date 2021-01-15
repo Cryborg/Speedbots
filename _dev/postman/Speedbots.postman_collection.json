@@ -2378,7 +2378,7 @@
 										},
 										{
 											"key": "component_id",
-											"value": "3"
+											"value": "2"
 										}
 									]
 								}
@@ -2401,7 +2401,7 @@
 										},
 										{
 											"key": "level",
-											"value": "3",
+											"value": "2",
 											"description": "Required, integer",
 											"type": "text"
 										}
@@ -2443,8 +2443,14 @@
 										},
 										{
 											"key": "level",
-											"value": "2",
-											"description": "Required, integer",
+											"value": "1",
+											"description": "integer",
+											"type": "text"
+										},
+										{
+											"key": "health",
+											"value": "11",
+											"description": "integer",
 											"type": "text"
 										}
 									]

@@ -45,7 +45,6 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('race.ship', RaceShipController::class)->only(['update', 'destroy']);
 
     Route::apiResource('ships', ShipController::class);
-    Route::apiResource('ship.component', ShipComponentController::class)->only(['update', 'destroy']);
 
     Route::apiResource('stellar_objects', StellarObjectController::class)->except(['index', 'store']);
     Route::apiResource('stellar_systems.stellar_objects', StellarObjectController::class)->only(['index', 'store']);

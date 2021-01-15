@@ -22,8 +22,15 @@ class CreateComponentUserTable extends Migration
             $table->foreignId('component_id');
             $table->foreignId('user_id');
 
-            $table->unsignedInteger('level')
+            $table->unsignedInteger('level')->default(1)
                 ->comment('Upgraded level of the component owned by the user.');
+
+            $table->float('health')
+                  ->comment('Component life points remaining after a race.');
+
+            $table->unsignedBigInteger('equipped_on')->nullable()
+                  ->comment('Ship on which it is equipped.');
+            $table->foreign('equipped_on')->on('ships')->references('id');
         });
     }
 
