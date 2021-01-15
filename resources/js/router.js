@@ -22,11 +22,6 @@ export default new VueRouter({
       name : 'register'
     },
     {
-      path: '/auth/logout/',
-      component: AuthLogout,
-      name : 'logout',
-    },
-    {
       path: '/',
       component: AppComponent,
       name : 'app' ,

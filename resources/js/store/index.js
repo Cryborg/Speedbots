@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  reducer: (state) => ({ user: state.user }), //only save navigation module
+  reducer: (state) => ({ user: state.user }),
 })
  
 

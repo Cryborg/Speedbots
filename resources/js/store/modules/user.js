@@ -2,13 +2,13 @@ import router from '../../router'
 
 // initial state
 const state = () => ({
-  token: '',
+  token: null,
 })
 
 // getters
 const getters = {
     loggedIn(state){
-      return state.token !== '';
+      return state.token &&  state.token !== '';
     },
     getToken(state){
       return state.token;

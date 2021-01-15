@@ -18,15 +18,6 @@ library.add(faAt, faLock, faUser, faHome, faGalacticSenate, faSpaceShuttle, faSi
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-
-import Vuesax from 'vuesax'
-
-import 'vuesax/dist/vuesax.css' //Vuesax styles
-Vue.use(Vuesax, {
-  // options here
-})
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

@@ -1,107 +1,47 @@
 <template>
-    <div class="hidden">
-        <vs-sidebar
-            absolute
-            hover-expand
-            reduce
-            v-model="active"
-            open
-        >
-            <!-- <template #logo> -->
-            <!-- ...img logo -->
-            <!-- </template> -->
+    <Reveal>
+        <router-link :to="{ name : 'app'}">
+            <font-awesome-icon icon="home" />
+            <span>Home</span>
+        </router-link>
 
-            <!-- Home -->
-            <vs-sidebar-item :to="{name : 'app'}" id="home">
-                <template #icon>
-                    <font-awesome-icon icon="home"></font-awesome-icon>
-                </template>
-                Home
-            </vs-sidebar-item>
+        <router-link :to="{ name : 'app'}">
+            <font-awesome-icon :icon="['fab', 'galactic-senate']" />
+            <span>Galaxy</span>
+        </router-link>
 
-            <!-- Galaxy -->
-            <vs-sidebar-group>
-                <template #header>
-                    <vs-sidebar-item arrow>
-                        <template #icon>
-                            <font-awesome-icon :icon="['fab', 'galactic-senate']"></font-awesome-icon>
-                        </template>
-                        Galaxy
-                    </vs-sidebar-item>
-                </template>
-
-                <!--  -->
-                <vs-sidebar-item id="stellar-systems">
-                    <template #icon>
-                        <i class='bx bxl-instagram'></i>
-                    </template>
-                    Stellar Systems
-                </vs-sidebar-item>
-                <!-- Hangar -->
-                <vs-sidebar-item id="stellar-objects">
-                    <template #icon>
-                        <i class='bx bxl-twitter' ></i>
-                    </template>
-                    System
-                </vs-sidebar-item>
-            </vs-sidebar-group>
-
-            <!-- Ship -->
-            <vs-sidebar-group>
-                <template #header>
-                    <vs-sidebar-item arrow>
-                        <template #icon>
-                            <font-awesome-icon icon="space-shuttle"></font-awesome-icon>
-                        </template>
-                        Ships
-                    </vs-sidebar-item>
-                </template>
-
-                <!--  -->
-                <vs-sidebar-item id="mothership">
-                    <template #icon>
-                        <i class='bx bxl-instagram'></i>
-                    </template>
-                    Mothership
-                </vs-sidebar-item>
-                <!-- Hangar -->
-                <vs-sidebar-item id="speedbots">
-                    <template #icon>
-                        <i class='bx bxl-twitter' ></i>
-                    </template>
-                    Speedbots
-                </vs-sidebar-item>
-            </vs-sidebar-group>
-
-            <template #footer @click="logout">
+        <router-link :to="{ name : 'app'}">
+            <font-awesome-icon icon="space-shuttle" />
+            <span>Ships</span>
+        </router-link>
 
 
-                <!-- Log out -->
-                <vs-sidebar-item :to="{name : 'logout'}" id="logout">
-                    <template #icon>
-                        <font-awesome-icon icon="sign-out-alt"></font-awesome-icon>
-                    </template>
-                    Log Out
-                </vs-sidebar-item>
-            </template>
-        </vs-sidebar>
-    </div>
+        <a id="logout" @click="logout">
+            <font-awesome-icon icon="sign-out-alt" />
+            <span>Log Out</span>
+        </a>
+    </Reveal>
 </template>
 
 
-<style lang="sass" scoped>
-
+<style lang="scss" scoped>
+    a:hover {
+        background-color: red;
+    }
 </style>
 
 <script>
+import { Reveal } from 'vue-burger-menu'  // import the CSS transitions you wish to use, in this case we are using `Reveal`
+
 export default {
-    data:() => ({
-        active: 'home',
-    }),
+    components : {
+        Reveal
+    },
     methods: {
         logout() {
-            this.$store.dispatch('logout');
+            this.$store.dispatch('user/logout');
         }
     },
+
 }
 </script>
