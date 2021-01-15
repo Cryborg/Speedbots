@@ -30,7 +30,7 @@ class ShipPolicy
      */
     public function view(User $user, Ship $ship)
     {
-        return $user->id === $ship->user->id
+        return $ship->user()->is($user)
                || $user->hasRole('admin');
 
     }
@@ -44,7 +44,7 @@ class ShipPolicy
      */
     public function update(User $user, Ship $ship)
     {
-        return $user->id === $ship->user->id
+        return $ship->user()->is($user)
             || $user->hasRole('admin');
     }
 
@@ -57,7 +57,7 @@ class ShipPolicy
      */
     public function delete(User $user, Ship $ship)
     {
-        return $user->id === $ship->user->id
+        return $ship->user()->is($user)
                || $user->hasRole('admin');
     }
 

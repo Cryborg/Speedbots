@@ -99,7 +99,7 @@ class UserController extends ControllerBase
      *
      * @return JsonResponse
      */
-    public function user(): JsonResponse
+    public function show(): JsonResponse
     {
         if (!is_null($this->authUser)) {
             return response()->json([

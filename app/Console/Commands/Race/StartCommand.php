@@ -271,7 +271,7 @@ class StartCommand extends Command
         $attacks   = collect();
 
         // Don't attack friendly SB!
-        if ($speedbot->user->id === $this->authUser->id) {
+        if ($speedbot->user()->is($this->authUser)) {
             return null;
         }
 

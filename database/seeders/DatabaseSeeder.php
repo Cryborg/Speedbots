@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // Production seeds
         $this->call(RoleSeeder::class);
+        $this->call(MaterialSeeder::class);
         $this->call(ComponentSeeder::class);
         $this->call(CircuitSeeder::class);
         $this->call(GalaxySeeder::class);
         $this->call(WeaponSeeder::class);
-        $this->call(MaterialSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(RaceSeeder::class);
 

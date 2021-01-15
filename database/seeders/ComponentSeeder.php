@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Component;
+use App\Models\Material;
 use Illuminate\Database\Seeder;
 
 class ComponentSeeder extends Seeder
@@ -14,8 +15,10 @@ class ComponentSeeder extends Seeder
      */
     public function run()
     {
+        $creditMaterial = Material::where('slug', 'credits')->first();
+
         // Frame
-        Component::create([
+        $frame = Component::create([
             'slug' => 'frame',
             'health' => 20,
             'price' => 100,
@@ -25,8 +28,15 @@ class ComponentSeeder extends Seeder
             'slots' => 2,
         ]);
 
+        // Materials needed to update the frame
+        $frame->materials()->syncWithoutDetaching([
+              $creditMaterial->id => [
+                  'amount' => 3,
+              ]
+        ]);
+
         // Engine
-        Component::create([
+        $engine = Component::create([
             'slug' => 'engine',
             'health' => 10,
             'price' => 1000,
@@ -36,8 +46,15 @@ class ComponentSeeder extends Seeder
             'slots' => null,
         ]);
 
+        // Materials needed to update the engine
+        $engine->materials()->syncWithoutDetaching([
+            $creditMaterial->id => [
+                'amount' => 3,
+            ]
+        ]);
+
         // Core unit
-        Component::create([
+        $core = Component::create([
             'slug' => 'core',
             'health' => 5,
             'price' => 500,
@@ -47,8 +64,15 @@ class ComponentSeeder extends Seeder
             'slots' => null,
         ]);
 
+        // Materials needed to update the core
+        $core->materials()->syncWithoutDetaching([
+            $creditMaterial->id => [
+                'amount' => 3,
+            ]
+        ]);
+
         // Power supply
-        Component::create([
+        $powerSupply = Component::create([
             'slug' => 'power_supply',
             'health' => 5,
             'price' => 500,
@@ -58,8 +82,16 @@ class ComponentSeeder extends Seeder
             'slots' => null,
         ]);
 
+        // Materials needed to update the power supply
+        $powerSupply->materials()->syncWithoutDetaching([
+            $creditMaterial->id => [
+                'amount' => 3,
+            ]
+        ]);
+
+
         // Hull
-        Component::create([
+        $hull = Component::create([
             'slug' => 'hull',
             'health' => 1000,
             'price' => 150,
@@ -67,6 +99,13 @@ class ComponentSeeder extends Seeder
             'energy_consumption' => null,
             'power' => null,
             'slots' => null,
+        ]);
+
+        // Materials needed to update the hull
+        $hull->materials()->syncWithoutDetaching([
+            $creditMaterial->id => [
+                'amount' => 3,
+            ]
         ]);
 
     }

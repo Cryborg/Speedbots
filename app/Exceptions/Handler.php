@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
@@ -45,22 +46,29 @@ class Handler extends ExceptionHandler
     {
         $response = [
             'error_type' => get_class($e),
-            'message' => $e->getMessage(),
+            'message' => env('APP_DEBUG')
+                ? $e->getMessage() . "\n"
+                : '',
         ];
 
         if ($request->is('api*')) {
             if ($e instanceof AuthenticationException) {
-                $response['message'] = 'Unauthenticated';
+                $response['message'] .= 'Unauthenticated';
                 return response()->json($response, 403);
             }
 
             if ($e instanceof ModelNotFoundException) {
-                $response['message'] = 'This ID does not exist';
+                $response['message'] .= 'This ID does not exist';
                 return response()->json($response, 404);
             }
 
             if ($e instanceof RouteNotFoundException) {
-                $response['message'] = 'This route does not exist';
+                $response['message'] .= 'This route does not exist';
+                return response()->json($response, 500);
+            }
+
+            if ($e instanceof QueryException) {
+                $response['message'] .= 'An error occurred during the execution of the query.';
                 return response()->json($response, 500);
             }
 

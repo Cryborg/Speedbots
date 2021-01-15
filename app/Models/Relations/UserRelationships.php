@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Models\Component;
 use App\Models\Material;
 use App\Models\Role;
 use App\Models\Ship;
@@ -10,6 +11,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait UserRelationships
 {
+    /**
+     * @return belongsToMany
+     */
+    public function components(): belongsToMany
+    {
+        return $this->belongsToMany(Component::class)
+            ->withPivot('level');
+    }
+
     /**
      * @return BelongsToMany
      */

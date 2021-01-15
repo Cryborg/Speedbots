@@ -13,15 +13,17 @@ class CreateComponentShipTable extends Migration
      */
     public function up(): void
     {
+        /**
+         * This links components to a ship.
+         * The user must already have the component in order to equip it.
+         * This is done by filling the component_user table.
+         */
         Schema::create('component_ship', function (Blueprint $table) {
             $table->foreignId('ship_id');
             $table->foreignId('component_id');
 
             $table->float('health')
-                ->comment('Health updated during a race.');
-
-            $table->unsignedInteger('level')->default(1)
-                ->comment('Upgraded level of the component.');
+                ->comment('Component life points remaining after a race.');
 
             $table->unique(['ship_id', 'component_id']);
         });

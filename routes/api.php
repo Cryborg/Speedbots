@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\GalaxyController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\RaceShipController;
 use App\Http\Controllers\ShipComponentController;
@@ -32,11 +33,12 @@ Route::post('login', [UserController::class, 'login'])->name('user.login');
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
     Route::post('logout', [UserController::class, 'logout'])->name('user.logout');
-    Route::get('user', [UserController::class, 'user'])->name('user.show');
+    Route::get('user', [UserController::class, 'show'])->name('user.show');
 
     Route::apiResource('circuits', CircuitController::class);
     Route::apiResource('components', ComponentController::class);
     Route::apiResource('galaxies', GalaxyController::class);
+
     Route::apiResource('materials', MaterialController::class);
 
     Route::apiResource('races', RaceController::class);
@@ -51,6 +53,7 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('stellar_systems', StellarSystemController::class)->except(['index', 'store']);
     Route::apiResource('galaxies.stellar_systems', StellarSystemController::class)->only(['index', 'store']);
 
-    Route::apiResource('weapons', WeaponController::class);
+    Route::apiResource('user.inventory', InventoryController::class);
 
+    Route::apiResource('weapons', WeaponController::class);
 });
