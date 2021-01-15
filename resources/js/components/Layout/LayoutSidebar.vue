@@ -15,11 +15,11 @@
             <span>Ships</span>
         </router-link>
 
-
-        <a id="logout" @click="logout">
+        <router-link to="#" @click="logout">
             <font-awesome-icon icon="sign-out-alt" />
             <span>Log Out</span>
-        </a>
+        </router-link>
+
     </Reveal>
 </template>
 
