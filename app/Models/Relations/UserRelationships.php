@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 trait UserRelationships
 {
     /**
-     * @return belongsToMany
+     * @return BelongsToMany
      */
-    public function components(): belongsToMany
+    public function components(): BelongsToMany
     {
         return $this->belongsToMany(Component::class)
-            ->withPivot('level');
+                    ->withPivot(['equipped_on', 'health', 'level']);
     }
 
     /**

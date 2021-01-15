@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 ]);
 
                 foreach ($components as $component) {
-                    $ship->components()->syncWithoutDetaching($component);
+                    $user->components()->syncWithoutDetaching($component);
                 }
 
                 // Give as much weapons it can carry
