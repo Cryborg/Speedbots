@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Component;
+use App\Models\Ship;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -46,8 +47,12 @@ class InventoryController extends Controller
             'level' => 1,
         ];
 
-        if ($request->get('level', null) !== null) {
-            $default['level'] = $request->get('level');
+        if ($request->get('equipped_on', null) !== null) {
+            $ship = Ship::find($request->get('equipped_on'));
+
+            if ($ship instanceof Ship) {
+                $default['equipped_on'] = $ship->id;
+            }
         }
 
         if ($request->get('health', null) !== null) {

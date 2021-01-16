@@ -2452,6 +2452,12 @@
 											"value": "11",
 											"description": "integer",
 											"type": "text"
+										},
+										{
+											"key": "equipped_on",
+											"value": "2",
+											"description": "integer",
+											"type": "text"
 										}
 									]
 								},
@@ -2469,6 +2475,65 @@
 										{
 											"key": "user_id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade component",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "component_id",
+											"value": "2",
+											"description": "Required, integer",
+											"type": "text"
+										},
+										{
+											"key": "level",
+											"value": "1",
+											"description": "integer",
+											"type": "text"
+										},
+										{
+											"key": "health",
+											"value": "11",
+											"description": "integer",
+											"type": "text"
+										},
+										{
+											"key": "equipped_on",
+											"value": "2",
+											"description": "integer",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/:user_id/component/:component_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										":user_id",
+										"component",
+										":component_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "4"
+										},
+										{
+											"key": "component_id",
+											"value": "4"
 										}
 									]
 								}
@@ -2613,7 +2678,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "cryborg@gmail.com",
+									"value": "xaufderhar@example.org",
 									"type": "text"
 								},
 								{
