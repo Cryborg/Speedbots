@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GalaxyStoreRequest;
-use App\Http\Requests\GalaxyUpdateRequest;
 use App\Models\Galaxy;
 use App\Traits\CrudTrait;
+use Illuminate\Http\Request;
 
 /**
  * Class GalaxyController
@@ -36,5 +35,19 @@ class GalaxyController extends Controller
             'name'        => 'string',
             'description' => 'string',
         ];
+    }
+
+    public function show(Request $request, Galaxy $galaxy)
+    {
+        if ($request->get('include_systems', null) !== null) {
+            return response()->json([
+                $galaxy,
+                $galaxy->stellarSystems
+            ]);
+        }
+
+        return response()->json([
+            $galaxy,
+        ]);
     }
 }

@@ -912,17 +912,30 @@
 			"item": [
 				{
 					"name": "Get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
 						"url": {
-							"raw": "{{baseUrl}}/galaxies/:galaxy_id",
+							"raw": "{{baseUrl}}/galaxies/:galaxy_id?include_systems=true",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"galaxies",
 								":galaxy_id"
+							],
+							"query": [
+								{
+									"key": "include_systems",
+									"value": "true"
+								}
 							],
 							"variable": [
 								{
@@ -2678,7 +2691,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "xaufderhar@example.org",
+									"value": "cryborg@gmail.com",
 									"type": "text"
 								},
 								{
