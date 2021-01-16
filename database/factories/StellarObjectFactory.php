@@ -24,11 +24,16 @@ class StellarObjectFactory extends Factory
     {
         $date = new Carbon();
         $disappear_at = $date->day();
+        $coordinates = $this->getCoordinates();
+
         return [
             'name'           => $this->faker->unique()->words(rand(1, 3), true),
             'description'    => $this->faker->paragraph(1),
             'type'           => $this->faker->randomElement(['asteroid', 'shipwreck']),
-            'disappear_at'   => $disappear_at
+            'disappear_at'   => $disappear_at,
+            'coord_x'        => $coordinates['x'],
+            'coord_y'        => $coordinates['y'],
+            'coord_z'        => $coordinates['z'],
         ];
     }
 
@@ -106,4 +111,26 @@ class StellarObjectFactory extends Factory
             ];
         });
     }
+
+    public function getCoordinates() {
+        $u = mt_rand();
+        $x1 = mt_rand();
+        $x2 = mt_rand();
+        $x3 = mt_rand();
+
+        $mag = sqrt($x1*$x1 + $x2*$x2 + $x3*$x3);
+        $x1 /= $mag;
+        $x2 /= $mag;
+        $x3 /= $mag;
+
+        // ** is cube root
+        $c = $u ** (1/3);
+
+        return [
+            'x' => floor($x1 * $c),
+            'y' => floor($x2 * $c),
+            'z' => floor($x3 * $c),
+        ];
+    }
+
 }

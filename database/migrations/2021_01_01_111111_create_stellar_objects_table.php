@@ -28,6 +28,10 @@ class CreateStellarObjectsTable extends Migration
             $table->dateTime('disappear_at')->nullable()
                 ->comment('If the stellar object is ephemeral');
 
+            $table->integer('coord_x');
+            $table->integer('coord_y');
+            $table->integer('coord_z');
+
             $table->timestamps();
         });
     }
