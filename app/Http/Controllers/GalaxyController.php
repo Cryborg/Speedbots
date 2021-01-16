@@ -39,7 +39,7 @@ class GalaxyController extends Controller
 
     public function show(Request $request, Galaxy $galaxy)
     {
-        if ($request->get('include_systems', null) !== null) {
+        if ($request->get('<include_systems>', null) !== null) {
             return response()->json([
                 $galaxy,
                 $galaxy->stellarSystems

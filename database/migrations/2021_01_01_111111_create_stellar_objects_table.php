@@ -18,15 +18,16 @@ class CreateStellarObjectsTable extends Migration
 
             $table->foreignId('stellar_system_id');
 
+            $table->string('type')
+                  ->comment('Type of stellar object. [planet|star|shipwreck|circuit|asteroid|satellite|portal]');
             $table->string('name')
                 ->comment('Name of stellar object');
             $table->string('description')
                 ->comment('Description of stellar object');
-            $table->string('type')
-                ->comment('Type of stellar object. [planet|star|shipwreck|circuit|asteroid|satellite|portal]');
+
             $table->dateTime('disappear_at')->nullable()
                 ->comment('If the stellar object is ephemeral');
-            
+
             $table->timestamps();
         });
     }

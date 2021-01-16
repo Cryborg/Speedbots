@@ -24,6 +24,11 @@ class CreateShipsTable extends Migration
 
             $table->float('health');
 
+            $table->timestamp('in_orbit_at')->nullable();
+
+            $table->unsignedBigInteger('in_orbit_of')->nullable();
+            $table->foreign('in_orbit_of')->on('stellar_objects')->references('id');
+
             $table->timestamps();
         });
     }

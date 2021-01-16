@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Component;
 use App\Models\Ship;
+use App\Models\StellarObject;
 use App\Models\User;
 use App\Models\Weapon;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,9 @@ class UserSeeder extends Seeder
         $users = User::factory(100)
                      ->create();
 
+        $planet = StellarObject::where('type', 'planet')
+                               ->inRandomOrder()->first();
+
         foreach ($users as $user) {
             // Create a Mothership
             $user->ships()
@@ -27,6 +31,8 @@ class UserSeeder extends Seeder
                       'name'   => 'Mothership',
                       'class'  => 'mothership',
                       'health' => 1000,
+                      'in_orbit_at' => now(),
+                      'in_orbit_of' => $planet->id,
                   ]);
 
             // Assign Speedbots with components
