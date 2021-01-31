@@ -38,21 +38,23 @@ export default {
         }
     },
     methods: {
-        initGalaxy() {
-            let userLocation = this.$store.getters['user/getLocation'];
-            this.galaxy = this.$store.getters['galaxy/getSystems'](userLocation.galaxy)
-
-            if (!this.galaxy) {
-                this.$store.dispatch('galaxy/populateGalaxy', userLocation.galaxy)
-                this.galaxy = this.$store.getters['galaxy/getSystems'](userLocation.galaxy);
-            }
-        },
         initCanvas() {
             this.canvas = document.getElementById('galaxy');
             this.canvas.width = this.canvas.parentElement.offsetWidth;
             this.canvas.height = this.canvas.parentElement.offsetHeight;
             this.context = this.canvas.getContext('2d');
+        },
+        initGalaxy() {
+            let userLocation = this.$store.getters['user/getLocation'];
+            this.galaxy = this.$store.getters['galaxy/getSystems'](userLocation.galaxy)
 
+            if (!this.galaxy) {
+                return this.$store.dispatch('galaxy/populateGalaxy', userLocation.galaxy).then(() => {
+                    this.galaxy = this.$store.getters['galaxy/getSystems'](userLocation.galaxy);
+                });
+            }
+        },
+        drawSystems() {
             let wc = this.canvas.width / 100;
             let hc = this.canvas.height / 100;
 
@@ -67,14 +69,13 @@ export default {
                     this.context.fill();
                 }
             }
-        },
-        drawSystems() {
-            this.initGalaxy();
-            this.initCanvas();
         }
     },
     mounted() {
-        this.drawSystems();
-    },
+        this.initCanvas();
+        this.initGalaxy().then(() => {
+            this.drawSystems();
+        });
+    }
 }
 </script>
