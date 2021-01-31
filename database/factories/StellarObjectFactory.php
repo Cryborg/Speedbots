@@ -27,7 +27,7 @@ class StellarObjectFactory extends Factory
         $coordinates = $this->getCoordinates();
 
         return [
-            'name'           => $this->faker->unique()->words(rand(1, 3), true),
+            'name'           => $this->faker->unique()->words(rand(1, 2), true),
             'description'    => $this->faker->paragraph(1),
             'type'           => $this->faker->randomElement(['asteroid', 'shipwreck']),
             'disappear_at'   => $disappear_at,

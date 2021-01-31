@@ -35,8 +35,8 @@ class StellarSystemFactory extends Factory
     {
         return $this->afterCreating(function (StellarSystem $stellarSystem) {
 
-            $temporaryStellarObjects = StellarObject::factory(rand(0, 2))->create(['stellar_system_id' => $stellarSystem->id]);
-            $planets = StellarObject::factory(rand(3, 7))->planet()->create(['stellar_system_id' => $stellarSystem->id]);
+            $temporaryStellarObjects = StellarObject::factory(rand(5, 30))->create(['stellar_system_id' => $stellarSystem->id]);
+            $planets = StellarObject::factory(rand(3, 9))->planet()->create(['stellar_system_id' => $stellarSystem->id]);
             $portal = StellarObject::factory(rand(0, 1))->portal()->create(['stellar_system_id' => $stellarSystem->id]);
             $star = StellarObject::factory(1)->star()->create(['stellar_system_id' => $stellarSystem->id]);
             $satellites = StellarObject::factory(1)->satellite()->create(['stellar_system_id' => $stellarSystem->id]);
