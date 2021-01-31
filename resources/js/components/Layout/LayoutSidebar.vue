@@ -15,7 +15,7 @@
             <span>Ships</span>
         </router-link>
 
-        <router-link to="#" @click="logout">
+        <router-link to="/" @click.native="logout">
             <font-awesome-icon icon="sign-out-alt" />
             <span>Log Out</span>
         </router-link>
