@@ -32,6 +32,9 @@ class StellarSystemController extends Controller
         return [
             'name'        => 'required',
             'description' => 'required',
+            'coord_x'     => 'required',
+            'coord_y'     => 'required',
+            'color'       => 'required'
         ];
     }
 
@@ -43,6 +46,9 @@ class StellarSystemController extends Controller
         return [
             'name'        => 'string',
             'description' => 'text',
+            'coord_x'     => 'int',
+            'coord_y'     => 'int',
+            'color'       => 'int'
         ];
     }
 
@@ -58,23 +64,5 @@ class StellarSystemController extends Controller
         $stellarSystems = $galaxy->stellarSystems;
 
         return response()->json($stellarSystems);
-    }
-
-    /**
-     * Create a new stellar system to the given galaxy
-     *
-     * @param \App\Http\Requests\StellarSystemStoreRequest $request
-     * @param \App\Models\Galaxy                           $galaxy
-     *
-     * @return JsonResponse
-     */
-    public function store(StellarSystemStoreRequest $request, Galaxy $galaxy): JsonResponse
-    {
-        $stellarSystem = $galaxy->stellarSystems()->create($request->all());
-
-        return response()->json([
-            'success'   => $stellarSystem instanceof StellarSystem,
-            'stellar_system_id' => $stellarSystem->id
-        ]);
     }
 }

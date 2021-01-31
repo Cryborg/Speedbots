@@ -99,4 +99,41 @@ class User extends Authenticatable
 
         return $this;
     }
+
+    /**
+     * Return details from users
+     *
+     * @param int $amount
+     *
+     * @return User
+     */
+    public function getDetails(): User
+    {
+        $this->getLocation();
+        $this->load(['roles', 'ships']);
+
+        return $this;
+    }
+
+    /**
+     * Return user location
+     *
+     * @param int $amount
+     *
+     * @return User
+     */
+    public function getLocation(): User
+    {
+        $objectId = $this->ships()->mothership()->first()->in_orbit_of;
+        $systemId = StellarObject::find($objectId)->stellar_system_id;
+        $galaxyId = StellarSystem::find($systemId)->galaxy_id;
+
+        $this->location = [
+            'galaxy' => $galaxyId,
+            'system' => $systemId,
+            'object' => $objectId
+        ];
+
+        return $this;
+    }
 }

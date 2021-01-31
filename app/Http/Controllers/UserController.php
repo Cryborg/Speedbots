@@ -104,7 +104,7 @@ class UserController extends ControllerBase
         if (!is_null($this->authUser)) {
             return response()->json([
                 'status'  => 'success',
-                'details' => $this->authUser->load(['roles', 'ships']),
+                'details' => $this->authUser->getDetails(),
             ]);
         }
 

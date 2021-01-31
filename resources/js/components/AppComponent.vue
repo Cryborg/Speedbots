@@ -1,7 +1,7 @@
 <template>
     <div>
         <layout>
-            
+            App component
         </layout>
     </div>
 </template>

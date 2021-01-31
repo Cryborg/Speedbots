@@ -1,7 +1,9 @@
 <template>
     <div>
         <layout-sidebar />
-        <layout-container />
+        <layout-container>
+            <slot></slot>
+        </layout-container>
     </div>
 </template>
 

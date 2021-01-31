@@ -5,7 +5,7 @@
             <span>Home</span>
         </router-link>
 
-        <router-link :to="{ name : 'app'}">
+        <router-link :to="{ name : 'galaxies'}">
             <font-awesome-icon :icon="['fab', 'galactic-senate']" />
             <span>Galaxy</span>
         </router-link>

@@ -68,4 +68,15 @@ class Ship extends Model
     {
         return $this->class === 'mothership';
     }
+
+    /**
+     * Scope a query to only return mothership.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMothership($query)
+    {
+        return $query->where('class', 'mothership');
+    }
 }

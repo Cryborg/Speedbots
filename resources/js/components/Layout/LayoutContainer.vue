@@ -12,11 +12,21 @@
 
 <style lang="scss" scoped>
     .main-container {
-
         .logo {
             height: 10vh;
             display: flex;
             justify-content: center;
+            h1 {
+                color : #46AAEC;
+            }
+        }
+
+        .container {
+            height: 80vh;
+            margin: 1rem;
+            background-color: #b8b8b8;
+            border-radius: 1rem;
+            padding: 1rem;
         }
     }
 </style>

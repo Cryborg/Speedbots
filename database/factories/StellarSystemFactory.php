@@ -25,6 +25,9 @@ class StellarSystemFactory extends Factory
         return [
             'name'        => $this->faker->name,
             'description' => $this->faker->paragraph(1),
+            'coord_x'     => $this->faker->unique()->numberBetween(1, 99),
+            'coord_y'     => $this->faker->unique()->numberBetween(1, 99),
+            'color'       => $this->faker->hexColor
         ];
     }
 

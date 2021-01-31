@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
+import galaxy from './modules/galaxy'
 import VuexPersistence from 'vuex-persist'
 
 
@@ -16,6 +17,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   modules: {
     user,
+    galaxy
   },
   plugins: [vuexLocal.plugin]
 })
