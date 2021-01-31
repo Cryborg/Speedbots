@@ -27,7 +27,7 @@ class StellarObjectFactory extends Factory
         $coordinates = $this->getCoordinates();
 
         return [
-            'name'           => $this->faker->unique()->words(rand(1, 3), true),
+            'name'           => $this->faker->unique()->words(rand(1, 2), true),
             'description'    => $this->faker->paragraph(1),
             'type'           => $this->faker->randomElement(['asteroid', 'shipwreck']),
             'disappear_at'   => $disappear_at,
@@ -112,19 +112,20 @@ class StellarObjectFactory extends Factory
         });
     }
 
-    public function getCoordinates() {
-        $u = mt_rand();
+    public function getCoordinates()
+    {
+        $u  = mt_rand();
         $x1 = mt_rand();
         $x2 = mt_rand();
         $x3 = mt_rand();
 
-        $mag = sqrt($x1*$x1 + $x2*$x2 + $x3*$x3);
-        $x1 /= $mag;
-        $x2 /= $mag;
-        $x3 /= $mag;
+        $mag = sqrt($x1 * $x1 + $x2 * $x2 + $x3 * $x3);
+        $x1  /= $mag;
+        $x2  /= $mag;
+        $x3  /= $mag;
 
         // ** is cube root
-        $c = $u ** (1/3);
+        $c = $u ** (1 / 3);
 
         return [
             'x' => floor($x1 * $c),
@@ -132,5 +133,4 @@ class StellarObjectFactory extends Factory
             'z' => floor($x3 * $c),
         ];
     }
-
 }
