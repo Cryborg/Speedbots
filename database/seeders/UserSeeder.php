@@ -24,6 +24,8 @@ class UserSeeder extends Seeder
         $planet = StellarObject::where('type', 'planet')
                                ->inRandomOrder()->first();
 
+        $users = User::all();
+
         foreach ($users as $user) {
             // Create a Mothership
             $user->ships()
