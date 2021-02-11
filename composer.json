@@ -1,14 +1,14 @@
 {
-    "name": "laravel/laravel",
+    "name": "Speedbots",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "An amazing game. Trust me.",
     "keywords": [
         "framework",
         "laravel"
     ],
     "license": "MIT",
     "require": {
-        "php": "7.4",
+        "php": "^7.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "garygreen/pretty-routes": "^1.0",
@@ -16,7 +16,7 @@
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^2.4"
+        "laravel/ui": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.9",

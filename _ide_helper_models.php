@@ -42,7 +42,7 @@ namespace App\Models{
  * App\Models\Component
  *
  * @property int $id
- * @property string $name
+ * @property string $slug Once translated it will give the component name.
  * @property int $health Health points
  * @property int $price
  * @property int|null $weight
@@ -51,6 +51,9 @@ namespace App\Models{
  * @property int|null $slots Available slots on the frame.
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Material[] $materials
+ * @property-read int|null $materials_count
  * @method static \Illuminate\Database\Eloquent\Builder|Component newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Component newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Component query()
@@ -58,10 +61,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Component whereEnergyConsumption($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component whereHealth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Component whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component wherePower($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component whereSlots($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Component whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Component whereWeight($value)
  */
@@ -70,13 +73,13 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\ComponentShip
+ * App\Models\ComponentUser
  *
- * @method static \Illuminate\Database\Eloquent\Builder|ComponentShip newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ComponentShip newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ComponentShip query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ComponentUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ComponentUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ComponentUser query()
  */
-	class ComponentShip extends \Eloquent {}
+	class ComponentUser extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -100,6 +103,43 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Galaxy whereUpdatedAt($value)
  */
 	class Galaxy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Material
+ *
+ * @property int $id
+ * @property string $slug
+ * @property int $rarity
+ * @property int|null $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Component[] $components
+ * @property-read int|null $components_count
+ * @property-read string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|Material newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Material newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Material query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Material whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Material whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Material whereRarity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Material whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Material whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Material whereValue($value)
+ */
+	class Material extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\MaterialUser
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MaterialUser query()
+ */
+	class MaterialUser extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -189,13 +229,14 @@ namespace App\Models{
  * @property string $name
  * @property string $class
  * @property float $health
+ * @property string|null $in_orbit_at
+ * @property int|null $in_orbit_of
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Component[] $components
- * @property-read int|null $components_count
  * @property-read \App\Models\User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Weapon[] $weapons
  * @property-read int|null $weapons_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Ship mothership()
  * @method static \Illuminate\Database\Eloquent\Builder|Ship newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ship newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ship query()
@@ -203,6 +244,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereHealth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ship whereInOrbitAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ship whereInOrbitOf($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ship whereUserId($value)
@@ -216,16 +259,22 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $stellar_system_id
+ * @property string $type Type of stellar object. [planet|star|shipwreck|circuit|asteroid|satellite|portal]
  * @property string $name Name of stellar object
  * @property string $description Description of stellar object
- * @property string $type Type of stellar object. [planet|star|shipwreck|circuit|asteroid|satellite|portal]
  * @property \Illuminate\Support\Carbon|null $disappear_at If the stellar object is ephemeral
+ * @property int $coord_x
+ * @property int $coord_y
+ * @property int $coord_z
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\StellarSystem $stellarSystem
  * @method static \Illuminate\Database\Eloquent\Builder|StellarObject newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StellarObject newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StellarObject query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereCoordX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereCoordY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereCoordZ($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StellarObject whereDisappearAt($value)
@@ -246,6 +295,9 @@ namespace App\Models{
  * @property int $galaxy_id
  * @property string $name Name of the stellar system
  * @property string $description Description of the stellar system
+ * @property int $coord_x coord_x position of the stellar system
+ * @property int $coord_y coord_y position of the stellar system
+ * @property string $color Color of the stellar system appear on galaxy
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Galaxy $galaxy
@@ -254,6 +306,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereCoordX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereCoordY($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StellarSystem whereGalaxyId($value)
@@ -276,6 +331,10 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Component[] $components
+ * @property-read int|null $components_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Material[] $inventory
+ * @property-read int|null $inventory_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
@@ -304,7 +363,7 @@ namespace App\Models{
  * App\Models\Weapon
  *
  * @property int $id
- * @property string $name
+ * @property string $slug Once translated this will give the weapon name.
  * @property string $type Ballistic, EMP, laser, plasma,...
  * @property float $damage
  * @property int $ammo Total ammunition
@@ -318,6 +377,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read float|int|mixed $max_damage
  * @property-read float|int|mixed $min_damage
+ * @property-read mixed $name
  * @property-read array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null $quality_text
  * @property-read array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null $rarity_text
  * @property-read mixed $updated_damage
@@ -330,11 +390,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereDamage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereDirection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereQuality($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereRange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereRarity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereSalvo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Weapon whereUpdatedAt($value)
  */
