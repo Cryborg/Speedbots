@@ -48,9 +48,9 @@
             <div class="row h-75 m-1 gx-5">
                 <div class="col-8 border border-light rounded mr-3">
                     <h2>Vue principale</h2>
-
                     <p>Test avec des accents... Zut y'en a pas dans cette phrase... </p>
                     <p>Hébété, être humain, côte d'armor, où es-tu ?</p>
+                    <canvas id="raceCanvas" width="800" height="800"></canvas>
                 </div>
                 <div class="col-3 border border-light rounded">
                     <div class="card mt-3">
@@ -75,5 +75,124 @@
                 </div>
             </div>
         </div>
+        <script>
+            let trackLength = 1000;
+            let trackRadius = 200;
+            let sbSize = 10;
+
+            let c = document.getElementById("raceCanvas");
+            let ctx = c.getContext("2d");
+            let speed = (Math.PI * 2) / 1000;
+            let rect = {w: c.width, h: c.height}
+            let i = 0;
+            let currentSB;
+
+            ctx.font = "16pt Arial";
+
+            /**
+             * TODO 1: convert i to actual distance (where 100% = 2 * Math.PI)
+             * TODO 2: this array should be in DB, and created during the race.
+             *         Only changing values should be there, not static ones like names.
+             *         Colors should be randomized too. Maybe use gradients to allow for
+             *         a lot of different combinations when we run a 50+ SB race?
+             *
+             */
+            let sbs = [
+                {
+                    i: 0,
+                    color: '#f00',
+                    dir: '+',
+                    name: 'SB 1 (Cryborg)',
+                },
+                {
+                    i: 1,
+                    color: '#f0f',
+                    dir: '-',
+                    name: 'SB 2 (Saromase)'
+                },
+                {
+                    i: 2,
+                    color: '#ff0',
+                    dir: '+',
+                    name: 'Boud\'chou (Liam)',
+                },
+                {
+                    i: 3,
+                    color: '#0037ff',
+                    dir: '-',
+                    name: 'Tacos (Mexicanos)'
+                },
+                {
+                    i: 4,
+                    color: '#37ff00',
+                    dir: '+',
+                    name: 'SB 1 (Cryborg)',
+                },
+                {
+                    i: 5,
+                    color: '#ff6a00',
+                    dir: '-',
+                    name: 'SB 2 (Saromase)'
+                },
+                {
+                    i: 6,
+                    color: '#b300ff',
+                    dir: '+',
+                    name: 'Boud\'chou (Liam)',
+                },
+                {
+                    i: 7,
+                    color: '#ecedf8',
+                    dir: '-',
+                    name: 'Tacos (Mexicanos)'
+                },
+            ];
+
+            setInterval(draw, 50);
+
+            function draw() {
+                // Clear the canvas
+                ctx.clearRect(0, 0, rect.w, rect.h);
+
+                // Draw the track
+                ctx.beginPath();
+                ctx.strokeStyle = '#6c6c6c';
+                ctx.lineWidth = 30;
+                ctx.arc(rect.w / 2, rect.h / 2, trackRadius, 0, 2 * Math.PI);
+                ctx.stroke();
+
+                // Draw every SB
+                sbs.forEach(function(sb, idx) {
+                    // Coordinates on the circle
+                    let x = Math.sin(-sb.i);
+                    let y = Math.cos(sb.i);
+
+                    // Draw the SB
+                    let sbX = rect.w / 2 + x * trackRadius;
+                    let sbY = rect.h / 2 + y * trackRadius;
+
+                    ctx.fillStyle = sb.color;
+                    ctx.fillRect(sbX, sbY, sbSize, sbSize);
+                    ctx.fillText(sb.name, sbX, sbY - 10);
+
+                    // Direction the SB goes
+                    if (sb.dir === '+') {
+                        sbs[idx].i += speed;
+                    } else {
+                        sbs[idx].i -= speed;
+                    }
+
+                    // FIXME: test demi-tour aléatoire
+                    let random = Math.random();
+                    if (random >= 0.555 && random <= 0.558) {
+                        if (sb.dir === '+') {
+                            sbs[idx].dir = '-';
+                        } else {
+                            sbs[idx].dir = '+';
+                        }
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
