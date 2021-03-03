@@ -1,14 +1,15 @@
 {
-    "name": "laravel/laravel",
+    "name": "speedbots",
+    "version": "1.0.0",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Speedbots",
     "keywords": [
-        "framework",
-        "laravel"
+        "game",
+        "space"
     ],
     "license": "MIT",
     "require": {
-        "php": "7.4",
+        "php": "^7.4|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "garygreen/pretty-routes": "^1.0",
@@ -16,7 +17,7 @@
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^2.4"
+        "laravel/ui": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.9",
