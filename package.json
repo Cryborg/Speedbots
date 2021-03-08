@@ -16,9 +16,15 @@
         "lodash": "^4.17.19"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.32",
+        "@fortawesome/free-brands-svg-icons": "^5.15.2",
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/vue-fontawesome": "^2.0.2",
+        "cross-env": "^7.0.3",
         "node-notifier": "^9.0.0",
         "terser": "^5.6.0",
         "vue": "^3.0.7",
+        "vue-router": "^3.5.1",
         "yallist": "^4.0.0",
         "yargs": "^16.2.0"
     }

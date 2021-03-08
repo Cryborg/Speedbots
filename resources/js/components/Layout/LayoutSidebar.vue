@@ -10,9 +10,9 @@
             <span>Galaxy</span>
         </router-link>
 
-        <router-link :to="{ name : 'app'}">
+        <router-link :to="{ name : 'ship'}">
             <font-awesome-icon icon="space-shuttle" />
-            <span>Ships</span>
+            <span>Ship</span>
         </router-link>
 
         <router-link to="/" @click.native="logout">

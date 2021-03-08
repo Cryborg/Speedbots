@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import { isAuthentificated, hasLoadSystems } from './router-guard'
+import { isAuthentificated } from './router-guard'
 
 import AuthBox from './components/Auth/AuthBox'
 import AppComponent from './components/AppComponent'
 import Galaxy from './components/Galaxy/Galaxy'
+import Ship from './components/Ship/Ship'
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,12 @@ export default new VueRouter({
       path: '/galaxies',
       component: Galaxy,
       name : 'galaxies' ,
+      beforeEnter : isAuthentificated,
+    },
+    {
+      path: '/ship',
+      component: Ship,
+      name : 'ship' ,
       beforeEnter : isAuthentificated,
     }
   ],
