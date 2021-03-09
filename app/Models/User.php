@@ -103,8 +103,6 @@ class User extends Authenticatable
     /**
      * Return details from users
      *
-     * @param int $amount
-     *
      * @return User
      */
     public function getDetails(): User
@@ -117,8 +115,6 @@ class User extends Authenticatable
 
     /**
      * Return user location
-     *
-     * @param int $amount
      *
      * @return User
      */

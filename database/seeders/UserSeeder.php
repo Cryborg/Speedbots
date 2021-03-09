@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::factory(100)
+        User::factory(100)
                      ->create();
 
         $planet = StellarObject::where('type', 'planet')
@@ -61,13 +61,17 @@ class UserSeeder extends Seeder
                 ]);
 
                 foreach ($components as $component) {
+                    foreach ($component as $cmpId => $cmp) {
+                        $component[$cmpId]['equipped_on'] = $ship->id;
+                    }
+
                     $user->components()->syncWithoutDetaching($component);
                 }
 
                 // Give as much weapons it can carry
                 for ($i = 1; $i <= $frame->slots; $i++) {
-                    $weapon = Weapon::inRandomOrder()
-                                    ->first();
+                    $weapon = Weapon::inRandomOrder()->first();
+
                     $ship->weapons()->syncWithoutDetaching([
                         $weapon->id => [
                             'ammo'     => $weapon->ammo,

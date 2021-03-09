@@ -18,7 +18,7 @@ class Ship extends Model
      */
     public function core()
     {
-        return $this->components->where('name', 'core')->first();
+        return $this->user->components->where('name', 'core')->first();
     }
 
     /**
@@ -26,7 +26,7 @@ class Ship extends Model
      */
     public function engine()
     {
-        return $this->components->where('name', 'engine')->first();
+        return $this->user->components->where('name', 'engine')->first();
     }
 
     /**
@@ -34,7 +34,7 @@ class Ship extends Model
      */
     public function frame()
     {
-        return $this->components->where('name', 'frame')->first();
+        return $this->user->components->where('name', 'frame')->first();
     }
 
     /**
@@ -42,7 +42,7 @@ class Ship extends Model
      */
     public function hull()
     {
-        return $this->components->where('name', 'hull')->first();
+        return $this->user->components->where('name', 'hull')->first();
     }
 
     /**
@@ -50,7 +50,7 @@ class Ship extends Model
      */
     public function power_supply()
     {
-        return $this->components->where('name', 'power_supply')->first();
+        return $this->user->components->where('name', 'power_supply')->first();
     }
 
     /**
