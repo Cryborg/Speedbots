@@ -32,7 +32,7 @@ Route::post('register', [UserController::class, 'register'])->name('user.registe
 Route::post('login', [UserController::class, 'login'])->name('user.login');
 
 // sanctum auth middleware routes
-Route::middleware('auth:api')->group(function() {
+Route::middleware('auth:sanctum')->group(function() {
     Route::post('logout', [UserController::class, 'logout'])->name('user.logout');
     Route::get('user', [UserController::class, 'show'])->name('user.show');
 

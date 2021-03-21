@@ -7,12 +7,10 @@
         <title>Speedbots</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <body style="background-color : #292929;">
-        <div id="app">
-            <router-view></router-view>
-        </div>
+    <body>
+        Ca fonctionne ?
     </body>
-    <script src="{{ asset('js/app.js') }}"></script>
 </html>
 

@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\Relations\UserRelationships;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,
-        HasFactory,
-        Notifiable,
-        UserRelationships;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +37,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -46,90 +51,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * @param mixed ...$roles
+     * The accessors to append to the model's array form.
      *
-     * @return bool
+     * @var array
      */
-    public function hasRole(...$roles): bool
-    {
-        foreach ($roles as $role) {
-            if ($this->roles->contains('slug', $role)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public function getCredits()
-    {
-        return $this->inventory->where('slug', 'credits')->first()->pivot->amount;
-    }
-
-    /**
-     * Add credits
-     *
-     * @param int $amount
-     *
-     * @return User
-     */
-    public function addCredits(int $amount): User
-    {
-        $creditsPivot = $this->inventory
-            ->where('slug', 'credits')->first()->pivot;
-        $creditsPivot->amount += $amount;
-        $creditsPivot->save;
-
-        return $this;
-    }
-
-    /**
-     * Subtract credits
-     *
-     * @param int $amount
-     *
-     * @return User
-     */
-    public function subCredits(int $amount): User
-    {
-        $creditsPivot = $this->inventory
-            ->where('slug', 'credits')->first()->pivot;
-        $creditsPivot->amount -= $amount;
-        $creditsPivot->save;
-
-        return $this;
-    }
-
-    /**
-     * Return details from users
-     *
-     * @return User
-     */
-    public function getDetails(): User
-    {
-        $this->getLocation();
-        $this->load(['roles', 'ships']);
-
-        return $this;
-    }
-
-    /**
-     * Return user location
-     *
-     * @return User
-     */
-    public function getLocation(): User
-    {
-        $objectId = $this->ships()->mothership()->first()->in_orbit_of;
-        $systemId = StellarObject::find($objectId)->stellar_system_id;
-        $galaxyId = StellarSystem::find($systemId)->galaxy_id;
-
-        $this->location = [
-            'galaxy' => $galaxyId,
-            'system' => $systemId,
-            'object' => $objectId
-        ];
-
-        return $this;
-    }
+    protected $appends = [
+        'profile_photo_url',
+    ];
 }
