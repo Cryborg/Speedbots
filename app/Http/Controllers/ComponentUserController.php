@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Component;
-use App\Models\ComponentUser;
-use App\Models\MaterialUser;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
-class ComponentUserController extends Controller
+class ComponentUserController extends ControllerBase
 {
     /**
      * Upgrade a component:

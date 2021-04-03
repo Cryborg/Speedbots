@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Weapon;
 use App\Traits\CrudTrait;
 
@@ -11,7 +12,7 @@ use App\Traits\CrudTrait;
  * @package App\Http\Controllers
  * @group Weapon
  */
-class WeaponController extends Controller
+class WeaponController extends ControllerBase
 {
     use CrudTrait;
 

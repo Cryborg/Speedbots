@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Http\Requests\RaceStoreRequest;
 use App\Http\Requests\RaceUpdateRequest;
 use App\Models\Race;
-use App\Models\Ship;
 use App\Traits\CrudTrait;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 
-class RaceController extends Controller
+class RaceController extends ControllerBase
 {
     use CrudTrait;
 

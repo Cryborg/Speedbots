@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Component;
 use App\Models\Ship;
 use App\Models\User;
@@ -16,7 +17,7 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers
  * @group Inventory
  */
-class InventoryController extends Controller
+class InventoryController extends ControllerBase
 {
     /**
      * Display a listing of the resource.

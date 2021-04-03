@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Race;
 use App\Models\Ship;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
-class RaceShipController extends Controller
+class RaceShipController extends ControllerBase
 {
     /**
      * Store a newly created resource in storage.

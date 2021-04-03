@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Component;
 use App\Traits\CrudTrait;
 
@@ -11,7 +12,7 @@ use App\Traits\CrudTrait;
  * @package App\Http\Controllers
  * @group Component
  */
-class ComponentController extends Controller
+class ComponentController extends ControllerBase
 {
     use CrudTrait;
 

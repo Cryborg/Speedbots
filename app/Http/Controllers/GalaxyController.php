@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Galaxy;
 use App\Traits\CrudTrait;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers
  * @group Galaxy
  */
-class GalaxyController extends Controller
+class GalaxyController extends ControllerBase
 {
     use CrudTrait;
 

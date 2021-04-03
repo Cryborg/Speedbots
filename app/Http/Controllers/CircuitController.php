@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Http\Requests\CircuitStoreRequest;
 use App\Http\Requests\CircuitUpdateRequest;
 use App\Models\Circuit;
@@ -14,7 +15,7 @@ use Illuminate\Http\JsonResponse;
  * @package App\Http\Controllers
  * @group Circuit
  */
-class CircuitController extends Controller
+class CircuitController extends ControllerBase
 {
     use CrudTrait;
 

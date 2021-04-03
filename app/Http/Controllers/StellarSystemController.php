@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Http\Requests\StellarSystemStoreRequest;
 use App\Http\Requests\StellarSystemUpdateRequest;
 use App\Models\StellarSystem;
@@ -15,7 +16,7 @@ use Illuminate\Http\JsonResponse;
  * @package App\Http\Controllers
  * @group StellarSystem
  */
-class StellarSystemController extends Controller
+class StellarSystemController extends ControllerBase
 {
     use CrudTrait;
 

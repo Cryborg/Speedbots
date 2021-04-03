@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Bases\ControllerBase;
 use App\Models\Material;
 use App\Traits\CrudTrait;
 
-class MaterialController extends Controller
+class MaterialController extends ControllerBase
 {
     use CrudTrait;
 
