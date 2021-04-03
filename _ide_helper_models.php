@@ -328,19 +328,14 @@ namespace App\Models{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
+ * @property string|null $two_factor_secret
+ * @property string|null $two_factor_recovery_codes
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Component[] $components
- * @property-read int|null $components_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Material[] $inventory
- * @property-read int|null $inventory_count
+ * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
- * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Ship[] $ships
- * @property-read int|null $ships_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
@@ -352,6 +347,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  */
