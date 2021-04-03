@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Bases\ControllerBase;
-use App\Http\Requests\RaceStoreRequest;
-use App\Http\Requests\RaceUpdateRequest;
 use App\Models\Race;
 use App\Traits\CrudTrait;
 use Illuminate\Http\JsonResponse;

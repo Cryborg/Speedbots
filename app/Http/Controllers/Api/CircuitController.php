@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Bases\ControllerBase;
-use App\Http\Requests\CircuitStoreRequest;
-use App\Http\Requests\CircuitUpdateRequest;
 use App\Models\Circuit;
 use App\Traits\CrudTrait;
 use Illuminate\Http\JsonResponse;

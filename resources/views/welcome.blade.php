@@ -10,7 +10,17 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        Ca fonctionne ?
+        This page is accessible without authentication. To login, please click <a href="/login">here</a>.
+
+        @auth()
+            You are currently logged in.
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <i class="fa fa-sign-out"></i>{{ __('Logout') }}
+                </x-jet-dropdown-link>
+            </form>
+        @endauth
     </body>
 </html>
 

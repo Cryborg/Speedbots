@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Bases\ControllerBase;
-use App\Http\Requests\StellarSystemStoreRequest;
-use App\Http\Requests\StellarSystemUpdateRequest;
 use App\Models\StellarSystem;
 use App\Models\Galaxy;
 use App\Traits\CrudTrait;

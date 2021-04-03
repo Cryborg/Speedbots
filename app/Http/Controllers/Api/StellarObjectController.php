@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Bases\ControllerBase;
-use App\Http\Requests\StellarObjectStoreRequest;
-use App\Http\Requests\StellarObjectUpdateRequest;
 use App\Models\StellarObject;
 use App\Models\StellarSystem;
 use App\Traits\CrudTrait;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class StellarObjectController
@@ -63,12 +62,12 @@ class StellarObjectController extends ControllerBase
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StellarObjectStoreRequest $request
+     * @param Request $request
      * @param \App\Models\StellarSystem                    $stellarSystem Stellar system
      *
      * @return JsonResponse
      */
-    public function store(StellarObjectStoreRequest $request, StellarSystem $stellarSystem): JsonResponse
+    public function store(Request $request, StellarSystem $stellarSystem): JsonResponse
     {
         $stellarObject = $stellarSystem->stellarObjects()->create($request->all());
 

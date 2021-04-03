@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Bases\ControllerBase;
-use App\Http\Requests\ShipStoreRequest;
-use App\Http\Requests\ShipUpdateRequest;
 use App\Models\Ship;
 use App\Models\User;
 use App\Traits\CrudTrait;
