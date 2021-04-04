@@ -11,6 +11,8 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     public function test_login_screen_can_be_rendered()
     {
         $response = $this->get('/login');

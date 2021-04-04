@@ -13,6 +13,8 @@ class DeleteAccountTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     public function test_user_accounts_can_be_deleted()
     {
         if (! Features::hasAccountDeletionFeatures()) {

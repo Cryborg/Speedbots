@@ -13,6 +13,8 @@ class UpdatePasswordTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     public function test_password_can_be_updated()
     {
         $this->actingAs($user = User::factory()->create());

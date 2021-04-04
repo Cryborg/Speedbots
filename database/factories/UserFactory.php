@@ -35,10 +35,10 @@ class UserFactory extends Factory
 
     public function configure()
     {
-        $creditMaterial = Material::where('slug', 'credits')
-                                  ->firstOrFail();
+        return $this->afterCreating(function (User $user) {
+            $creditMaterial = Material::where('slug', 'credits')
+                ->firstOrFail();
 
-        return $this->afterCreating(function (User $user) use ($creditMaterial) {
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {

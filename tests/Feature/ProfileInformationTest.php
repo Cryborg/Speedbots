@@ -12,6 +12,8 @@ class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     public function test_current_profile_information_is_available()
     {
         $this->actingAs($user = User::factory()->create());
