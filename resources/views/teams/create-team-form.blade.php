@@ -17,7 +17,7 @@
                 @endif
 
                 <div class="ml-2">
-                    <div>{{ $this->user->username }}</div>
+                    <div>{{ $this->user->name }}</div>
                     <div class="text-muted">{{ $this->user->email }}</div>
                 </div>
             </div>

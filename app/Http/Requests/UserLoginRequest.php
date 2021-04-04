@@ -14,8 +14,8 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => 'required_without:username|email',
-            'username' => 'required_without:email',
+            'email'    => 'required_without:name|email',
+            'name' => 'required_without:email',
             'password' => 'required',
         ];
     }

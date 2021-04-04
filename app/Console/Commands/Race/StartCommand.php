@@ -188,7 +188,7 @@ class StartCommand extends Command
         if ($totalAmmoLeft <= 0) {
             $message = $this->speedbotsRacing->count() . ' - ' . trans('race.speedbot_destroyed', [
                     'speedbot'   => $speedbot->name,
-                    'belongs_to' => $speedbot->user->username,
+                    'belongs_to' => $speedbot->user->name,
                 ]);
 
             $this->speedbotsRacing = $this->speedbotsRacing->filter(function ($sb) use ($speedbot) {
@@ -334,7 +334,7 @@ class StartCommand extends Command
                 $weapon->pivot->ammo = 0;
 
                 $this->writeLog(trans('race.no_more_ammo', [
-                    'shooter' => $shooterSB->user->username,
+                    'shooter' => $shooterSB->user->name,
                     'weapon'  => $weapon->name,
                 ]), $weapon);
             }
@@ -362,9 +362,9 @@ class StartCommand extends Command
                 'component'    => 'hull',
                 'damage'       => $totalDamage,
                 'shooter'      => $shooterSB->name,
-                    'shooter_user' => $shooterSB->user->username,
+                    'shooter_user' => $shooterSB->user->name,
                 'target'       => $targetSB->name,
-                    'target_user'  => $targetSB->user->username,
+                    'target_user'  => $targetSB->user->name,
                 'weapon'       => $weapon->name . ' (' . $weapon->rarityText . ', ' . $weapon->qualityText . ')',
             ]);
 

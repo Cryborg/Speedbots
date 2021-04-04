@@ -60,7 +60,7 @@ class UserController extends ControllerBase
               'email'    => $request->email,
               'password' => $request->password,
           ]) || Auth::attempt([
-              'username' => $request->username,
+              'name' => $request->name,
               'password' => $request->password,
           ])) {
             $user = Auth::user();
