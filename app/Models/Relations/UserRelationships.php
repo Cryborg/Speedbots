@@ -30,14 +30,6 @@ trait UserRelationships
     }
 
     /**
-     * @return BelongsToMany
-     */
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
-    /**
      * @return HasMany
      */
     public function ships(): HasMany

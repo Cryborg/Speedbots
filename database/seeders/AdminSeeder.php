@@ -16,8 +16,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $adminRole = Role::where('slug', 'admin')->first();
-
         // Administration accounts.
         // Everything that does not belong to a user belongs to the Administration.
         $admin = User::factory()->create([
@@ -40,9 +38,9 @@ class AdminSeeder extends Seeder
         $saromase->createToken('APIToken');
 
         // Assign roles
-        $admin->roles()->attach($adminRole);
-        $cryborg->roles()->attach($adminRole);
-        $saromase->roles()->attach($adminRole);
+        $admin->assignRole(Role::ROLE_ADMIN);
+        $cryborg->assignRole(Role::ROLE_ADMIN);
+        $saromase->assignRole(Role::ROLE_ADMIN);
 
         // Not on PROD !
         if (env('APP_DEBUG', false) === true) {

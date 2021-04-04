@@ -35,17 +35,14 @@ class UserFactory extends Factory
 
     public function configure()
     {
-        $playerRole = Role::where('slug', 'player')
-                          ->first();
-
         $creditMaterial = Material::where('slug', 'credits')
                                   ->firstOrFail();
 
-        return $this->afterCreating(function (User $user) use ($playerRole, $creditMaterial) {
+        return $this->afterCreating(function (User $user) use ($creditMaterial) {
             $user->createToken('APIToken');
 
             if (!$user->hasRole('admin')) {
-                $user->roles()->attach($playerRole);
+                $user->assignRole(Role::ROLE_PLAYER);
             }
 
             // Give a few credits to the user
